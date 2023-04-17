@@ -30,7 +30,7 @@ public class DragAndDrop : MonoBehaviour
         //wrongDropAudio = GameObject.Find("Audio").transform.GetChild(3).GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
+
     private void OnMouseDrag()
     {
         if (isDragging && !isPlacedRight)
@@ -47,7 +47,13 @@ public class DragAndDrop : MonoBehaviour
 
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             Vector3 rayPoint = ray.GetPoint(distance);
-            transform.position = rayPoint;
+          //  transform.position = rayPoint;
+
+            if (rayPoint.y < startPoint.y)
+                transform.position = new Vector3(rayPoint.x,startPoint.y,rayPoint.z);
+            else
+                transform.position = rayPoint;
+          
         }
     }
 
@@ -72,7 +78,7 @@ public class DragAndDrop : MonoBehaviour
             distance = Vector3.Distance(transform.position, Camera.main.transform.position);
 
 
-            startPos = mousePos - transform.position;
+            //startPos = mousePos - transform.position;
 
             isDragging = true;
         }
@@ -82,10 +88,10 @@ public class DragAndDrop : MonoBehaviour
     {
         isDragging = false;
    
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, 1f);
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, 0.3f);
         foreach (var hitCollider in hitColliders)
         {
-            Debug.Log("hitCollider TAG "+ hitCollider.gameObject.tag);
+            //Debug.Log("hitCollider TAG "+ hitCollider.gameObject.tag);
             if (hitCollider.gameObject.tag == gameObject.tag + "Box")
             {
               
