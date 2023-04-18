@@ -88,7 +88,7 @@ public class DragAndDrop : MonoBehaviour
     {
         isDragging = false;
    
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, 0.3f);
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, 0.5f);
         foreach (var hitCollider in hitColliders)
         {
             //Debug.Log("hitCollider TAG "+ hitCollider.gameObject.tag);

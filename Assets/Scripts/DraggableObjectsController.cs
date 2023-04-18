@@ -11,6 +11,7 @@ public class DraggableObjectsController : MonoBehaviour
     [SerializeField] private int numberOfColors;
     [SerializeField] private int numberOfEachColor;
     private int randomIndex;
+    private Vector3 spawnPoint;
     private GameObject draggableObject;
 
     // Start is called before the first frame update
@@ -24,14 +25,29 @@ public class DraggableObjectsController : MonoBehaviour
         Debug.Log("xOffset " + xOffset);
         Debug.Log("zOffset " + zOffset);
 
+        float minX = referanceObject.transform.position.x - xOffset;
+        float maxX = referanceObject.transform.position.x + xOffset;
+
+        float minZ = referanceObject.transform.position.z - zOffset;
+        float maxZ = referanceObject.transform.position.z + zOffset;
+
         for (int i=0; i<numberOfColors; i++)
         {
             randomIndex = Random.Range(0, objectsToInstantiate.Count);
 
             for(int j = 0; j < numberOfEachColor; j++)
             {
-                draggableObject = Instantiate(objectsToInstantiate[randomIndex], new Vector3(Random.Range(referanceObject.transform.position.x-xOffset, referanceObject.transform.position.x+xOffset), yOffset, Random.Range(referanceObject.transform.position.z - zOffset, referanceObject.transform.position.z+zOffset)), Quaternion.identity);
-                objectsInScene.Add(draggableObject);
+                spawnPoint = new Vector3(Random.Range(minX, maxX), yOffset, Random.Range(minZ, maxZ));
+                
+                Collider[] hitColliders = Physics.OverlapSphere(spawnPoint, objectsToInstantiate[0].GetComponent<BoxCollider>().size.x/2, LayerMask.GetMask("Draggable"));
+                if (hitColliders.Length == 0)
+                {
+                    draggableObject = Instantiate(objectsToInstantiate[randomIndex], spawnPoint, Quaternion.identity);
+                    objectsInScene.Add(draggableObject);
+                }
+                else
+                    j--;
+                
             }
 
             objectsToInstantiate.RemoveAt(randomIndex);

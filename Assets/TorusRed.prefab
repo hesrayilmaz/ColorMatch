@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3250918790872702248}
   - component: {fileID: -680703437100898617}
   - component: {fileID: -7845356067295467904}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TorusRed
   m_TagString: Red
   m_Icon: {fileID: 0}
