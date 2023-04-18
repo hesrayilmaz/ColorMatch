@@ -3785,7 +3785,7 @@ GameObject:
   - component: {fileID: 1864372993}
   - component: {fileID: 1864372992}
   m_Layer: 0
-  m_Name: DraggableObjects
+  m_Name: DraggableObjectsController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3803,7 +3803,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56d773e6f0d286b4a8e50ce71f180694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectsToInstantiate:
+  objectPrefabs:
   - {fileID: 7300955765789030053, guid: 61474127fee85854abc0786d32ea97c0, type: 3}
   - {fileID: 7300955765789030053, guid: d309b745053352844a6305e693f9bcdf, type: 3}
   - {fileID: 7300955765789030053, guid: ee0a7a35ea2348c48abedcd7c80a89eb, type: 3}
@@ -3811,6 +3811,7 @@ MonoBehaviour:
   - {fileID: 7300955765789030053, guid: 23aff2c4365e8d4479f87ebea9741d85, type: 3}
   - {fileID: 7300955765789030053, guid: 70211ccbdecc7d240896a38a1bc4af0a, type: 3}
   - {fileID: 7300955765789030053, guid: fde46a4ee492f8d44a69a0411afe4c1d, type: 3}
+  droppedObjectsArray: []
   referanceObject: {fileID: 1918383016}
   numberOfColors: 3
   numberOfEachColor: 2

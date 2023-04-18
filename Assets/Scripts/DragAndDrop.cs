@@ -17,12 +17,14 @@ public class DragAndDrop : MonoBehaviour
     private float distance;
     //public static float numOfDropPoints;
 
+    private DraggableObjectsController draggableObjectsController;
     private GameObject instructionClone;
     private AudioSource dropAudio, wrongDropAudio;
 
     // Start is called before the first frame update
     void Start()
     {
+        draggableObjectsController = GameObject.Find("DraggableObjectsController").GetComponent<DraggableObjectsController>();
         startPoint = transform.position;
         mouseZCoord = Camera.main.ScreenToWorldPoint(transform.position).z;
         //numOfDropPoints = GameObject.Find("InstructionDropPoints").transform.childCount;
@@ -94,12 +96,23 @@ public class DragAndDrop : MonoBehaviour
             //Debug.Log("hitCollider TAG "+ hitCollider.gameObject.tag);
             if (hitCollider.gameObject.tag == gameObject.tag + "Box")
             {
-              
+
                 //hitCollider.gameObject.transform.parent = null;
                 //instructionClone.transform.localScale = new Vector2(0.35f, 0.35f);
-                transform.position = new Vector3(hitCollider.transform.position.x,
-                    hitCollider.transform.position.y+0.1f, hitCollider.transform.position.z);
+
+                if (draggableObjectsController.IsDroppedListEmpty(gameObject.tag))
+                {
+                    transform.position = new Vector3(hitCollider.transform.position.x,
+                    hitCollider.transform.position.y + 0.1f, hitCollider.transform.position.z);
+                }
+                else
+                {
+                    transform.position = new Vector3(hitCollider.transform.position.x, 
+                        draggableObjectsController.GetLastDroppedObject(gameObject.tag).transform.position.y+gameObject.GetComponent<BoxCollider>().size.y,
+                        hitCollider.transform.position.z);
+                }
                 transform.GetComponent<BoxCollider>().enabled = false;
+                draggableObjectsController.AddDroppedObject(gameObject, gameObject.tag);
                 //dropAudio.Play();
                 isPlacedRight = true;
                 //numOfDropPoints--;
