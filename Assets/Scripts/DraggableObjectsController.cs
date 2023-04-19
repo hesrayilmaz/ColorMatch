@@ -5,24 +5,36 @@ using UnityEngine;
 public class DraggableObjectsController : MonoBehaviour
 {
     [System.Serializable]
-    private class DroppedObjects
+    private class DroppedObject
     {
         public string objectColor;
         public List<GameObject> droppedObjectsList;
     }
 
+    [System.Serializable]
+    private class Box
+    {
+        public string boxColor;
+        public GameObject boxPrefab;
+    }
+
 
     [SerializeField] private List<GameObject> objectPrefabs;
-    [SerializeField] private DroppedObjects[] droppedObjectsArray;
-    private List<GameObject> objectsInScene;
+    [SerializeField] private DroppedObject[] droppedObjectsArray;
+    [SerializeField] private Box[] boxArray;
+    [SerializeField] private List<GameObject> boxesInScene;
     [SerializeField] private GameObject referanceObject;
-    private float xOffset, yOffset, zOffset;
     [SerializeField] private int numberOfColors;
     [SerializeField] private int numberOfEachColor;
-    private int randomIndex;
-    private Vector3 spawnPoint;
+
+    private string[] selectedColors;
+    private List<GameObject> objectsInScene;
     private GameObject draggableObject;
     private GameObject objectToInstantiate;
+
+    private float xOffset, yOffset, zOffset;
+    private int randomIndex;
+    private Vector3 spawnPoint;
 
    
     // Start is called before the first frame update
@@ -32,7 +44,8 @@ public class DraggableObjectsController : MonoBehaviour
         yOffset = objectPrefabs[0].transform.position.y;
         zOffset= referanceObject.transform.localScale.z / 2;
         objectsInScene = new List<GameObject>();
-        droppedObjectsArray = new DroppedObjects[numberOfColors];
+        droppedObjectsArray = new DroppedObject[numberOfColors];
+        selectedColors = new string[numberOfColors];
 
         float minX = referanceObject.transform.position.x - xOffset;
         float maxX = referanceObject.transform.position.x + xOffset;
@@ -40,15 +53,25 @@ public class DraggableObjectsController : MonoBehaviour
         float minZ = referanceObject.transform.position.z - zOffset;
         float maxZ = referanceObject.transform.position.z + zOffset;
 
+        string[] boxColors = { "Blue", "Green", "Orange", "Pink", "Purple", "Red", "Yellow" };
+
+        for (int i = 0; i < boxColors.Length; i++)
+        {
+            boxArray[i].boxColor = boxColors[i];
+        }
+
+
         for (int i=0; i<numberOfColors; i++)
         {
             randomIndex = Random.Range(0, objectPrefabs.Count);
             objectToInstantiate = objectPrefabs[randomIndex];
            
-            droppedObjectsArray[i] = new DroppedObjects();
+            droppedObjectsArray[i] = new DroppedObject();
             droppedObjectsArray[i].droppedObjectsList = new List<GameObject>();
 
             droppedObjectsArray[i].objectColor = objectToInstantiate.tag;
+            selectedColors[i] = objectToInstantiate.tag;
+
 
             for (int j = 0; j < numberOfEachColor; j++)
             {
@@ -62,16 +85,31 @@ public class DraggableObjectsController : MonoBehaviour
                 }
                 else
                     j--;
-                
             }
 
             objectPrefabs.RemoveAt(randomIndex);
+
+            foreach(Box box in boxArray)
+            {
+                if (box.boxColor == selectedColors[i])
+                {
+                    Instantiate(box.boxPrefab, boxesInScene[i].transform.position, Quaternion.identity);
+                    if (boxesInScene[i].transform.GetChild(0) != null)
+                    {
+                        boxesInScene[i].transform.GetChild(0).tag = selectedColors[i] + "Box";
+                        boxesInScene[i].transform.GetChild(0).parent = null;
+                    }
+                    Destroy(boxesInScene[i]);
+                    break;
+                }
+            }
         }
+
     }
 
     public void AddDroppedObject(GameObject droppedObject, string objectTag)
     {
-        foreach(DroppedObjects element in droppedObjectsArray)
+        foreach(DroppedObject element in droppedObjectsArray)
         {
             if (element.objectColor == objectTag)
             {
@@ -82,7 +120,7 @@ public class DraggableObjectsController : MonoBehaviour
 
     public bool IsDroppedListEmpty(string objectTag)
     {
-        foreach(DroppedObjects element in droppedObjectsArray)
+        foreach(DroppedObject element in droppedObjectsArray)
         {
             if (element.objectColor == objectTag)
             {
@@ -95,7 +133,7 @@ public class DraggableObjectsController : MonoBehaviour
 
     public GameObject GetLastDroppedObject(string objectTag)
     {
-        foreach (DroppedObjects element in droppedObjectsArray)
+        foreach (DroppedObject element in droppedObjectsArray)
         {
             if (element.objectColor == objectTag)
             {
