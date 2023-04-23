@@ -97,7 +97,7 @@ public class ObjectsController : MonoBehaviour
                 if (box.boxColor == selectedColors[i])
                 {
                     Instantiate(box.boxPrefab, boxesInScene[i].transform.position, Quaternion.identity);
-                    if (boxesInScene[i].transform.GetChild(0) != null)
+                    if (boxesInScene[i].transform.childCount != 0)
                     {
                         boxesInScene[i].transform.GetChild(0).tag = selectedColors[i] + "Box";
                         boxesInScene[i].transform.GetChild(0).parent = null;

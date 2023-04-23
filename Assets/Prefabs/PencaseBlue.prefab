@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 4944202779396566231}
   - component: {fileID: 2078932575702855119}
   - component: {fileID: 7358343384803195797}
+  - component: {fileID: 3728287550415660490}
   m_Layer: 0
-  m_Name: AG_KidsRoom_pencase
-  m_TagString: Untagged
+  m_Name: PencaseBlue
+  m_TagString: BlueBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -83,3 +84,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &3728287550415660490
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1377295913211165844}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.14830518, y: 0.15273303, z: 0.17124806}
+  m_Center: {x: 0.00000010430813, y: 0.076366514, z: -0.00000008940697}
