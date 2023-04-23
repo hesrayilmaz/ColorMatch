@@ -17,14 +17,14 @@ public class DragAndDrop : MonoBehaviour
     private float distance;
     //public static float numOfDropPoints;
 
-    private DraggableObjectsController draggableObjectsController;
+    private ObjectsController draggableObjectsController;
     private GameObject instructionClone;
     private AudioSource dropAudio, wrongDropAudio;
 
     // Start is called before the first frame update
     void Start()
     {
-        draggableObjectsController = GameObject.Find("DraggableObjectsController").GetComponent<DraggableObjectsController>();
+        draggableObjectsController = GameObject.Find("ObjectsController").GetComponent<ObjectsController>();
         startPoint = transform.position;
         mouseZCoord = Camera.main.ScreenToWorldPoint(transform.position).z;
         //numOfDropPoints = GameObject.Find("InstructionDropPoints").transform.childCount;

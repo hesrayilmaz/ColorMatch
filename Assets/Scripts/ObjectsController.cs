@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DraggableObjectsController : MonoBehaviour
+public class ObjectsController : MonoBehaviour
 {
     [System.Serializable]
     private class DroppedObject
@@ -26,6 +26,8 @@ public class DraggableObjectsController : MonoBehaviour
     [SerializeField] private GameObject referanceObject;
     [SerializeField] private int numberOfColors;
     [SerializeField] private int numberOfEachColor;
+    private int totalNumberOfObjects;
+    private int numberOfDroppedObjects = 0;
 
     private string[] selectedColors;
     private List<GameObject> objectsInScene;
@@ -46,6 +48,7 @@ public class DraggableObjectsController : MonoBehaviour
         objectsInScene = new List<GameObject>();
         droppedObjectsArray = new DroppedObject[numberOfColors];
         selectedColors = new string[numberOfColors];
+        totalNumberOfObjects = numberOfColors * numberOfEachColor;
 
         float minX = referanceObject.transform.position.x - xOffset;
         float maxX = referanceObject.transform.position.x + xOffset;
@@ -114,6 +117,12 @@ public class DraggableObjectsController : MonoBehaviour
             if (element.objectColor == objectTag)
             {
                 element.droppedObjectsList.Add(droppedObject);
+                numberOfDroppedObjects++;
+
+                if (numberOfDroppedObjects == totalNumberOfObjects)
+                {
+                    GameManager.instance.LoadNextLevel();
+                }
             }
         }
     }
