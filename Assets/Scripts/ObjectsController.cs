@@ -43,7 +43,7 @@ public class ObjectsController : MonoBehaviour
     void Start()
     {
         xOffset = referanceObject.transform.localScale.x / 2;
-        yOffset = objectPrefabs[0].transform.position.y;
+        yOffset = referanceObject.transform.position.y+0.1f;
         zOffset= referanceObject.transform.localScale.z / 2;
         objectsInScene = new List<GameObject>();
         droppedObjectsArray = new DroppedObject[numberOfColors];
