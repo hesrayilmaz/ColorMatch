@@ -3877,14 +3877,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56d773e6f0d286b4a8e50ce71f180694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectPrefabs:
-  - {fileID: 7300955765789030053, guid: 61474127fee85854abc0786d32ea97c0, type: 3}
-  - {fileID: 7300955765789030053, guid: d309b745053352844a6305e693f9bcdf, type: 3}
-  - {fileID: 7300955765789030053, guid: ee0a7a35ea2348c48abedcd7c80a89eb, type: 3}
-  - {fileID: 7300955765789030053, guid: c92c059da69a7b04e968137c6fda0e2e, type: 3}
-  - {fileID: 7300955765789030053, guid: 23aff2c4365e8d4479f87ebea9741d85, type: 3}
-  - {fileID: 7300955765789030053, guid: 70211ccbdecc7d240896a38a1bc4af0a, type: 3}
-  - {fileID: 7300955765789030053, guid: fde46a4ee492f8d44a69a0411afe4c1d, type: 3}
   droppedObjectsArray: []
   boxArray:
   - boxColor: 
@@ -3905,9 +3897,18 @@ MonoBehaviour:
   - {fileID: 1010638515}
   - {fileID: 1747010838}
   - {fileID: 845396653}
-  referanceObject: {fileID: 1918383016}
-  numberOfColors: 3
-  numberOfEachColor: 2
+  objectCreatorArray:
+  - referanceObject: {fileID: 1918383016}
+    objectPrefabs:
+    - {fileID: 7300955765789030053, guid: 61474127fee85854abc0786d32ea97c0, type: 3}
+    - {fileID: 7300955765789030053, guid: d309b745053352844a6305e693f9bcdf, type: 3}
+    - {fileID: 7300955765789030053, guid: ee0a7a35ea2348c48abedcd7c80a89eb, type: 3}
+    - {fileID: 7300955765789030053, guid: c92c059da69a7b04e968137c6fda0e2e, type: 3}
+    - {fileID: 7300955765789030053, guid: 23aff2c4365e8d4479f87ebea9741d85, type: 3}
+    - {fileID: 7300955765789030053, guid: 70211ccbdecc7d240896a38a1bc4af0a, type: 3}
+    - {fileID: 7300955765789030053, guid: fde46a4ee492f8d44a69a0411afe4c1d, type: 3}
+    numberOfColors: 3
+    numberOfEachColor: 2
 --- !u!4 &1864372993
 Transform:
   m_ObjectHideFlags: 0

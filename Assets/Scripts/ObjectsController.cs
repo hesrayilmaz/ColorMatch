@@ -18,15 +18,25 @@ public class ObjectsController : MonoBehaviour
         public GameObject boxPrefab;
     }
 
+    [System.Serializable]
+    private class ObjectCreator
+    {
+        public GameObject referanceObject;
+        public List<GameObject> objectPrefabs;
+        public int numberOfColors;
+        public int numberOfEachColor;
+    }
 
-    [SerializeField] private List<GameObject> objectPrefabs;
+
+    //[SerializeField] private List<GameObject> objectPrefabs;
     [SerializeField] private DroppedObject[] droppedObjectsArray;
     [SerializeField] private Box[] boxArray;
     [SerializeField] private List<GameObject> boxesInScene;
-    [SerializeField] private GameObject referanceObject;
-    [SerializeField] private int numberOfColors;
-    [SerializeField] private int numberOfEachColor;
+    [SerializeField] private ObjectCreator[] objectCreatorArray;
+    //[SerializeField] private int numberOfColors;
+    //[SerializeField] private int numberOfEachColor;
     private int totalNumberOfObjects;
+    private int totalNumberOfColors;
     private int numberOfDroppedObjects = 0;
 
     private string[] selectedColors;
@@ -34,27 +44,26 @@ public class ObjectsController : MonoBehaviour
     private GameObject draggableObject;
     private GameObject objectToInstantiate;
 
-    private float xOffset, yOffset, zOffset;
     private int randomIndex;
     private Vector3 spawnPoint;
+    private float xOffset, yOffset, zOffset;
 
-   
+
     // Start is called before the first frame update
     void Start()
     {
-        xOffset = referanceObject.transform.localScale.x / 2;
-        yOffset = referanceObject.transform.position.y+0.1f;
-        zOffset= referanceObject.transform.localScale.z / 2;
+        
         objectsInScene = new List<GameObject>();
-        droppedObjectsArray = new DroppedObject[numberOfColors];
-        selectedColors = new string[numberOfColors];
-        totalNumberOfObjects = numberOfColors * numberOfEachColor;
 
-        float minX = referanceObject.transform.position.x - xOffset;
-        float maxX = referanceObject.transform.position.x + xOffset;
+        foreach(ObjectCreator obj in objectCreatorArray)
+        {
+            totalNumberOfColors += obj.numberOfColors;
+            totalNumberOfObjects += (obj.numberOfColors * obj.numberOfEachColor);
+        }
 
-        float minZ = referanceObject.transform.position.z - zOffset;
-        float maxZ = referanceObject.transform.position.z + zOffset;
+        droppedObjectsArray = new DroppedObject[totalNumberOfColors];
+        selectedColors = new string[totalNumberOfColors];
+       
 
         string[] boxColors = { "Blue", "Green", "Orange", "Pink", "Purple", "Red", "Yellow" };
 
@@ -64,59 +73,85 @@ public class ObjectsController : MonoBehaviour
         }
 
 
-        for (int i=0; i<numberOfColors; i++)
+        foreach (ObjectCreator obj in objectCreatorArray)
         {
-            randomIndex = Random.Range(0, objectPrefabs.Count);
-            objectToInstantiate = objectPrefabs[randomIndex];
-           
-            droppedObjectsArray[i] = new DroppedObject();
-            droppedObjectsArray[i].droppedObjectsList = new List<GameObject>();
+            Transform refObjectTransform = obj.referanceObject.transform;
 
-            droppedObjectsArray[i].objectColor = objectToInstantiate.tag;
-            selectedColors[i] = objectToInstantiate.tag;
+            xOffset = refObjectTransform.localScale.x / 2;
+            yOffset = refObjectTransform.position.y + 0.1f;
+            zOffset = refObjectTransform.localScale.z / 2;
 
+            float minX = refObjectTransform.position.x - xOffset;
+            float maxX = refObjectTransform.position.x + xOffset;
 
-            for (int j = 0; j < numberOfEachColor; j++)
+            float minZ = refObjectTransform.position.z - zOffset;
+            float maxZ = refObjectTransform.position.z + zOffset;
+
+            for (int i = 0; i < obj.numberOfColors; i++)
             {
-                spawnPoint = new Vector3(Random.Range(minX, maxX), yOffset, Random.Range(minZ, maxZ));
+                randomIndex = Random.Range(0, obj.objectPrefabs.Count);
+
+               
+                foreach(string color in selectedColors)
+                {
+                  if(color == obj.objectPrefabs[randomIndex].tag)
+                  {
+                        obj.objectPrefabs.RemoveAt(randomIndex);
+                        randomIndex = Random.Range(0, obj.objectPrefabs.Count);
+                  }
+                }
                 
-                Collider[] hitColliders = Physics.OverlapSphere(spawnPoint, objectPrefabs[0].GetComponent<BoxCollider>().size.x/2, LayerMask.GetMask("Draggable"));
-                if (hitColliders.Length == 0)
-                {
-                    draggableObject = Instantiate(objectToInstantiate, spawnPoint, Quaternion.identity);
-                    objectsInScene.Add(draggableObject);
-                }
-                else
-                    j--;
-            }
+                objectToInstantiate = obj.objectPrefabs[randomIndex];
 
-            objectPrefabs.RemoveAt(randomIndex);
+                droppedObjectsArray[i] = new DroppedObject();
+                droppedObjectsArray[i].droppedObjectsList = new List<GameObject>();
 
-            foreach(Box box in boxArray)
-            {
-                if (box.boxColor == selectedColors[i])
+                droppedObjectsArray[i].objectColor = objectToInstantiate.tag;
+                selectedColors[i] = objectToInstantiate.tag;
+
+
+                for (int j = 0; j < obj.numberOfEachColor; j++)
                 {
-                    Instantiate(box.boxPrefab, boxesInScene[i].transform.position, Quaternion.identity);
-                    if (boxesInScene[i].transform.childCount == 1)
+                    spawnPoint = new Vector3(Random.Range(minX, maxX), yOffset, Random.Range(minZ, maxZ));
+
+                    Collider[] hitColliders = Physics.OverlapSphere(spawnPoint, obj.objectPrefabs[0].GetComponent<BoxCollider>().size.x / 2, LayerMask.GetMask("Draggable"));
+                    if (hitColliders.Length == 0)
                     {
-                        boxesInScene[i].transform.GetChild(0).tag = selectedColors[i] + "Box";
-                        boxesInScene[i].transform.GetChild(0).parent = null;
+                        draggableObject = Instantiate(objectToInstantiate, spawnPoint, Quaternion.identity);
+                        objectsInScene.Add(draggableObject);
                     }
-                    Destroy(boxesInScene[i]);
-                    break;
+                    else
+                        j--;
+                }
+
+                obj.objectPrefabs.RemoveAt(randomIndex);
+
+                foreach (Box box in boxArray)
+                {
+                    if (box.boxColor == selectedColors[i])
+                    {
+                        Instantiate(box.boxPrefab, boxesInScene[i].transform.position, Quaternion.identity);
+                        if (boxesInScene[i].transform.childCount == 1)
+                        {
+                            boxesInScene[i].transform.GetChild(0).tag = selectedColors[i] + "Box";
+                            boxesInScene[i].transform.GetChild(0).parent = null;
+                        }
+                        Destroy(boxesInScene[i]);
+                        break;
+                    }
                 }
             }
-        }
 
+        }
     }
 
     public void AddDroppedObject(GameObject droppedObject, string objectTag)
     {
-        foreach(DroppedObject element in droppedObjectsArray)
+        foreach(DroppedObject obj in droppedObjectsArray)
         {
-            if (element.objectColor == objectTag)
+            if (obj.objectColor == objectTag)
             {
-                element.droppedObjectsList.Add(droppedObject);
+                obj.droppedObjectsList.Add(droppedObject);
                 numberOfDroppedObjects++;
 
                 if (numberOfDroppedObjects == totalNumberOfObjects)
@@ -129,11 +164,11 @@ public class ObjectsController : MonoBehaviour
 
     public bool IsDroppedListEmpty(string objectTag)
     {
-        foreach(DroppedObject element in droppedObjectsArray)
+        foreach(DroppedObject obj in droppedObjectsArray)
         {
-            if (element.objectColor == objectTag)
+            if (obj.objectColor == objectTag)
             {
-                return element.droppedObjectsList.Count == 0;
+                return obj.droppedObjectsList.Count == 0;
             }
         }
 
@@ -142,11 +177,11 @@ public class ObjectsController : MonoBehaviour
 
     public GameObject GetLastDroppedObject(string objectTag)
     {
-        foreach (DroppedObject element in droppedObjectsArray)
+        foreach (DroppedObject obj in droppedObjectsArray)
         {
-            if (element.objectColor == objectTag)
+            if (obj.objectColor == objectTag)
             {
-                return element.droppedObjectsList[element.droppedObjectsList.Count - 1];
+                return obj.droppedObjectsList[obj.droppedObjectsList.Count - 1];
             }
         }
 
