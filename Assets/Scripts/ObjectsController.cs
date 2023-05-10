@@ -39,7 +39,7 @@ public class ObjectsController : MonoBehaviour
     private int totalNumberOfColors;
     private int numberOfDroppedObjects = 0;
 
-    private string[] selectedColors;
+    [SerializeField] private List<string> selectedColors;
     private List<GameObject> objectsInScene;
     private GameObject draggableObject;
     private GameObject objectToInstantiate;
@@ -52,7 +52,6 @@ public class ObjectsController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
         objectsInScene = new List<GameObject>();
 
         foreach(ObjectCreator obj in objectCreatorArray)
@@ -62,7 +61,7 @@ public class ObjectsController : MonoBehaviour
         }
 
         droppedObjectsArray = new DroppedObject[totalNumberOfColors];
-        selectedColors = new string[totalNumberOfColors];
+        selectedColors = new List<string>();
        
 
         string[] boxColors = { "Blue", "Green", "Orange", "Pink", "Purple", "Red", "Yellow" };
@@ -91,7 +90,6 @@ public class ObjectsController : MonoBehaviour
             {
                 randomIndex = Random.Range(0, obj.objectPrefabs.Count);
 
-               
                 foreach(string color in selectedColors)
                 {
                   if(color == obj.objectPrefabs[randomIndex].tag)
@@ -103,12 +101,12 @@ public class ObjectsController : MonoBehaviour
                 
                 objectToInstantiate = obj.objectPrefabs[randomIndex];
 
-                droppedObjectsArray[i] = new DroppedObject();
-                droppedObjectsArray[i].droppedObjectsList = new List<GameObject>();
+                
+                selectedColors.Add(objectToInstantiate.tag);
 
-                droppedObjectsArray[i].objectColor = objectToInstantiate.tag;
-                selectedColors[i] = objectToInstantiate.tag;
-
+                Debug.Log("objectToInstantiate.name " + objectToInstantiate.name);
+                Debug.Log("objectToInstantiate.tag " + objectToInstantiate.tag);
+      
 
                 for (int j = 0; j < obj.numberOfEachColor; j++)
                 {
@@ -126,22 +124,36 @@ public class ObjectsController : MonoBehaviour
 
                 obj.objectPrefabs.RemoveAt(randomIndex);
 
-                foreach (Box box in boxArray)
-                {
-                    if (box.boxColor == selectedColors[i])
-                    {
-                        Instantiate(box.boxPrefab, boxesInScene[i].transform.position, Quaternion.identity);
-                        if (boxesInScene[i].transform.childCount == 1)
-                        {
-                            boxesInScene[i].transform.GetChild(0).tag = selectedColors[i] + "Box";
-                            boxesInScene[i].transform.GetChild(0).parent = null;
-                        }
-                        Destroy(boxesInScene[i]);
-                        break;
-                    }
-                }
             }
 
+        }
+
+        Debug.Log("selectedColors.Length " + selectedColors.Count);
+
+        for (int i = 0; i < selectedColors.Count; i++)
+        {
+            Debug.Log("selectedColor " + selectedColors[i]);
+            droppedObjectsArray[i] = new DroppedObject();
+            droppedObjectsArray[i].droppedObjectsList = new List<GameObject>();
+            droppedObjectsArray[i].objectColor = selectedColors[i];
+
+            foreach (Box box in boxArray)
+            {
+                if (box.boxColor == selectedColors[i])
+                {
+                    Debug.Log("boxesInScene[i].name " + boxesInScene[i].name);
+                    Debug.Log("boxesInScene[i].transform.position " + boxesInScene[i].transform.position);
+                    Instantiate(box.boxPrefab, boxesInScene[i].transform.position, Quaternion.identity);
+                    if (boxesInScene[i].transform.childCount == 1)
+                    {
+                        Debug.Log("ifffffffff");
+                        boxesInScene[i].transform.GetChild(0).tag = selectedColors[i] + "Box";
+                        boxesInScene[i].transform.GetChild(0).parent = null;
+                    }
+                    Destroy(boxesInScene[i]);
+                    break;
+                }
+            }
         }
     }
 
