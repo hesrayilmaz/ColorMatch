@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 6242808977155257826}
   - component: {fileID: 6805635476323736304}
   - component: {fileID: 2379069990074370223}
-  - component: {fileID: 4878239645655054929}
   m_Layer: 0
   m_Name: AG_KidsRoom_WhitePlane
   m_TagString: Untagged
@@ -84,17 +83,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &4878239645655054929
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3363520008839189937}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 3892952131888419051, guid: b7fffabea65f2f241bce5ac070836c3d, type: 3}

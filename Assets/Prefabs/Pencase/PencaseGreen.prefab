@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 7358343384803195797}
   - component: {fileID: 3728287550415660490}
   m_Layer: 0
-  m_Name: PencaseBlue
-  m_TagString: BlueBox
+  m_Name: PencaseGreen
+  m_TagString: GreenBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 1377295913211165844}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 512db4abdb1f4d74ea3560a4db8384ac, type: 2}
+  - {fileID: 2100000, guid: c1ed581171ae739449fc33a4c594eb26, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

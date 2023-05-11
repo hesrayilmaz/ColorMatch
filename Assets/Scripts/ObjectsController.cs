@@ -27,14 +27,12 @@ public class ObjectsController : MonoBehaviour
         public int numberOfEachColor;
     }
 
-
-    //[SerializeField] private List<GameObject> objectPrefabs;
+    
     [SerializeField] private DroppedObject[] droppedObjectsArray;
     [SerializeField] private Box[] boxArray;
     [SerializeField] private List<GameObject> boxesInScene;
     [SerializeField] private ObjectCreator[] objectCreatorArray;
-    //[SerializeField] private int numberOfColors;
-    //[SerializeField] private int numberOfEachColor;
+    
     private int totalNumberOfObjects;
     private int totalNumberOfColors;
     private int numberOfDroppedObjects = 0;
@@ -51,7 +49,7 @@ public class ObjectsController : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
+    {   
         objectsInScene = new List<GameObject>();
 
         foreach(ObjectCreator obj in objectCreatorArray)
@@ -77,19 +75,10 @@ public class ObjectsController : MonoBehaviour
             Transform refObjectTransform = obj.referanceObject.transform;
             BoxCollider collider = obj.referanceObject.GetComponent<BoxCollider>();
 
-            //xOffset = refObjectTransform.localScale.x / 2;
-            xOffset = collider.size.x/2;
-            yOffset = collider.size.y+0.1f;
-            zOffset = collider.size.z/2;
-            //yOffset = refObjectTransform.position.y + 0.1f;
-            //zOffset = refObjectTransform.localScale.z / 2;
-
-            /*float minX = refObjectTransform.position.x - xOffset;
-            float maxX = refObjectTransform.position.x + xOffset;
-
-            float minZ = refObjectTransform.position.z - zOffset;
-            float maxZ = refObjectTransform.position.z + zOffset;
-            */
+            xOffset = collider.transform.position.x/4;
+            //yOffset = collider.transform.position.y+0.1f;
+            yOffset = collider.transform.position.y;
+            zOffset = collider.transform.position.z/4;
 
             float minX = collider.transform.position.x - xOffset;
             float maxX = collider.transform.position.x + xOffset;

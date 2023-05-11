@@ -14,6 +14,7 @@ public class DragAndDrop : MonoBehaviour
     private bool isDragging;
 
     private bool isGround = false;
+    private levelTypes selectedType;
 
     private float distance;
     //public static float numOfDropPoints;
@@ -26,6 +27,8 @@ public class DragAndDrop : MonoBehaviour
     void Start()
     {
         draggableObjectsController = GameObject.Find("ObjectsController").GetComponent<ObjectsController>();
+        selectedType = GameObject.Find("LevelTypesController").GetComponent<LevelTypes>().GetSelectedLevelType();
+        Debug.Log("selectedType " + selectedType);
         startPoint = transform.position;
         mouseZCoord = Camera.main.ScreenToWorldPoint(transform.position).z;
         //numOfDropPoints = GameObject.Find("InstructionDropPoints").transform.childCount;
@@ -33,6 +36,13 @@ public class DragAndDrop : MonoBehaviour
         //wrongDropAudio = GameObject.Find("Audio").transform.GetChild(3).GetComponent<AudioSource>();
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Ground")
+        {
+            Debug.Log("Groundddddddddd");
+        }    
+    }
 
     private void OnMouseDrag()
     {
@@ -106,17 +116,65 @@ public class DragAndDrop : MonoBehaviour
                 //hitCollider.gameObject.transform.parent = null;
                 //instructionClone.transform.localScale = new Vector2(0.35f, 0.35f);
 
-                if (draggableObjectsController.IsDroppedListEmpty(gameObject.tag))
+
+                if (selectedType == levelTypes.Torus)
                 {
-                    transform.position = new Vector3(hitCollider.transform.position.x,
-                    hitCollider.transform.position.y + 0.1f, hitCollider.transform.position.z);
+                    if (draggableObjectsController.IsDroppedListEmpty(gameObject.tag))
+                    {
+                        transform.position = new Vector3(hitCollider.transform.position.x,
+                        hitCollider.transform.GetComponent<BoxCollider>().bounds.min.y + 0.1f, hitCollider.transform.position.z);
+                    }
+                    else
+                    {
+                        transform.position = new Vector3(hitCollider.transform.position.x,
+                            draggableObjectsController.GetLastDroppedObject(gameObject.tag).transform.position.y + gameObject.GetComponent<BoxCollider>().size.y,
+                            hitCollider.transform.position.z);
+                    }
                 }
-                else
+                
+                else if (selectedType == levelTypes.Pencil)
                 {
-                    transform.position = new Vector3(hitCollider.transform.position.x, 
-                        draggableObjectsController.GetLastDroppedObject(gameObject.tag).transform.position.y+gameObject.GetComponent<BoxCollider>().size.y,
-                        hitCollider.transform.position.z);
+                    
+                    if (draggableObjectsController.IsDroppedListEmpty(gameObject.tag))
+                    {
+                        transform.position = new Vector3(hitCollider.transform.GetComponent<BoxCollider>().bounds.min.x + 2*transform.GetComponent<BoxCollider>().size.x,
+                        hitCollider.transform.GetComponent<BoxCollider>().bounds.min.y + 0.05f, hitCollider.transform.GetComponent<BoxCollider>().bounds.max.z- 3 * transform.GetComponent<BoxCollider>().size.z);
+                    }
+                    else
+                    {
+                        transform.position = new Vector3(draggableObjectsController.GetLastDroppedObject(gameObject.tag).transform.position.x +
+                            1.5f * transform.GetComponent<BoxCollider>().size.x, hitCollider.transform.GetComponent<BoxCollider>().bounds.min.y + 0.05f, hitCollider.transform.GetComponent<BoxCollider>().bounds.max.z - 3 * transform.GetComponent<BoxCollider>().size.z);
+                    }
+                   
                 }
+                else if(selectedType == levelTypes.Book)
+                {
+                    if (draggableObjectsController.IsDroppedListEmpty(gameObject.tag))
+                    {
+                        transform.position = new Vector3(hitCollider.transform.GetComponent<BoxCollider>().bounds.min.x + transform.GetComponent<BoxCollider>().size.z,
+                        hitCollider.transform.GetComponent<BoxCollider>().bounds.min.y, hitCollider.transform.GetComponent<BoxCollider>().bounds.max.z);
+                    }
+                    else
+                    {
+                        transform.position = new Vector3(draggableObjectsController.GetLastDroppedObject(gameObject.tag).transform.position.x +
+                            transform.GetComponent<BoxCollider>().size.z, hitCollider.transform.GetComponent<BoxCollider>().bounds.min.y, hitCollider.transform.GetComponent<BoxCollider>().bounds.max.z);
+                    }
+                }
+                else if (selectedType == levelTypes.Fruit) 
+                {
+                    if (draggableObjectsController.IsDroppedListEmpty(gameObject.tag))
+                    {
+                        transform.position = new Vector3(hitCollider.transform.GetComponent<BoxCollider>().bounds.min.x + transform.GetComponent<BoxCollider>().size.x,
+                        hitCollider.transform.GetComponent<BoxCollider>().bounds.min.y + 0.1f, hitCollider.transform.GetComponent<BoxCollider>().bounds.max.z - transform.GetComponent<BoxCollider>().size.z);
+                    }
+                    else
+                    {
+                        transform.position = new Vector3(draggableObjectsController.GetLastDroppedObject(gameObject.tag).transform.position.x +
+                            transform.GetComponent<BoxCollider>().size.x, hitCollider.transform.GetComponent<BoxCollider>().bounds.min.y + 0.1f, hitCollider.transform.GetComponent<BoxCollider>().bounds.max.z - transform.GetComponent<BoxCollider>().size.z);
+                    }
+                }
+
+
                 transform.GetComponent<BoxCollider>().enabled = false;
                 draggableObjectsController.AddDroppedObject(gameObject, gameObject.tag);
                 //dropAudio.Play();
