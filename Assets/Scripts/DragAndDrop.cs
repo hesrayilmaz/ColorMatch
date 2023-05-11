@@ -13,6 +13,7 @@ public class DragAndDrop : MonoBehaviour
     private bool isPlacedRight = false;
     private bool isDragging;
 
+    private bool isGround = false;
 
     private float distance;
     //public static float numOfDropPoints;
@@ -49,13 +50,18 @@ public class DragAndDrop : MonoBehaviour
 
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             Vector3 rayPoint = ray.GetPoint(distance);
-          //  transform.position = rayPoint;
+            //  transform.position = rayPoint;
 
+            //rayPoint.y < startPoint.y
             if (rayPoint.y < startPoint.y)
-                transform.position = new Vector3(rayPoint.x,startPoint.y,rayPoint.z);
+            {
+                transform.position = new Vector3(rayPoint.x, startPoint.y, rayPoint.z);
+            }
             else
+            {
                 transform.position = rayPoint;
-          
+            }
+                
         }
     }
 

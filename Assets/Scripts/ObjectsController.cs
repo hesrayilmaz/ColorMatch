@@ -75,16 +75,27 @@ public class ObjectsController : MonoBehaviour
         foreach (ObjectCreator obj in objectCreatorArray)
         {
             Transform refObjectTransform = obj.referanceObject.transform;
+            BoxCollider collider = obj.referanceObject.GetComponent<BoxCollider>();
 
-            xOffset = refObjectTransform.localScale.x / 2;
-            yOffset = refObjectTransform.position.y + 0.1f;
-            zOffset = refObjectTransform.localScale.z / 2;
+            //xOffset = refObjectTransform.localScale.x / 2;
+            xOffset = collider.size.x/2;
+            yOffset = collider.size.y+0.1f;
+            zOffset = collider.size.z/2;
+            //yOffset = refObjectTransform.position.y + 0.1f;
+            //zOffset = refObjectTransform.localScale.z / 2;
 
-            float minX = refObjectTransform.position.x - xOffset;
+            /*float minX = refObjectTransform.position.x - xOffset;
             float maxX = refObjectTransform.position.x + xOffset;
 
             float minZ = refObjectTransform.position.z - zOffset;
             float maxZ = refObjectTransform.position.z + zOffset;
+            */
+
+            float minX = collider.transform.position.x - xOffset;
+            float maxX = collider.transform.position.x + xOffset;
+
+            float minZ = collider.transform.position.z - zOffset;
+            float maxZ = collider.transform.position.z + zOffset;
 
             for (int i = 0; i < obj.numberOfColors; i++)
             {

@@ -18,6 +18,11 @@ TagManager:
   - OrangeBox
   - GreenBox
   - PurpleBox
+  - Sheep
+  - Cow
+  - Chicken
+  - Pig
+  - Ground
   layers:
   - Default
   - TransparentFX
