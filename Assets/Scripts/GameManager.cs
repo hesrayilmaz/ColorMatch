@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -24,8 +25,22 @@ public class GameManager : MonoBehaviour
     }
 
    
-    public void LoadNextLevel()
+    public void NextLevel()
     {
-        Debug.Log("Next Level");
+        StartCoroutine(LoadNextLevel());
+    }
+
+    IEnumerator LoadNextLevel()
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        try
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+        catch
+        {
+            Debug.Log("Last Level");
+        }
     }
 }

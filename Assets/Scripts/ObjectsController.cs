@@ -75,17 +75,6 @@ public class ObjectsController : MonoBehaviour
             Transform refObjectTransform = obj.referanceObject.transform;
             BoxCollider collider = obj.referanceObject.GetComponent<BoxCollider>();
 
-            xOffset = collider.transform.position.x/4;
-            //yOffset = collider.transform.position.y+0.1f;
-            yOffset = collider.transform.position.y;
-            zOffset = collider.transform.position.z/4;
-
-            float minX = collider.transform.position.x - xOffset;
-            float maxX = collider.transform.position.x + xOffset;
-
-            float minZ = collider.transform.position.z - zOffset;
-            float maxZ = collider.transform.position.z + zOffset;
-
             for (int i = 0; i < obj.numberOfColors; i++)
             {
                 randomIndex = Random.Range(0, obj.objectPrefabs.Count);
@@ -106,7 +95,21 @@ public class ObjectsController : MonoBehaviour
 
                 Debug.Log("objectToInstantiate.name " + objectToInstantiate.name);
                 Debug.Log("objectToInstantiate.tag " + objectToInstantiate.tag);
-      
+
+                //xOffset = collider.transform.position.x/4;
+                yOffset = collider.transform.position.y;
+                //zOffset = collider.transform.position.z/4;
+
+                xOffset = objectToInstantiate.transform.GetComponent<BoxCollider>().size.x;
+                zOffset = objectToInstantiate.transform.GetComponent<BoxCollider>().size.z;
+
+                float minX = collider.bounds.min.x + xOffset;
+                float maxX = collider.bounds.max.x - xOffset;
+
+                float minZ = collider.bounds.min.z + zOffset;
+                float maxZ = collider.bounds.max.z - zOffset;
+
+                Debug.Log("minx " + minX + "maxx " + maxX + "minz " + minZ + "maxz " + maxZ);
 
                 for (int j = 0; j < obj.numberOfEachColor; j++)
                 {
@@ -168,7 +171,7 @@ public class ObjectsController : MonoBehaviour
 
                 if (numberOfDroppedObjects == totalNumberOfObjects)
                 {
-                    GameManager.instance.LoadNextLevel();
+                    GameManager.instance.NextLevel();
                 }
             }
         }
