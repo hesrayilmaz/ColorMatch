@@ -139,11 +139,13 @@ public class DragAndDrop : MonoBehaviour
                     {
                         transform.position = new Vector3(hitCollider.transform.GetComponent<BoxCollider>().bounds.min.x + 2*transform.GetComponent<BoxCollider>().size.x,
                         hitCollider.transform.GetComponent<BoxCollider>().bounds.min.y + 0.05f, hitCollider.transform.GetComponent<BoxCollider>().bounds.max.z- 3 * transform.GetComponent<BoxCollider>().size.z);
+                        transform.rotation = Quaternion.identity;
                     }
                     else
                     {
                         transform.position = new Vector3(draggableObjectsController.GetLastDroppedObject(gameObject.tag).transform.position.x +
                             1.5f * transform.GetComponent<BoxCollider>().size.x, hitCollider.transform.GetComponent<BoxCollider>().bounds.min.y + 0.05f, hitCollider.transform.GetComponent<BoxCollider>().bounds.max.z - 3 * transform.GetComponent<BoxCollider>().size.z);
+                        transform.rotation = Quaternion.identity;
                     }
                    
                 }
@@ -153,11 +155,13 @@ public class DragAndDrop : MonoBehaviour
                     {
                         transform.position = new Vector3(hitCollider.transform.GetComponent<BoxCollider>().bounds.min.x + transform.GetComponent<BoxCollider>().size.z,
                         hitCollider.transform.GetComponent<BoxCollider>().bounds.min.y, hitCollider.transform.GetComponent<BoxCollider>().bounds.max.z);
+                        transform.rotation = Quaternion.Euler(0,90,0);
                     }
                     else
                     {
                         transform.position = new Vector3(draggableObjectsController.GetLastDroppedObject(gameObject.tag).transform.position.x +
-                            transform.GetComponent<BoxCollider>().size.z, hitCollider.transform.GetComponent<BoxCollider>().bounds.min.y, hitCollider.transform.GetComponent<BoxCollider>().bounds.max.z);
+                            transform.GetComponent<BoxCollider>().size.z+0.01f, hitCollider.transform.GetComponent<BoxCollider>().bounds.min.y, hitCollider.transform.GetComponent<BoxCollider>().bounds.max.z);
+                        transform.rotation = Quaternion.Euler(0, 90, 0);
                     }
                 }
                 else if (selectedType == levelTypes.Fruit) 
