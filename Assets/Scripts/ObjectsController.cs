@@ -32,7 +32,8 @@ public class ObjectsController : MonoBehaviour
     [SerializeField] private Box[] boxArray;
     [SerializeField] private List<GameObject> boxesInScene;
     [SerializeField] private ObjectCreator[] objectCreatorArray;
-    
+    private GameManager gameManager;
+
     private int totalNumberOfObjects;
     private int totalNumberOfColors;
     private int numberOfDroppedObjects = 0;
@@ -51,8 +52,10 @@ public class ObjectsController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {   
-        objectsInScene = new List<GameObject>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         selectedType = GameObject.Find("LevelTypesController").GetComponent<LevelTypes>().GetSelectedLevelType();
+
+        objectsInScene = new List<GameObject>();
 
         foreach (ObjectCreator obj in objectCreatorArray)
         {
@@ -200,7 +203,7 @@ public class ObjectsController : MonoBehaviour
 
                 if (numberOfDroppedObjects == totalNumberOfObjects)
                 {
-                    GameManager.instance.NextLevel();
+                    gameManager.NextLevel();
                 }
             }
         }

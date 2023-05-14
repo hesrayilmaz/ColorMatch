@@ -5,10 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance;
+    //public static GameManager instance;
 
 
-    private void Awake()
+   /* private void Awake()
     {
         if (instance == null)
             instance = this;
@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
 
         DontDestroyOnLoad(gameObject);
-    }
+    }*/
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +24,10 @@ public class GameManager : MonoBehaviour
         
     }
 
+    public void LevelsMenu()
+    {
+        SceneManager.LoadScene("LevelsMenu");
+    }
    
     public void NextLevel()
     {
