@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8681985533710139050}
   - component: {fileID: 3899697850485124713}
   - component: {fileID: 2093057114803796955}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Pepperoni
   m_TagString: Red
   m_Icon: {fileID: 0}

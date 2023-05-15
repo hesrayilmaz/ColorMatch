@@ -177,6 +177,19 @@ public class DragAndDrop : MonoBehaviour
                             transform.GetComponent<BoxCollider>().size.x, hitCollider.transform.GetComponent<BoxCollider>().bounds.min.y + 0.1f, hitCollider.transform.GetComponent<BoxCollider>().bounds.max.z - transform.GetComponent<BoxCollider>().size.z);
                     }
                 }
+                else if (selectedType == levelTypes.Train)
+                {
+                    if (draggableObjectsController.IsDroppedListEmpty(gameObject.tag))
+                    {
+                        transform.position = new Vector3(hitCollider.transform.GetComponent<BoxCollider>().bounds.min.x + transform.GetComponent<BoxCollider>().size.x/2,
+                        hitCollider.transform.GetComponent<BoxCollider>().bounds.min.y + 0.05f, hitCollider.transform.GetComponent<BoxCollider>().bounds.max.z - transform.GetComponent<BoxCollider>().size.z);
+                    }
+                    else
+                    {
+                        transform.position = new Vector3(draggableObjectsController.GetLastDroppedObject(gameObject.tag).transform.position.x +
+                            transform.GetComponent<BoxCollider>().size.x, hitCollider.transform.GetComponent<BoxCollider>().bounds.min.y + 0.05f, hitCollider.transform.GetComponent<BoxCollider>().bounds.max.z - transform.GetComponent<BoxCollider>().size.z);
+                    }
+                }
 
 
                 transform.GetComponent<BoxCollider>().enabled = false;

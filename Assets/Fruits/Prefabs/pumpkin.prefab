@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3540409364657426784}
   - component: {fileID: 5527218464732209475}
   - component: {fileID: -6957141164105001445}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: pumpkin
   m_TagString: Orange
   m_Icon: {fileID: 0}

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3694111103768695526}
   - component: {fileID: 5756821506892468549}
   - component: {fileID: -3656158776933961932}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PencilOrange
   m_TagString: Orange
   m_Icon: {fileID: 0}

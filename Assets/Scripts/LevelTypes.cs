@@ -7,7 +7,8 @@ public enum levelTypes
     Torus,
     Pencil,
     Book,
-    Fruit
+    Fruit,
+    Train
 };
 
 public class LevelTypes : MonoBehaviour

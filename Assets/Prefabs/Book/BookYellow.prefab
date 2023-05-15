@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2604229927422934148}
   - component: {fileID: 2574607254599594940}
   - component: {fileID: 7079665394343242080}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BookYellow
   m_TagString: Yellow
   m_Icon: {fileID: 0}

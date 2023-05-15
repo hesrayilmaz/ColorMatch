@@ -69,12 +69,13 @@ public class ObjectsController : MonoBehaviour
 
         string[] boxColors = { "Blue", "Green", "Orange", "Pink", "Purple", "Red", "Yellow" };
 
-        for (int i = 0; i < boxColors.Length; i++)
+        if (boxArray.Length != 0)
         {
-            boxArray[i].boxColor = boxColors[i];
+            for (int i = 0; i < boxColors.Length; i++)
+                boxArray[i].boxColor = boxColors[i];
+            
         }
-
-
+        
         foreach (ObjectCreator obj in objectCreatorArray)
         {
             Transform refObjectTransform = obj.referanceObject.transform;
@@ -142,12 +143,20 @@ public class ObjectsController : MonoBehaviour
 
                     Debug.Log("minx " + minX + "maxx " + maxX + "minz " + minZ + "maxz " + maxZ);
                 }
+                else if (selectedType == levelTypes.Train)
+                {
+                    yOffset = collider.transform.position.y + objectToInstantiate.transform.GetComponent<BoxCollider>().size.y/2;
+                    xOffset = objectToInstantiate.transform.GetComponent<BoxCollider>().size.z;
+                    zOffset = objectToInstantiate.transform.GetComponent<BoxCollider>().size.x;
+
+                    Debug.Log("minx " + minX + "maxx " + maxX + "minz " + minZ + "maxz " + maxZ);
+                }
 
                 for (int j = 0; j < obj.numberOfEachColor; j++)
                 {
                     spawnPoint = new Vector3(Random.Range(minX + xOffset, maxX - xOffset), yOffset, Random.Range(minZ + zOffset, maxZ - zOffset));
 
-                    Collider[] hitColliders = Physics.OverlapSphere(spawnPoint, obj.objectPrefabs[0].GetComponent<BoxCollider>().size.x / 2, LayerMask.GetMask("Draggable"));
+                    Collider[] hitColliders = Physics.OverlapSphere(spawnPoint, obj.objectPrefabs[0].GetComponent<BoxCollider>().size.y/2, LayerMask.GetMask("Draggable"));
                     if (hitColliders.Length == 0)
                     {
                         draggableObject = Instantiate(objectToInstantiate, spawnPoint, objectToInstantiate.transform.rotation);
