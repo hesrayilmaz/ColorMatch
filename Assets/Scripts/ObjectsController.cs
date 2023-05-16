@@ -105,11 +105,11 @@ public class ObjectsController : MonoBehaviour
                 //xOffset = collider.transform.position.x/4;
                 //zOffset = collider.transform.position.z/4;
 
-                float minX = collider.bounds.min.x + xOffset;
-                float maxX = collider.bounds.max.x - xOffset;
+                float minX = collider.bounds.min.x;
+                float maxX = collider.bounds.max.x;
 
-                float minZ = collider.bounds.min.z + zOffset;
-                float maxZ = collider.bounds.max.z - zOffset;
+                float minZ = collider.bounds.min.z;
+                float maxZ = collider.bounds.max.z;
 
                 if (selectedType == levelTypes.Torus)
                 {
@@ -151,6 +151,16 @@ public class ObjectsController : MonoBehaviour
 
                     Debug.Log("minx " + minX + "maxx " + maxX + "minz " + minZ + "maxz " + maxZ);
                 }
+                else if (selectedType == levelTypes.Car)
+                {
+                    yOffset = collider.transform.position.y;
+                    xOffset = objectToInstantiate.transform.GetComponent<BoxCollider>().size.x;
+                    zOffset = objectToInstantiate.transform.GetComponent<BoxCollider>().size.z;
+
+                    Debug.Log("minx " + minX + "maxx " + maxX + "minz " + minZ + "maxz " + maxZ);
+                    Debug.Log("xOffset " + xOffset + "zOffset " + zOffset);
+                }
+                
 
                 for (int j = 0; j < obj.numberOfEachColor; j++)
                 {
@@ -212,7 +222,7 @@ public class ObjectsController : MonoBehaviour
 
                 if (numberOfDroppedObjects == totalNumberOfObjects)
                 {
-                    gameManager.NextLevel();
+                    gameManager.LoadNextLevel();
                 }
             }
         }

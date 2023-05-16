@@ -24,17 +24,22 @@ public class GameManager : MonoBehaviour
         
     }
 
-    public void LevelsMenu()
+    public void LoadLevelsMenu()
     {
         SceneManager.LoadScene("LevelsMenu");
     }
    
-    public void NextLevel()
+    public void LoadNextLevel()
     {
-        StartCoroutine(LoadNextLevel());
+        StartCoroutine(NextLevelCoroutine());
     }
 
-    IEnumerator LoadNextLevel()
+    public void LoadSelectedLevel(string levelName)
+    {
+        SceneManager.LoadScene(levelName);
+    }
+
+    IEnumerator NextLevelCoroutine()
     {
         yield return new WaitForSeconds(0.5f);
 

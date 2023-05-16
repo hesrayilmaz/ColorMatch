@@ -8,7 +8,8 @@ public enum levelTypes
     Pencil,
     Book,
     Fruit,
-    Train
+    Train,
+    Car
 };
 
 public class LevelTypes : MonoBehaviour

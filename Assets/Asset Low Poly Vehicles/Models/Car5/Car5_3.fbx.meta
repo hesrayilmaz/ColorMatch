@@ -1,0 +1,143 @@
+fileFormatVersion: 2
+guid: 1d9165a4c6d7bbd4e988642c79c454e2
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Car5_3_Trailer
+    100004: LeftFrontWheel
+    100006: LeftRear2Wheel
+    100008: LeftRear3Wheel
+    100010: LeftRearWheel
+    100012: RightFrontWheel
+    100014: RightRear2Wheel
+    100016: RightRear3Wheel
+    100018: RightRearWheel
+    400000: //RootNode
+    400002: Car5_3_Trailer
+    400004: LeftFrontWheel
+    400006: LeftRear2Wheel
+    400008: LeftRear3Wheel
+    400010: LeftRearWheel
+    400012: RightFrontWheel
+    400014: RightRear2Wheel
+    400016: RightRear3Wheel
+    400018: RightRearWheel
+    2100000: No Name
+    2300000: //RootNode
+    2300002: Car5_3_Trailer
+    2300004: LeftFrontWheel
+    2300006: LeftRear2Wheel
+    2300008: LeftRear3Wheel
+    2300010: LeftRearWheel
+    2300012: RightFrontWheel
+    2300014: RightRear2Wheel
+    2300016: RightRear3Wheel
+    2300018: RightRearWheel
+    3300000: //RootNode
+    3300002: Car5_3_Trailer
+    3300004: LeftFrontWheel
+    3300006: LeftRear2Wheel
+    3300008: LeftRear3Wheel
+    3300010: LeftRearWheel
+    3300012: RightFrontWheel
+    3300014: RightRear2Wheel
+    3300016: RightRear3Wheel
+    3300018: RightRearWheel
+    4300000: Car5_3
+    4300002: Car5_3_Trailer
+    4300004: LeftRear3Wheel
+    4300006: RightRear2Wheel
+    4300008: RightRear3Wheel
+    4300010: LeftRear2Wheel
+    4300012: LeftFrontWheel
+    4300014: LeftRearWheel
+    4300016: RightFrontWheel
+    4300018: RightRearWheel
+    9500000: //RootNode
+  externalObjects: {}
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
