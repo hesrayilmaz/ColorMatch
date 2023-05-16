@@ -99,8 +99,8 @@ public class ObjectsController : MonoBehaviour
                 
                 selectedColors.Add(objectToInstantiate.tag);
 
-                Debug.Log("objectToInstantiate.name " + objectToInstantiate.name);
-                Debug.Log("objectToInstantiate.tag " + objectToInstantiate.tag);
+                //Debug.Log("objectToInstantiate.name " + objectToInstantiate.name);
+                //Debug.Log("objectToInstantiate.tag " + objectToInstantiate.tag);
 
                 //xOffset = collider.transform.position.x/4;
                 //zOffset = collider.transform.position.z/4;
@@ -154,19 +154,22 @@ public class ObjectsController : MonoBehaviour
                 else if (selectedType == levelTypes.Car)
                 {
                     yOffset = collider.transform.position.y;
-                    xOffset = objectToInstantiate.transform.GetComponent<BoxCollider>().size.x;
-                    zOffset = objectToInstantiate.transform.GetComponent<BoxCollider>().size.z;
+                    //xOffset = objectToInstantiate.transform.GetComponent<BoxCollider>().size.x;
+                    xOffset = 0;
+                    zOffset = objectToInstantiate.transform.GetComponent<BoxCollider>().size.z/4;
+                    //zOffset = 0;
 
                     Debug.Log("minx " + minX + "maxx " + maxX + "minz " + minZ + "maxz " + maxZ);
                     Debug.Log("xOffset " + xOffset + "zOffset " + zOffset);
+                    Debug.Log("spawn point min x " + (minX + xOffset) + " spawn point max x " + (maxX - xOffset)+ " spawn point min z " + (minZ + zOffset) + " spawn point max z " + (maxZ - zOffset));
                 }
                 
 
                 for (int j = 0; j < obj.numberOfEachColor; j++)
                 {
                     spawnPoint = new Vector3(Random.Range(minX + xOffset, maxX - xOffset), yOffset, Random.Range(minZ + zOffset, maxZ - zOffset));
-
-                    Collider[] hitColliders = Physics.OverlapSphere(spawnPoint, obj.objectPrefabs[0].GetComponent<BoxCollider>().size.y/2, LayerMask.GetMask("Draggable"));
+                    Debug.Log("SPAWN POINTTTTTTTTTTT " + spawnPoint);
+                    Collider[] hitColliders = Physics.OverlapSphere(spawnPoint, obj.objectPrefabs[0].GetComponent<BoxCollider>().size.x/20, LayerMask.GetMask("Draggable"));
                     if (hitColliders.Length == 0)
                     {
                         draggableObject = Instantiate(objectToInstantiate, spawnPoint, objectToInstantiate.transform.rotation);
@@ -182,7 +185,6 @@ public class ObjectsController : MonoBehaviour
 
         }
 
-        Debug.Log("selectedColors.Length " + selectedColors.Count);
 
         for (int i = 0; i < selectedColors.Count; i++)
         {
@@ -195,12 +197,9 @@ public class ObjectsController : MonoBehaviour
             {
                 if (box.boxColor == selectedColors[i])
                 {
-                    Debug.Log("boxesInScene[i].name " + boxesInScene[i].name);
-                    Debug.Log("boxesInScene[i].transform.position " + boxesInScene[i].transform.position);
                     Instantiate(box.boxPrefab, boxesInScene[i].transform.position, Quaternion.identity);
                     if (boxesInScene[i].transform.childCount == 1)
                     {
-                        Debug.Log("ifffffffff");
                         boxesInScene[i].transform.GetChild(0).tag = selectedColors[i] + "Box";
                         boxesInScene[i].transform.GetChild(0).parent = null;
                     }
@@ -209,6 +208,12 @@ public class ObjectsController : MonoBehaviour
                 }
             }
         }
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(draggableObject.transform.position, objectCreatorArray[0].objectPrefabs[0].GetComponent<BoxCollider>().size.x);
     }
 
     public void AddDroppedObject(GameObject droppedObject, string objectTag)

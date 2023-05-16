@@ -106,7 +106,7 @@ public class DragAndDrop : MonoBehaviour
     {
         isDragging = false;
    
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, 0.6f);
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, 1f);
         foreach (var hitCollider in hitColliders)
         {
             //Debug.Log("hitCollider TAG "+ hitCollider.gameObject.tag);
@@ -188,6 +188,21 @@ public class DragAndDrop : MonoBehaviour
                     {
                         transform.position = new Vector3(draggableObjectsController.GetLastDroppedObject(gameObject.tag).transform.position.x +
                             transform.GetComponent<BoxCollider>().size.x, hitCollider.transform.GetComponent<BoxCollider>().bounds.min.y + 0.05f, hitCollider.transform.GetComponent<BoxCollider>().bounds.max.z - transform.GetComponent<BoxCollider>().size.z);
+                    }
+                }
+                else if (selectedType == levelTypes.Car)
+                {
+                    if (draggableObjectsController.IsDroppedListEmpty(gameObject.tag))
+                    {
+                        transform.position = new Vector3(hitCollider.transform.GetComponent<BoxCollider>().bounds.min.x + 0.12f,
+                        hitCollider.transform.GetComponent<BoxCollider>().bounds.min.y + 0.1f, hitCollider.transform.GetComponent<BoxCollider>().bounds.max.z - transform.GetComponent<BoxCollider>().size.z/8);
+                        transform.rotation = Quaternion.Euler(0, 90, 0);
+                    }
+                    else
+                    {
+                        transform.position = new Vector3(draggableObjectsController.GetLastDroppedObject(gameObject.tag).transform.position.x +
+                            0.25f, hitCollider.transform.GetComponent<BoxCollider>().bounds.min.y + 0.1f, hitCollider.transform.GetComponent<BoxCollider>().bounds.max.z - transform.GetComponent<BoxCollider>().size.z/8);
+                        transform.rotation = Quaternion.Euler(0, 90, 0);
                     }
                 }
 

@@ -403,8 +403,8 @@ GameObject:
   - component: {fileID: 8283873645086176337}
   - component: {fileID: 4997272265073359860}
   - component: {fileID: 7114869289089961790}
-  - component: {fileID: 8033107137765495341}
   - component: {fileID: 5727023930133973240}
+  - component: {fileID: 2039049540181070807}
   m_Layer: 6
   m_Name: CarBlue
   m_TagString: Blue
@@ -481,19 +481,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &8033107137765495341
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8772426704991071979}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 4, y: 1.7, z: 2.5}
-  m_Center: {x: 0, y: 1.15, z: 0}
 --- !u!114 &5727023930133973240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -506,3 +493,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21346a2d1d14a7245bf017d1a3d765e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &2039049540181070807
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8772426704991071979}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4, y: 1.7, z: 2.5}
+  m_Center: {x: 0, y: 1.15, z: 0}
