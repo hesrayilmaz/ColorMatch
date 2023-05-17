@@ -12,9 +12,12 @@ public class DragAndDrop : MonoBehaviour
     private float mouseZCoord;
     private bool isPlacedRight = false;
     private bool isDragging;
+    private float xOffset, yOffset, zOffset;
 
     private bool isGround = false;
     private levelTypes selectedType;
+    private Transform hitColliderObj;
+    private BoxCollider hitColliderBox;
 
     private float distance;
     //public static float numOfDropPoints;
@@ -112,98 +115,35 @@ public class DragAndDrop : MonoBehaviour
             //Debug.Log("hitCollider TAG "+ hitCollider.gameObject.tag);
             if (hitCollider.gameObject.tag == gameObject.tag + "Box")
             {
-
+                hitColliderObj = hitCollider.gameObject.transform;
+                hitColliderBox = hitColliderObj.GetComponent<BoxCollider>();
                 //hitCollider.gameObject.transform.parent = null;
                 //instructionClone.transform.localScale = new Vector2(0.35f, 0.35f);
 
 
                 if (selectedType == levelTypes.Torus)
                 {
-                    if (draggableObjectsController.IsDroppedListEmpty(gameObject.tag))
-                    {
-                        transform.position = new Vector3(hitCollider.transform.position.x,
-                        hitCollider.transform.GetComponent<BoxCollider>().bounds.min.y + 0.1f, hitCollider.transform.position.z);
-                    }
-                    else
-                    {
-                        transform.position = new Vector3(hitCollider.transform.position.x,
-                            draggableObjectsController.GetLastDroppedObject(gameObject.tag).transform.position.y + gameObject.GetComponent<BoxCollider>().size.y,
-                            hitCollider.transform.position.z);
-                    }
+                    DropTorus();
                 }
-                
                 else if (selectedType == levelTypes.Pencil)
                 {
-                    
-                    if (draggableObjectsController.IsDroppedListEmpty(gameObject.tag))
-                    {
-                        transform.position = new Vector3(hitCollider.transform.GetComponent<BoxCollider>().bounds.min.x + 2*transform.GetComponent<BoxCollider>().size.x,
-                        hitCollider.transform.GetComponent<BoxCollider>().bounds.min.y + 0.05f, hitCollider.transform.GetComponent<BoxCollider>().bounds.max.z- 3 * transform.GetComponent<BoxCollider>().size.z);
-                        transform.rotation = Quaternion.identity;
-                    }
-                    else
-                    {
-                        transform.position = new Vector3(draggableObjectsController.GetLastDroppedObject(gameObject.tag).transform.position.x +
-                            1.5f * transform.GetComponent<BoxCollider>().size.x, hitCollider.transform.GetComponent<BoxCollider>().bounds.min.y + 0.05f, hitCollider.transform.GetComponent<BoxCollider>().bounds.max.z - 3 * transform.GetComponent<BoxCollider>().size.z);
-                        transform.rotation = Quaternion.identity;
-                    }
-                   
+                    DropPencil();
                 }
                 else if(selectedType == levelTypes.Book)
                 {
-                    if (draggableObjectsController.IsDroppedListEmpty(gameObject.tag))
-                    {
-                        transform.position = new Vector3(hitCollider.transform.GetComponent<BoxCollider>().bounds.min.x + transform.GetComponent<BoxCollider>().size.z,
-                        hitCollider.transform.GetComponent<BoxCollider>().bounds.min.y, hitCollider.transform.GetComponent<BoxCollider>().bounds.max.z);
-                        transform.rotation = Quaternion.Euler(0,90,0);
-                    }
-                    else
-                    {
-                        transform.position = new Vector3(draggableObjectsController.GetLastDroppedObject(gameObject.tag).transform.position.x +
-                            transform.GetComponent<BoxCollider>().size.z+0.01f, hitCollider.transform.GetComponent<BoxCollider>().bounds.min.y, hitCollider.transform.GetComponent<BoxCollider>().bounds.max.z);
-                        transform.rotation = Quaternion.Euler(0, 90, 0);
-                    }
+                    DropBook();
                 }
                 else if (selectedType == levelTypes.Fruit) 
                 {
-                    if (draggableObjectsController.IsDroppedListEmpty(gameObject.tag))
-                    {
-                        transform.position = new Vector3(hitCollider.transform.GetComponent<BoxCollider>().bounds.min.x + transform.GetComponent<BoxCollider>().size.x,
-                        hitCollider.transform.GetComponent<BoxCollider>().bounds.min.y + 0.1f, hitCollider.transform.GetComponent<BoxCollider>().bounds.max.z - transform.GetComponent<BoxCollider>().size.z);
-                    }
-                    else
-                    {
-                        transform.position = new Vector3(draggableObjectsController.GetLastDroppedObject(gameObject.tag).transform.position.x +
-                            transform.GetComponent<BoxCollider>().size.x, hitCollider.transform.GetComponent<BoxCollider>().bounds.min.y + 0.1f, hitCollider.transform.GetComponent<BoxCollider>().bounds.max.z - transform.GetComponent<BoxCollider>().size.z);
-                    }
+                    DropFruit();
                 }
                 else if (selectedType == levelTypes.Train)
                 {
-                    if (draggableObjectsController.IsDroppedListEmpty(gameObject.tag))
-                    {
-                        transform.position = new Vector3(hitCollider.transform.GetComponent<BoxCollider>().bounds.min.x + transform.GetComponent<BoxCollider>().size.x/2,
-                        hitCollider.transform.GetComponent<BoxCollider>().bounds.min.y + 0.05f, hitCollider.transform.GetComponent<BoxCollider>().bounds.max.z - transform.GetComponent<BoxCollider>().size.z);
-                    }
-                    else
-                    {
-                        transform.position = new Vector3(draggableObjectsController.GetLastDroppedObject(gameObject.tag).transform.position.x +
-                            transform.GetComponent<BoxCollider>().size.x, hitCollider.transform.GetComponent<BoxCollider>().bounds.min.y + 0.05f, hitCollider.transform.GetComponent<BoxCollider>().bounds.max.z - transform.GetComponent<BoxCollider>().size.z);
-                    }
+                    DropTrain();
                 }
                 else if (selectedType == levelTypes.Car)
                 {
-                    if (draggableObjectsController.IsDroppedListEmpty(gameObject.tag))
-                    {
-                        transform.position = new Vector3(hitCollider.transform.GetComponent<BoxCollider>().bounds.min.x + 0.12f,
-                        hitCollider.transform.GetComponent<BoxCollider>().bounds.min.y + 0.1f, hitCollider.transform.GetComponent<BoxCollider>().bounds.max.z - transform.GetComponent<BoxCollider>().size.z/8);
-                        transform.rotation = Quaternion.Euler(0, 90, 0);
-                    }
-                    else
-                    {
-                        transform.position = new Vector3(draggableObjectsController.GetLastDroppedObject(gameObject.tag).transform.position.x +
-                            0.25f, hitCollider.transform.GetComponent<BoxCollider>().bounds.min.y + 0.1f, hitCollider.transform.GetComponent<BoxCollider>().bounds.max.z - transform.GetComponent<BoxCollider>().size.z/8);
-                        transform.rotation = Quaternion.Euler(0, 90, 0);
-                    }
+                    DropCar();
                 }
 
 
@@ -224,6 +164,93 @@ public class DragAndDrop : MonoBehaviour
         transform.position = startPoint;
     }
 
+    private void DropTorus()
+    {
+        if (draggableObjectsController.IsDroppedListEmpty(gameObject.tag))
+        {
+            transform.position = new Vector3(hitColliderObj.position.x,
+            hitColliderBox.bounds.min.y + 0.1f, hitColliderObj.position.z);
+        }
+        else
+        {
+            transform.position = new Vector3(hitColliderObj.position.x,
+                draggableObjectsController.GetLastDroppedObject(gameObject.tag).transform.position.y + transform.GetComponent<BoxCollider>().size.y,
+                hitColliderObj.position.z);
+        }
+    }
+    private void DropPencil()
+    {
+        if (draggableObjectsController.IsDroppedListEmpty(gameObject.tag))
+        {
+            transform.position = new Vector3(hitColliderBox.bounds.min.x + transform.GetComponent<BoxCollider>().size.x * 3,
+                hitColliderBox.bounds.min.y + 0.1f,
+                hitColliderBox.bounds.max.z - transform.GetComponent<BoxCollider>().size.z * 4);
+            transform.rotation = Quaternion.identity;
+        }
+        else
+        {
+            transform.position = new Vector3(draggableObjectsController.GetLastDroppedObject(gameObject.tag).transform.position.x +
+                transform.GetComponent<BoxCollider>().size.x * 1.5f, hitColliderBox.bounds.min.y + 0.1f,
+                hitColliderBox.bounds.max.z - transform.GetComponent<BoxCollider>().size.z * 4);
+            transform.rotation = Quaternion.identity;
+        }
+    }
+    private void DropBook()
+    {
+        if (draggableObjectsController.IsDroppedListEmpty(gameObject.tag))
+        {
+            transform.position = new Vector3(hitColliderBox.bounds.min.x + transform.GetComponent<BoxCollider>().size.z,
+            hitColliderBox.bounds.min.y, hitColliderBox.bounds.max.z);
+            transform.rotation = Quaternion.Euler(0, 90, 0);
+        }
+        else
+        {
+            transform.position = new Vector3(draggableObjectsController.GetLastDroppedObject(gameObject.tag).transform.position.x +
+                transform.GetComponent<BoxCollider>().size.z + 0.01f, hitColliderBox.bounds.min.y, hitColliderBox.bounds.max.z);
+            transform.rotation = Quaternion.Euler(0, 90, 0);
+        }
+    }
+    private void DropFruit()
+    {
+        if (draggableObjectsController.IsDroppedListEmpty(gameObject.tag))
+        {
+            transform.position = new Vector3(hitColliderBox.bounds.min.x + transform.GetComponent<BoxCollider>().size.x,
+            hitColliderBox.bounds.min.y + 0.1f, hitColliderBox.bounds.max.z - transform.GetComponent<BoxCollider>().size.z);
+        }
+        else
+        {
+            transform.position = new Vector3(draggableObjectsController.GetLastDroppedObject(gameObject.tag).transform.position.x +
+                transform.GetComponent<BoxCollider>().size.x, hitColliderBox.bounds.min.y + 0.1f, hitColliderBox.bounds.max.z - transform.GetComponent<BoxCollider>().size.z);
+        }
+    }
+    private void DropTrain()
+    {
+        if (draggableObjectsController.IsDroppedListEmpty(gameObject.tag))
+        {
+            transform.position = new Vector3(hitColliderBox.bounds.min.x + transform.GetComponent<BoxCollider>().size.x / 2,
+                hitColliderBox.bounds.min.y + 0.05f, hitColliderBox.bounds.max.z - transform.GetComponent<BoxCollider>().size.z);
+        }
+        else
+        {
+            transform.position = new Vector3(draggableObjectsController.GetLastDroppedObject(gameObject.tag).transform.position.x +
+                transform.GetComponent<BoxCollider>().size.x + 0.05f, hitColliderBox.bounds.min.y + 0.05f, hitColliderBox.bounds.max.z - transform.GetComponent<BoxCollider>().size.z);
+        }
+    }
+    private void DropCar()
+    {
+        if (draggableObjectsController.IsDroppedListEmpty(gameObject.tag))
+        {
+            transform.position = new Vector3(hitColliderBox.bounds.min.x + 0.12f,
+            hitColliderBox.bounds.min.y + 0.1f, hitColliderBox.bounds.max.z - transform.GetComponent<BoxCollider>().size.z / 8);
+            transform.rotation = Quaternion.Euler(0, 90, 0);
+        }
+        else
+        {
+            transform.position = new Vector3(draggableObjectsController.GetLastDroppedObject(gameObject.tag).transform.position.x +
+                0.25f, hitColliderBox.bounds.min.y + 0.1f, hitColliderBox.bounds.max.z - transform.GetComponent<BoxCollider>().size.z / 8);
+            transform.rotation = Quaternion.Euler(0, 90, 0);
+        }
+    }
 
     private Vector3 GetMouseWorldPos()
     {

@@ -1195,7 +1195,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7635247134689143596, guid: 27c58c58081e33441a804731556b93eb, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.4
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 7635247134689143596, guid: 27c58c58081e33441a804731556b93eb, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1347,11 +1347,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 968405138526189567, guid: 9ddd78dfb8d86564a923faf45df43956, type: 3}
       propertyPath: m_LocalScale.x
-      value: 2
+      value: 2.1
       objectReference: {fileID: 0}
     - target: {fileID: 968405138526189567, guid: 9ddd78dfb8d86564a923faf45df43956, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.5
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 968405138526189567, guid: 9ddd78dfb8d86564a923faf45df43956, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1363,7 +1363,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 968405138526189567, guid: 9ddd78dfb8d86564a923faf45df43956, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.45
+      value: 4.5
       objectReference: {fileID: 0}
     - target: {fileID: 968405138526189567, guid: 9ddd78dfb8d86564a923faf45df43956, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2275,7 +2275,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7635247134689143596, guid: 27c58c58081e33441a804731556b93eb, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.4
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 7635247134689143596, guid: 27c58c58081e33441a804731556b93eb, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2666,7 +2666,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7635247134689143596, guid: 27c58c58081e33441a804731556b93eb, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.4
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 7635247134689143596, guid: 27c58c58081e33441a804731556b93eb, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3289,7 +3289,7 @@ MonoBehaviour:
     - {fileID: 7300955765789030053, guid: 70211ccbdecc7d240896a38a1bc4af0a, type: 3}
     - {fileID: 7300955765789030053, guid: fde46a4ee492f8d44a69a0411afe4c1d, type: 3}
     numberOfColors: 3
-    numberOfEachColor: 2
+    numberOfEachColor: 3
   selectedColors: []
 --- !u!4 &1864372993
 Transform:

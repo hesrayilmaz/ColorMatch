@@ -46,6 +46,7 @@ public class ObjectsController : MonoBehaviour
     private int randomIndex;
     private Vector3 spawnPoint;
     private float xOffset, yOffset, zOffset;
+    private float radius;
     private levelTypes selectedType;
 
 
@@ -96,14 +97,10 @@ public class ObjectsController : MonoBehaviour
                 
                 objectToInstantiate = obj.objectPrefabs[randomIndex];
 
-                
                 selectedColors.Add(objectToInstantiate.tag);
 
                 //Debug.Log("objectToInstantiate.name " + objectToInstantiate.name);
                 //Debug.Log("objectToInstantiate.tag " + objectToInstantiate.tag);
-
-                //xOffset = collider.transform.position.x/4;
-                //zOffset = collider.transform.position.z/4;
 
                 float minX = collider.bounds.min.x;
                 float maxX = collider.bounds.max.x;
@@ -116,15 +113,16 @@ public class ObjectsController : MonoBehaviour
                     yOffset = collider.transform.position.y+ objectToInstantiate.transform.GetComponent<BoxCollider>().size.y/2;
                     xOffset = objectToInstantiate.transform.GetComponent<BoxCollider>().size.x;
                     zOffset = objectToInstantiate.transform.GetComponent<BoxCollider>().size.z;
-
+                    radius = obj.objectPrefabs[0].GetComponent<BoxCollider>().size.x;
                     Debug.Log("minx " + minX + "maxx " + maxX + "minz " + minZ + "maxz " + maxZ);
                 }
                 else if (selectedType == levelTypes.Pencil)
                 {
                     yOffset = collider.transform.position.y + objectToInstantiate.transform.GetComponent<BoxCollider>().size.z/2;
-                    xOffset = objectToInstantiate.transform.GetComponent<BoxCollider>().size.y/2;
+                    xOffset = objectToInstantiate.transform.GetComponent<BoxCollider>().size.y;
                     zOffset = objectToInstantiate.transform.GetComponent<BoxCollider>().size.x;
-
+                    //radius = obj.objectPrefabs[0].GetComponent<BoxCollider>().size.y/2;
+                    radius = 0.16f;
                     Debug.Log("minx " + minX + "maxx " + maxX + "minz " + minZ + "maxz " + maxZ);
                 }
                 else if (selectedType == levelTypes.Book)
@@ -132,44 +130,45 @@ public class ObjectsController : MonoBehaviour
                     yOffset = collider.transform.position.y + objectToInstantiate.transform.GetComponent<BoxCollider>().size.z / 2;
                     xOffset = objectToInstantiate.transform.GetComponent<BoxCollider>().size.y/2;
                     zOffset = objectToInstantiate.transform.GetComponent<BoxCollider>().size.x;
-
+                    radius = obj.objectPrefabs[0].GetComponent<BoxCollider>().size.y;
                     Debug.Log("minx " + minX + "maxx " + maxX + "minz " + minZ + "maxz " + maxZ);
                 }
                 else if (selectedType == levelTypes.Fruit)
                 {
                     yOffset = collider.transform.position.y + objectToInstantiate.transform.GetComponent<BoxCollider>().size.y / 2;
                     xOffset = objectToInstantiate.transform.GetComponent<BoxCollider>().size.x;
-                    zOffset = objectToInstantiate.transform.GetComponent<BoxCollider>().size.z;
-
+                    zOffset = objectToInstantiate.transform.GetComponent<BoxCollider>().size.z*2;
+                    radius = obj.objectPrefabs[0].GetComponent<BoxCollider>().size.x;
                     Debug.Log("minx " + minX + "maxx " + maxX + "minz " + minZ + "maxz " + maxZ);
                 }
                 else if (selectedType == levelTypes.Train)
                 {
                     yOffset = collider.transform.position.y + objectToInstantiate.transform.GetComponent<BoxCollider>().size.y/2;
-                    xOffset = objectToInstantiate.transform.GetComponent<BoxCollider>().size.z;
-                    zOffset = objectToInstantiate.transform.GetComponent<BoxCollider>().size.x;
-
+                    xOffset = 0;
+                    zOffset = obj.referanceObject.transform.position.z;
+                    radius = obj.objectPrefabs[0].GetComponent<BoxCollider>().size.x+0.02f;
                     Debug.Log("minx " + minX + "maxx " + maxX + "minz " + minZ + "maxz " + maxZ);
                 }
                 else if (selectedType == levelTypes.Car)
                 {
                     yOffset = collider.transform.position.y;
-                    //xOffset = objectToInstantiate.transform.GetComponent<BoxCollider>().size.x;
-                    xOffset = 0;
-                    zOffset = objectToInstantiate.transform.GetComponent<BoxCollider>().size.z/4;
-                    //zOffset = 0;
-
-                    Debug.Log("minx " + minX + "maxx " + maxX + "minz " + minZ + "maxz " + maxZ);
-                    Debug.Log("xOffset " + xOffset + "zOffset " + zOffset);
-                    Debug.Log("spawn point min x " + (minX + xOffset) + " spawn point max x " + (maxX - xOffset)+ " spawn point min z " + (minZ + zOffset) + " spawn point max z " + (maxZ - zOffset));
+                    xOffset = objectToInstantiate.transform.localScale.x*2;
+                    zOffset = objectToInstantiate.transform.localScale.z*2;
+                    radius = obj.objectPrefabs[0].transform.localScale.x * 2;
                 }
-                
+
 
                 for (int j = 0; j < obj.numberOfEachColor; j++)
                 {
-                    spawnPoint = new Vector3(Random.Range(minX + xOffset, maxX - xOffset), yOffset, Random.Range(minZ + zOffset, maxZ - zOffset));
+                    if (selectedType == levelTypes.Train)
+                    {
+                        spawnPoint = new Vector3(obj.referanceObject.transform.GetComponent<BoxCollider>().bounds.min.x+xOffset, yOffset, zOffset);
+                        xOffset += objectToInstantiate.transform.GetComponent<BoxCollider>().size.z/2;
+                    }
+                    else
+                        spawnPoint = new Vector3(Random.Range(minX + xOffset, maxX - xOffset), yOffset, Random.Range(minZ + zOffset, maxZ - zOffset));
                     Debug.Log("SPAWN POINTTTTTTTTTTT " + spawnPoint);
-                    Collider[] hitColliders = Physics.OverlapSphere(spawnPoint, obj.objectPrefabs[0].GetComponent<BoxCollider>().size.x/20, LayerMask.GetMask("Draggable"));
+                    Collider[] hitColliders = Physics.OverlapSphere(spawnPoint, radius, LayerMask.GetMask("Draggable"));
                     if (hitColliders.Length == 0)
                     {
                         draggableObject = Instantiate(objectToInstantiate, spawnPoint, objectToInstantiate.transform.rotation);
