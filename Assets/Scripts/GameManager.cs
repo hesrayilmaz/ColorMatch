@@ -7,21 +7,18 @@ public class GameManager : MonoBehaviour
 {
     //public static GameManager instance;
 
-
-   /* private void Awake()
-    {
-        if (instance == null)
-            instance = this;
-        else
-            Destroy(gameObject);
-
-        DontDestroyOnLoad(gameObject);
-    }*/
+    [SerializeField] private GameObject levelEndPanel;
 
     // Start is called before the first frame update
     void Start()
     {
         
+    }
+
+    public void RestartLevel()
+    {
+        levelEndPanel.SetActive(false);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void LoadLevelsMenu()
@@ -44,6 +41,11 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
+    public void ShowLevelEndPanel()
+    {
+        StartCoroutine(LevelEndCoroutine());
+    }
+
     IEnumerator NextLevelCoroutine()
     {
         yield return new WaitForSeconds(0.5f);
@@ -56,5 +58,11 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("Last Level");
         }
+    }
+    IEnumerator LevelEndCoroutine()
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        levelEndPanel.SetActive(true);
     }
 }

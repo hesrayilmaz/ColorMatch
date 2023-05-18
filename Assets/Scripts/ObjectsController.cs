@@ -226,7 +226,7 @@ public class ObjectsController : MonoBehaviour
 
                 if (numberOfDroppedObjects == totalNumberOfObjects)
                 {
-                    gameManager.LoadNextLevel();
+                    gameManager.ShowLevelEndPanel();
                 }
             }
         }
