@@ -39,6 +39,11 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(levelName);
     }
 
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
     IEnumerator NextLevelCoroutine()
     {
         yield return new WaitForSeconds(0.5f);
