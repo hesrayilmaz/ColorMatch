@@ -5,14 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    //public static GameManager instance;
-
     [SerializeField] private GameObject levelEndPanel;
+    [SerializeField] private Animator transitionAnim;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        if(gameObject.tag!="MainMenu")
+            transitionAnim.SetTrigger("StartLevel");
     }
 
     public void RestartLevel()
@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
 
     public void LoadLevelsMenu()
     {
-        SceneManager.LoadScene("LevelsMenu");
+        StartCoroutine(LevelsMenuCoroutine());
     }
    
     public void LoadNextLevel()
@@ -33,22 +33,23 @@ public class GameManager : MonoBehaviour
 
     public void LoadSelectedLevel(string levelName)
     {
-        SceneManager.LoadScene(levelName);
-    }
-
-    public void QuitGame()
-    {
-        Application.Quit();
+        StartCoroutine(SelectedLevelCoroutine(levelName));
     }
 
     public void ShowLevelEndPanel()
     {
         StartCoroutine(LevelEndCoroutine());
     }
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 
     IEnumerator NextLevelCoroutine()
     {
-        yield return new WaitForSeconds(0.5f);
+        transitionAnim.SetTrigger("EndLevel");
+
+        yield return new WaitForSeconds(1f);
 
         try
         {
@@ -64,5 +65,21 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         levelEndPanel.SetActive(true);
+    }
+
+    IEnumerator LevelsMenuCoroutine()
+    {
+        transitionAnim.SetTrigger("EndLevel");
+
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene("LevelsMenu");
+    }
+
+    IEnumerator SelectedLevelCoroutine(string levelName)
+    {
+        transitionAnim.SetTrigger("EndLevel");
+
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene(levelName);
     }
 }

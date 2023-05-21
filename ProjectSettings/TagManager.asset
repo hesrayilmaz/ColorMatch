@@ -23,6 +23,7 @@ TagManager:
   - Chicken
   - Pig
   - Ground
+  - MainMenu
   layers:
   - Default
   - TransparentFX
