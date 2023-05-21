@@ -64,19 +64,16 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator LevelEndCoroutine()
     {
-        levelEndAudio.Play();
         yield return new WaitForSeconds(0.2f);
-
+        levelEndAudio.Play();
         levelEndParticle.SetActive(true);
         yield return new WaitForSeconds(2.5f);
-
         levelEndPanel.SetActive(true);
     }
 
     IEnumerator LevelsMenuCoroutine()
     {
         transitionAnim.SetTrigger("EndLevel");
-
         yield return new WaitForSeconds(1f);
         SceneManager.LoadScene("LevelsMenu");
     }
@@ -84,7 +81,6 @@ public class GameManager : MonoBehaviour
     IEnumerator SelectedLevelCoroutine(string levelName)
     {
         transitionAnim.SetTrigger("EndLevel");
-
         yield return new WaitForSeconds(1f);
         SceneManager.LoadScene(levelName);
     }

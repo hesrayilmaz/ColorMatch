@@ -145,6 +145,10 @@ public class DragAndDrop : MonoBehaviour
                 {
                     DropCar();
                 }
+                else if (selectedType == levelTypes.Pillow)
+                {
+                    DropPillow();
+                }
 
 
                 transform.GetComponent<BoxCollider>().enabled = false;
@@ -249,6 +253,21 @@ public class DragAndDrop : MonoBehaviour
             transform.position = new Vector3(draggableObjectsController.GetLastDroppedObject(gameObject.tag).transform.position.x + 0.25f, 
                 hitColliderBox.bounds.min.y + 0.1f, hitColliderBox.bounds.max.z - transform.GetComponent<BoxCollider>().size.z / 8);
             transform.rotation = Quaternion.Euler(0, 90, 0);
+        }
+    }
+    private void DropPillow()
+    {
+        if (draggableObjectsController.IsDroppedListEmpty(gameObject.tag))
+        {
+            transform.position = new Vector3(hitColliderBox.bounds.min.x + 0.13f, hitColliderBox.bounds.min.y + transform.localScale.y / 2,
+                hitColliderBox.size.z);
+            transform.rotation = Quaternion.Euler(0, 0, 90);
+        }
+        else
+        {
+            transform.position = new Vector3(draggableObjectsController.GetLastDroppedObject(gameObject.tag).transform.position.x + 0.1f,
+                hitColliderBox.bounds.min.y + transform.localScale.y / 2, hitColliderBox.size.z);
+            transform.rotation = Quaternion.Euler(0, 0, 90);
         }
     }
 

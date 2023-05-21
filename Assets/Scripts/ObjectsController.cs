@@ -156,6 +156,13 @@ public class ObjectsController : MonoBehaviour
                     zOffset = objectToInstantiate.transform.localScale.z*2;
                     radius = obj.objectPrefabs[0].transform.localScale.x * 2;
                 }
+                else if (selectedType == levelTypes.Pillow)
+                {
+                    yOffset = collider.transform.position.y;
+                    xOffset = objectToInstantiate.transform.GetComponent<BoxCollider>().size.x;
+                    zOffset = objectToInstantiate.transform.GetComponent<BoxCollider>().size.z;
+                    radius = objectToInstantiate.transform.localScale.x/2;
+                }
 
 
                 for (int j = 0; j < obj.numberOfEachColor; j++)
@@ -167,6 +174,7 @@ public class ObjectsController : MonoBehaviour
                     }
                     else
                         spawnPoint = new Vector3(Random.Range(minX + xOffset, maxX - xOffset), yOffset, Random.Range(minZ + zOffset, maxZ - zOffset));
+
                     Debug.Log("SPAWN POINTTTTTTTTTTT " + spawnPoint);
                     Collider[] hitColliders = Physics.OverlapSphere(spawnPoint, radius, LayerMask.GetMask("Draggable"));
                     if (hitColliders.Length == 0)
@@ -196,7 +204,7 @@ public class ObjectsController : MonoBehaviour
             {
                 if (box.boxColor == selectedColors[i])
                 {
-                    Instantiate(box.boxPrefab, boxesInScene[i].transform.position, Quaternion.identity);
+                    Instantiate(box.boxPrefab, boxesInScene[i].transform.position, boxesInScene[i].transform.rotation);
                     if (boxesInScene[i].transform.childCount == 1)
                     {
                         boxesInScene[i].transform.GetChild(0).tag = selectedColors[i] + "Box";
