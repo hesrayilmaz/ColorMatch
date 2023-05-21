@@ -4,13 +4,13 @@ using UnityEngine;
 
 public enum levelTypes
 {
+    Demo,
     Torus,
     Pencil,
     Book,
     Fruit,
     Train,
-    Car,
-    Pillow
+    Car
 };
 
 public class LevelTypes : MonoBehaviour

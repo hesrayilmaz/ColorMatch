@@ -15,9 +15,21 @@ public class DragAndDrop : MonoBehaviour
     private float xOffset, yOffset, zOffset;
 
     private bool isGround = false;
+    private static bool isStarted = false;
+
+    private bool isStartPoint = true;
+
+    private static GameObject demoCursor;
+    private static GameObject demoTarget;
+    private static int demoIndex = 0;
+    private bool isDemoActive = false;
+
     private levelTypes selectedType;
     private Transform hitColliderObj;
     private BoxCollider hitColliderBox;
+    private static List<DragAndDrop> draggableObjects;
+    private static List<GameObject> targets;
+    private static bool hasSearched = false;
 
     private float distance;
     //public static float numOfDropPoints;
@@ -31,12 +43,69 @@ public class DragAndDrop : MonoBehaviour
     {
         draggableObjectsController = GameObject.Find("ObjectsController").GetComponent<ObjectsController>();
         selectedType = GameObject.Find("LevelTypesController").GetComponent<LevelTypes>().GetSelectedLevelType();
-        Debug.Log("selectedType " + selectedType);
+        
         startPoint = transform.position;
         mouseZCoord = Camera.main.ScreenToWorldPoint(transform.position).z;
         //numOfDropPoints = GameObject.Find("InstructionDropPoints").transform.childCount;
         correctDropAudio = GameObject.Find("Audio").transform.Find("CorrectDrop").GetComponent<AudioSource>();
         wrongDropAudio = GameObject.Find("Audio").transform.Find("WrongDrop").GetComponent<AudioSource>();
+
+        draggableObjects = new List<DragAndDrop>();
+        targets = new List<GameObject>();
+    }
+
+    private void Update()
+    {
+        if(selectedType==levelTypes.Demo && !hasSearched && !isStarted)
+        {
+            hasSearched = true;
+            isStarted = true;
+            
+            foreach(DragAndDrop obj in FindObjectsOfType<DragAndDrop>())
+            {
+                if (obj != this)
+                {
+                    draggableObjects.Add(obj);
+                }
+            }
+        
+            demoCursor = gameObject.transform.Find("Cursor").gameObject;
+            demoCursor.SetActive(true);
+            targets = draggableObjectsController.GetBoxes();
+            
+            foreach(DragAndDrop obj in draggableObjects)
+                obj.gameObject.GetComponent<BoxCollider>().enabled = false;
+
+            foreach(GameObject box in targets)
+            {
+                if (box.tag == demoCursor.tag + "Box")
+                    demoTarget = box;
+            }
+
+            isDemoActive = true;
+
+        }
+
+        if (isDemoActive)
+        {
+            if (isStartPoint)
+            {
+                demoCursor.transform.position = Vector3.MoveTowards(demoCursor.transform.position, demoTarget.transform.position+new Vector3(0f,0f, -1f), 0.002f);
+                if(demoCursor.transform.position == demoTarget.transform.position + new Vector3(0f, 0f, -1f))
+                {
+                    isStartPoint = false;
+                }
+            }
+            else
+            {
+                demoCursor.transform.position = Vector3.MoveTowards(demoCursor.transform.position, transform.position + new Vector3(-0.2f, 0.1f, -0.2f), 0.002f);
+                if (demoCursor.transform.position == transform.position + new Vector3(-0.2f, 0.1f, -0.2f))
+                {
+                    isStartPoint = true;
+                }
+            }
+        }
+
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -59,7 +128,8 @@ public class DragAndDrop : MonoBehaviour
         */
             //transform.position = GetMouseWorldPos() + mouseOffset;
 
-
+            if (demoCursor)
+                demoCursor.SetActive(false);
 
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             Vector3 rayPoint = ray.GetPoint(distance);
@@ -94,8 +164,6 @@ public class DragAndDrop : MonoBehaviour
             //mouseOffset = transform.position - GetMouseWorldPos();
 
 
-
-
             distance = Vector3.Distance(transform.position, Camera.main.transform.position);
 
 
@@ -115,6 +183,13 @@ public class DragAndDrop : MonoBehaviour
             //Debug.Log("hitCollider TAG "+ hitCollider.gameObject.tag);
             if (hitCollider.gameObject.tag == gameObject.tag + "Box")
             {
+                if (selectedType == levelTypes.Demo && isDemoActive)
+                {
+                    isDemoActive = false;
+                    demoCursor.SetActive(false);
+                }
+                
+
                 hitColliderObj = hitCollider.gameObject.transform;
                 hitColliderBox = hitColliderObj.GetComponent<BoxCollider>();
                 //hitCollider.gameObject.transform.parent = null;
@@ -145,9 +220,9 @@ public class DragAndDrop : MonoBehaviour
                 {
                     DropCar();
                 }
-                else if (selectedType == levelTypes.Pillow)
+                else if (selectedType == levelTypes.Demo)
                 {
-                    DropPillow();
+                    DropDemoObject();
                 }
 
 
@@ -155,10 +230,29 @@ public class DragAndDrop : MonoBehaviour
                 draggableObjectsController.AddDroppedObject(gameObject, gameObject.tag);
                 correctDropAudio.Play();
                 isPlacedRight = true;
+
+                if(selectedType == levelTypes.Demo)
+                {
+                    demoCursor = draggableObjects[demoIndex].gameObject.transform.Find("Cursor").gameObject;
+                    demoCursor.SetActive(true);
+                    draggableObjects[demoIndex].gameObject.GetComponent<BoxCollider>().enabled = true;
+
+                    foreach (GameObject box in targets)
+                    {
+                        if (box.tag == demoCursor.tag + "Box")
+                        {
+                            demoTarget = box;
+                        }
+                    }
+                    draggableObjects[demoIndex].isDemoActive = true;
+                    demoIndex++;
+                }
+                
+
                 //numOfDropPoints--;
 
                 //if (numOfDropPoints == 0)
-                  //  carController.StartMove();
+                //  carController.StartMove();
 
                 //isPlacedRight = false;
                 return;
@@ -166,6 +260,9 @@ public class DragAndDrop : MonoBehaviour
         }
         wrongDropAudio.Play();
         transform.position = startPoint;
+
+        if (demoCursor)
+            demoCursor.SetActive(true);
     }
 
     private void DropTorus()
@@ -255,7 +352,7 @@ public class DragAndDrop : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 90, 0);
         }
     }
-    private void DropPillow()
+    private void DropDemoObject()
     {
         if (draggableObjectsController.IsDroppedListEmpty(gameObject.tag))
         {

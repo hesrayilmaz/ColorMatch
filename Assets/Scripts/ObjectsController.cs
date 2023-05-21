@@ -31,6 +31,7 @@ public class ObjectsController : MonoBehaviour
     [SerializeField] private DroppedObject[] droppedObjectsArray;
     [SerializeField] private Box[] boxArray;
     [SerializeField] private List<GameObject> boxesInScene;
+    [SerializeField] private List<GameObject> createdBoxes;
     [SerializeField] private ObjectCreator[] objectCreatorArray;
     private GameManager gameManager;
 
@@ -48,7 +49,11 @@ public class ObjectsController : MonoBehaviour
     private float xOffset, yOffset, zOffset;
     private float radius;
     private levelTypes selectedType;
-
+    private GameObject demoCursor;
+    private GameObject demoTarget;
+    private int demoIndex = 0;
+    private bool isDemoActive = false;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -156,7 +161,7 @@ public class ObjectsController : MonoBehaviour
                     zOffset = objectToInstantiate.transform.localScale.z*2;
                     radius = obj.objectPrefabs[0].transform.localScale.x * 2;
                 }
-                else if (selectedType == levelTypes.Pillow)
+                else if (selectedType == levelTypes.Demo)
                 {
                     yOffset = collider.transform.position.y;
                     xOffset = objectToInstantiate.transform.GetComponent<BoxCollider>().size.x;
@@ -175,7 +180,7 @@ public class ObjectsController : MonoBehaviour
                     else
                         spawnPoint = new Vector3(Random.Range(minX + xOffset, maxX - xOffset), yOffset, Random.Range(minZ + zOffset, maxZ - zOffset));
 
-                    Debug.Log("SPAWN POINTTTTTTTTTTT " + spawnPoint);
+                    //Debug.Log("SPAWN POINTTTTTTTTTTT " + spawnPoint);
                     Collider[] hitColliders = Physics.OverlapSphere(spawnPoint, radius, LayerMask.GetMask("Draggable"));
                     if (hitColliders.Length == 0)
                     {
@@ -189,7 +194,6 @@ public class ObjectsController : MonoBehaviour
                 obj.objectPrefabs.RemoveAt(randomIndex);
 
             }
-
         }
 
 
@@ -204,7 +208,8 @@ public class ObjectsController : MonoBehaviour
             {
                 if (box.boxColor == selectedColors[i])
                 {
-                    Instantiate(box.boxPrefab, boxesInScene[i].transform.position, boxesInScene[i].transform.rotation);
+                    GameObject newBox = Instantiate(box.boxPrefab, boxesInScene[i].transform.position, boxesInScene[i].transform.rotation);
+                    createdBoxes.Add(newBox);
                     if (boxesInScene[i].transform.childCount == 1)
                     {
                         boxesInScene[i].transform.GetChild(0).tag = selectedColors[i] + "Box";
@@ -215,13 +220,9 @@ public class ObjectsController : MonoBehaviour
                 }
             }
         }
+
     }
 
-    void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(draggableObject.transform.position, objectCreatorArray[0].objectPrefabs[0].GetComponent<BoxCollider>().size.x);
-    }
 
     public void AddDroppedObject(GameObject droppedObject, string objectTag)
     {
@@ -264,6 +265,11 @@ public class ObjectsController : MonoBehaviour
         }
 
         return null;
+    }
+
+    public List<GameObject> GetBoxes()
+    {
+        return createdBoxes;
     }
 
 }
