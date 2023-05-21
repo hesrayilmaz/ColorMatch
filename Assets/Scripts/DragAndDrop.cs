@@ -24,7 +24,7 @@ public class DragAndDrop : MonoBehaviour
 
     private ObjectsController draggableObjectsController;
     private GameObject instructionClone;
-    private AudioSource dropAudio, wrongDropAudio;
+    private AudioSource correctDropAudio, wrongDropAudio;
 
     // Start is called before the first frame update
     void Start()
@@ -35,8 +35,8 @@ public class DragAndDrop : MonoBehaviour
         startPoint = transform.position;
         mouseZCoord = Camera.main.ScreenToWorldPoint(transform.position).z;
         //numOfDropPoints = GameObject.Find("InstructionDropPoints").transform.childCount;
-        //dropAudio = GameObject.Find("Audio").transform.GetChild(2).GetComponent<AudioSource>();
-        //wrongDropAudio = GameObject.Find("Audio").transform.GetChild(3).GetComponent<AudioSource>();
+        correctDropAudio = GameObject.Find("Audio").transform.Find("CorrectDrop").GetComponent<AudioSource>();
+        wrongDropAudio = GameObject.Find("Audio").transform.Find("WrongDrop").GetComponent<AudioSource>();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -149,7 +149,7 @@ public class DragAndDrop : MonoBehaviour
 
                 transform.GetComponent<BoxCollider>().enabled = false;
                 draggableObjectsController.AddDroppedObject(gameObject, gameObject.tag);
-                //dropAudio.Play();
+                correctDropAudio.Play();
                 isPlacedRight = true;
                 //numOfDropPoints--;
 
@@ -160,7 +160,7 @@ public class DragAndDrop : MonoBehaviour
                 return;
             }
         }
-        //wrongDropAudio.Play();
+        wrongDropAudio.Play();
         transform.position = startPoint;
     }
 
@@ -200,7 +200,7 @@ public class DragAndDrop : MonoBehaviour
         if (draggableObjectsController.IsDroppedListEmpty(gameObject.tag))
         {
             transform.position = new Vector3(hitColliderBox.bounds.min.x + transform.GetComponent<BoxCollider>().size.z,
-            hitColliderBox.bounds.min.y, hitColliderBox.bounds.max.z);
+                hitColliderBox.bounds.min.y, hitColliderBox.bounds.max.z);
             transform.rotation = Quaternion.Euler(0, 90, 0);
         }
         else
@@ -215,7 +215,7 @@ public class DragAndDrop : MonoBehaviour
         if (draggableObjectsController.IsDroppedListEmpty(gameObject.tag))
         {
             transform.position = new Vector3(hitColliderBox.bounds.min.x + transform.GetComponent<BoxCollider>().size.x,
-            hitColliderBox.bounds.min.y + 0.1f, hitColliderBox.bounds.max.z - transform.GetComponent<BoxCollider>().size.z);
+                hitColliderBox.bounds.min.y + 0.1f, hitColliderBox.bounds.max.z - transform.GetComponent<BoxCollider>().size.z);
         }
         else
         {
@@ -240,14 +240,14 @@ public class DragAndDrop : MonoBehaviour
     {
         if (draggableObjectsController.IsDroppedListEmpty(gameObject.tag))
         {
-            transform.position = new Vector3(hitColliderBox.bounds.min.x + 0.12f,
-            hitColliderBox.bounds.min.y + 0.1f, hitColliderBox.bounds.max.z - transform.GetComponent<BoxCollider>().size.z / 8);
+            transform.position = new Vector3(hitColliderBox.bounds.min.x + 0.12f, hitColliderBox.bounds.min.y + 0.1f, 
+                hitColliderBox.bounds.max.z - transform.GetComponent<BoxCollider>().size.z / 8);
             transform.rotation = Quaternion.Euler(0, 90, 0);
         }
         else
         {
-            transform.position = new Vector3(draggableObjectsController.GetLastDroppedObject(gameObject.tag).transform.position.x +
-                0.25f, hitColliderBox.bounds.min.y + 0.1f, hitColliderBox.bounds.max.z - transform.GetComponent<BoxCollider>().size.z / 8);
+            transform.position = new Vector3(draggableObjectsController.GetLastDroppedObject(gameObject.tag).transform.position.x + 0.25f, 
+                hitColliderBox.bounds.min.y + 0.1f, hitColliderBox.bounds.max.z - transform.GetComponent<BoxCollider>().size.z / 8);
             transform.rotation = Quaternion.Euler(0, 90, 0);
         }
     }
