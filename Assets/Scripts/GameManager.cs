@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject levelEndPanel;
+    [SerializeField] private GameObject levelEndParticle;
+    [SerializeField] private GameObject levelEndAudio;
     [SerializeField] private Animator transitionAnim;
 
     // Start is called before the first frame update
@@ -62,7 +64,11 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator LevelEndCoroutine()
     {
-        yield return new WaitForSeconds(0.5f);
+        levelEndAudio.SetActive(true);
+        yield return new WaitForSeconds(0.2f);
+
+        levelEndParticle.SetActive(true);
+        yield return new WaitForSeconds(2.5f);
 
         levelEndPanel.SetActive(true);
     }
