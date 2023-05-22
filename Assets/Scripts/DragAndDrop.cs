@@ -50,8 +50,6 @@ public class DragAndDrop : MonoBehaviour
         correctDropAudio = GameObject.Find("Audio").transform.Find("CorrectDrop").GetComponent<AudioSource>();
         wrongDropAudio = GameObject.Find("Audio").transform.Find("WrongDrop").GetComponent<AudioSource>();
 
-        draggableObjects = new List<DragAndDrop>();
-        targets = new List<GameObject>();
     }
 
     private void Update()
@@ -60,7 +58,11 @@ public class DragAndDrop : MonoBehaviour
         {
             hasSearched = true;
             isStarted = true;
-            
+
+            draggableObjects = new List<DragAndDrop>();
+            targets = new List<GameObject>();
+            Debug.Log("11111111111111111");
+
             foreach(DragAndDrop obj in FindObjectsOfType<DragAndDrop>())
             {
                 if (obj != this)
@@ -68,7 +70,7 @@ public class DragAndDrop : MonoBehaviour
                     draggableObjects.Add(obj);
                 }
             }
-        
+            Debug.Log("draggableObjects.count: "+ draggableObjects.Count);
             demoCursor = gameObject.transform.Find("Cursor").gameObject;
             demoCursor.SetActive(true);
             targets = draggableObjectsController.GetBoxes();
@@ -90,7 +92,7 @@ public class DragAndDrop : MonoBehaviour
         {
             if (isStartPoint)
             {
-                demoCursor.transform.position = Vector3.MoveTowards(demoCursor.transform.position, demoTarget.transform.position+new Vector3(0f,0f, -1f), 0.002f);
+                demoCursor.transform.position = Vector3.MoveTowards(demoCursor.transform.position, demoTarget.transform.position+new Vector3(0f,0f, -1f), 0.5f * Time.deltaTime);
                 if(demoCursor.transform.position == demoTarget.transform.position + new Vector3(0f, 0f, -1f))
                 {
                     isStartPoint = false;
@@ -98,7 +100,7 @@ public class DragAndDrop : MonoBehaviour
             }
             else
             {
-                demoCursor.transform.position = Vector3.MoveTowards(demoCursor.transform.position, transform.position + new Vector3(-0.2f, 0.1f, -0.2f), 0.002f);
+                demoCursor.transform.position = Vector3.MoveTowards(demoCursor.transform.position, transform.position + new Vector3(-0.2f, 0.1f, -0.2f), 0.5f * Time.deltaTime);
                 if (demoCursor.transform.position == transform.position + new Vector3(-0.2f, 0.1f, -0.2f))
                 {
                     isStartPoint = true;
@@ -231,8 +233,13 @@ public class DragAndDrop : MonoBehaviour
                 correctDropAudio.Play();
                 isPlacedRight = true;
 
-                if(selectedType == levelTypes.Demo)
+                Debug.Log("first demoIndex: " + demoIndex);
+                Debug.Log("selectedType: " + selectedType);
+                Debug.Log("draggableObjects.Count: " + draggableObjects.Count);
+
+                if (selectedType == levelTypes.Demo && demoIndex<draggableObjects.Count)
                 {
+                    Debug.Log("second demoIndex: " + demoIndex);
                     demoCursor = draggableObjects[demoIndex].gameObject.transform.Find("Cursor").gameObject;
                     demoCursor.SetActive(true);
                     draggableObjects[demoIndex].gameObject.GetComponent<BoxCollider>().enabled = true;

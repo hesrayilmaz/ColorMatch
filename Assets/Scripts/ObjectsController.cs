@@ -112,10 +112,11 @@ public class ObjectsController : MonoBehaviour
 
                 float minZ = collider.bounds.min.z;
                 float maxZ = collider.bounds.max.z;
-
+                
+               
                 if (selectedType == levelTypes.Torus)
                 {
-                    yOffset = collider.transform.position.y+ objectToInstantiate.transform.GetComponent<BoxCollider>().size.y/2;
+                    yOffset = collider.transform.position.y+ objectToInstantiate.transform.GetComponent<BoxCollider>().size.y/2+0.1f;
                     xOffset = objectToInstantiate.transform.GetComponent<BoxCollider>().size.x;
                     zOffset = objectToInstantiate.transform.GetComponent<BoxCollider>().size.z;
                     radius = obj.objectPrefabs[0].GetComponent<BoxCollider>().size.x;
@@ -165,7 +166,7 @@ public class ObjectsController : MonoBehaviour
                 {
                     yOffset = collider.transform.position.y;
                     xOffset = objectToInstantiate.transform.GetComponent<BoxCollider>().size.x;
-                    zOffset = objectToInstantiate.transform.GetComponent<BoxCollider>().size.z;
+                    zOffset = objectToInstantiate.transform.GetComponent<BoxCollider>().size.z-0.2f;
                     radius = objectToInstantiate.transform.localScale.x/2;
                 }
 

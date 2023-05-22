@@ -1474,6 +1474,7 @@ MonoBehaviour:
   - {fileID: 341915628}
   - {fileID: 1526781493}
   - {fileID: 1593089226}
+  createdBoxes: []
   objectCreatorArray:
   - referanceObject: {fileID: 1906108054}
     objectPrefabs:
@@ -2914,7 +2915,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6a972186daca0149ae9642dac40b978, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelType: 1
+  levelType: 2
 --- !u!4 &1628847461
 Transform:
   m_ObjectHideFlags: 0
