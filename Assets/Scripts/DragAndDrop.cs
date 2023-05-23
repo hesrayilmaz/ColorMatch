@@ -32,6 +32,7 @@ public class DragAndDrop : MonoBehaviour
     private static bool hasSearched = false;
 
     private float distance;
+    private float radius;
     //public static float numOfDropPoints;
 
     private ObjectsController draggableObjectsController;
@@ -41,6 +42,35 @@ public class DragAndDrop : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (selectedType == levelTypes.Torus)
+        {
+            radius = 0.6f;
+        }
+        else if (selectedType == levelTypes.Pencil)
+        {
+            radius = 0.6f;
+        }
+        else if (selectedType == levelTypes.Book)
+        {
+            radius = 5f;
+        }
+        else if (selectedType == levelTypes.Fruit)
+        {
+            radius = 2.1f;
+        }
+        else if (selectedType == levelTypes.Train)
+        {
+            radius = 1.5f;
+        }
+        else if (selectedType == levelTypes.Car)
+        {
+            radius = 5f;
+        }
+        else if (selectedType == levelTypes.Demo)
+        {
+            radius = 0.6f;
+        }
+
         draggableObjectsController = GameObject.Find("ObjectsController").GetComponent<ObjectsController>();
         selectedType = GameObject.Find("LevelTypesController").GetComponent<LevelTypes>().GetSelectedLevelType();
         
@@ -92,7 +122,7 @@ public class DragAndDrop : MonoBehaviour
         {
             if (isStartPoint)
             {
-                demoCursor.transform.position = Vector3.MoveTowards(demoCursor.transform.position, demoTarget.transform.position+new Vector3(0f,0f, -1f), 0.5f * Time.deltaTime);
+                demoCursor.transform.position = Vector3.MoveTowards(demoCursor.transform.position, demoTarget.transform.position+new Vector3(0f,0f, -1f), 0.6f * Time.deltaTime);
                 if(demoCursor.transform.position == demoTarget.transform.position + new Vector3(0f, 0f, -1f))
                 {
                     isStartPoint = false;
@@ -100,7 +130,7 @@ public class DragAndDrop : MonoBehaviour
             }
             else
             {
-                demoCursor.transform.position = Vector3.MoveTowards(demoCursor.transform.position, transform.position + new Vector3(-0.2f, 0.1f, -0.2f), 0.5f * Time.deltaTime);
+                demoCursor.transform.position = Vector3.MoveTowards(demoCursor.transform.position, transform.position + new Vector3(-0.2f, 0.1f, -0.2f), 0.6f * Time.deltaTime);
                 if (demoCursor.transform.position == transform.position + new Vector3(-0.2f, 0.1f, -0.2f))
                 {
                     isStartPoint = true;
@@ -179,7 +209,7 @@ public class DragAndDrop : MonoBehaviour
     {
         isDragging = false;
    
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, 1f);
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, radius);
         foreach (var hitCollider in hitColliders)
         {
             //Debug.Log("hitCollider TAG "+ hitCollider.gameObject.tag);
@@ -232,10 +262,6 @@ public class DragAndDrop : MonoBehaviour
                 draggableObjectsController.AddDroppedObject(gameObject, gameObject.tag);
                 correctDropAudio.Play();
                 isPlacedRight = true;
-
-                Debug.Log("first demoIndex: " + demoIndex);
-                Debug.Log("selectedType: " + selectedType);
-                Debug.Log("draggableObjects.Count: " + draggableObjects.Count);
 
                 if (selectedType == levelTypes.Demo && demoIndex<draggableObjects.Count)
                 {
