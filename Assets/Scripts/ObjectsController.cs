@@ -116,9 +116,9 @@ public class ObjectsController : MonoBehaviour
                
                 if (selectedType == levelTypes.Torus)
                 {
-                    yOffset = collider.transform.position.y+ objectToInstantiate.transform.GetComponent<BoxCollider>().size.y/2+0.1f;
+                    yOffset = collider.transform.position.y + objectToInstantiate.transform.GetComponent<BoxCollider>().size.y/2;
                     xOffset = objectToInstantiate.transform.GetComponent<BoxCollider>().size.x;
-                    zOffset = objectToInstantiate.transform.GetComponent<BoxCollider>().size.z;
+                    zOffset = objectToInstantiate.transform.GetComponent<BoxCollider>().size.z*2;
                     radius = obj.objectPrefabs[0].GetComponent<BoxCollider>().size.x;
                     Debug.Log("minx " + minX + "maxx " + maxX + "minz " + minZ + "maxz " + maxZ);
                 }
@@ -134,23 +134,23 @@ public class ObjectsController : MonoBehaviour
                 else if (selectedType == levelTypes.Book)
                 {
                     yOffset = collider.transform.position.y + objectToInstantiate.transform.GetComponent<BoxCollider>().size.z / 2;
-                    xOffset = objectToInstantiate.transform.GetComponent<BoxCollider>().size.y/2;
+                    xOffset = objectToInstantiate.transform.GetComponent<BoxCollider>().size.y;
                     zOffset = objectToInstantiate.transform.GetComponent<BoxCollider>().size.x;
                     radius = obj.objectPrefabs[0].GetComponent<BoxCollider>().size.y;
                     Debug.Log("minx " + minX + "maxx " + maxX + "minz " + minZ + "maxz " + maxZ);
                 }
                 else if (selectedType == levelTypes.Fruit)
                 {
-                    yOffset = collider.transform.position.y + objectToInstantiate.transform.GetComponent<BoxCollider>().size.y / 2;
+                    yOffset = collider.transform.position.y + objectToInstantiate.transform.GetComponent<BoxCollider>().size.y/2 - 0.01f;
                     xOffset = objectToInstantiate.transform.GetComponent<BoxCollider>().size.x;
-                    zOffset = objectToInstantiate.transform.GetComponent<BoxCollider>().size.z*2;
-                    radius = obj.objectPrefabs[0].GetComponent<BoxCollider>().size.x;
+                    zOffset = objectToInstantiate.transform.GetComponent<BoxCollider>().size.z/2;
+                    radius = obj.objectPrefabs[0].GetComponent<BoxCollider>().size.x/2;
                     Debug.Log("minx " + minX + "maxx " + maxX + "minz " + minZ + "maxz " + maxZ);
                 }
                 else if (selectedType == levelTypes.Train)
                 {
                     yOffset = collider.transform.position.y + objectToInstantiate.transform.GetComponent<BoxCollider>().size.y/2;
-                    xOffset = 0;
+                    xOffset = objectToInstantiate.transform.GetComponent<BoxCollider>().size.x*2;
                     zOffset = obj.referanceObject.transform.position.z;
                     radius = obj.objectPrefabs[0].GetComponent<BoxCollider>().size.x+0.02f;
                     Debug.Log("minx " + minX + "maxx " + maxX + "minz " + minZ + "maxz " + maxZ);
@@ -158,15 +158,15 @@ public class ObjectsController : MonoBehaviour
                 else if (selectedType == levelTypes.Car)
                 {
                     yOffset = collider.transform.position.y;
-                    xOffset = objectToInstantiate.transform.localScale.x*2;
-                    zOffset = objectToInstantiate.transform.localScale.z*2;
-                    radius = obj.objectPrefabs[0].transform.localScale.x * 2;
+                    xOffset = objectToInstantiate.transform.localScale.x * 8;
+                    zOffset = objectToInstantiate.transform.localScale.z * 2;
+                    radius = obj.objectPrefabs[0].transform.localScale.x * 2.5f;
                 }
                 else if (selectedType == levelTypes.Demo)
                 {
                     yOffset = collider.transform.position.y;
                     xOffset = objectToInstantiate.transform.GetComponent<BoxCollider>().size.x;
-                    zOffset = objectToInstantiate.transform.GetComponent<BoxCollider>().size.z-0.2f;
+                    zOffset = objectToInstantiate.transform.GetComponent<BoxCollider>().size.z - 0.2f;
                     radius = objectToInstantiate.transform.localScale.x/2;
                 }
 

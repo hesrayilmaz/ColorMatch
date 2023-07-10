@@ -64,7 +64,7 @@ public class DragAndDrop : MonoBehaviour
         }
         else if (selectedType == levelTypes.Car)
         {
-            radius = 5f;
+            radius = 5.3f;
         }
         else if (selectedType == levelTypes.Demo)
         {
@@ -303,7 +303,7 @@ public class DragAndDrop : MonoBehaviour
         if (draggableObjectsController.IsDroppedListEmpty(gameObject.tag))
         {
             transform.position = new Vector3(hitColliderObj.position.x,
-            hitColliderBox.bounds.min.y + 0.1f, hitColliderObj.position.z);
+            hitColliderBox.bounds.min.y + transform.GetComponent<BoxCollider>().size.y*2, hitColliderObj.position.z);
         }
         else
         {
@@ -334,13 +334,14 @@ public class DragAndDrop : MonoBehaviour
         if (draggableObjectsController.IsDroppedListEmpty(gameObject.tag))
         {
             transform.position = new Vector3(hitColliderBox.bounds.min.x + transform.GetComponent<BoxCollider>().size.z,
-                hitColliderBox.bounds.min.y, hitColliderBox.bounds.max.z);
+                hitColliderBox.bounds.min.y, hitColliderBox.bounds.max.z - transform.GetComponent<BoxCollider>().size.y);
             transform.rotation = Quaternion.Euler(0, 90, 0);
         }
         else
         {
             transform.position = new Vector3(draggableObjectsController.GetLastDroppedObject(gameObject.tag).transform.position.x +
-                transform.GetComponent<BoxCollider>().size.z + 0.01f, hitColliderBox.bounds.min.y, hitColliderBox.bounds.max.z);
+                transform.GetComponent<BoxCollider>().size.z, hitColliderBox.bounds.min.y, 
+                hitColliderBox.bounds.max.z - transform.GetComponent<BoxCollider>().size.y);
             transform.rotation = Quaternion.Euler(0, 90, 0);
         }
     }
@@ -374,14 +375,16 @@ public class DragAndDrop : MonoBehaviour
     {
         if (draggableObjectsController.IsDroppedListEmpty(gameObject.tag))
         {
-            transform.position = new Vector3(hitColliderBox.bounds.min.x + 0.12f, hitColliderBox.bounds.min.y + 0.1f, 
-                hitColliderBox.bounds.max.z - transform.GetComponent<BoxCollider>().size.z / 8);
+            transform.position = new Vector3(hitColliderBox.bounds.min.x + 0.12f, 
+                hitColliderBox.bounds.min.y + transform.GetComponent<BoxCollider>().size.y / 6, 
+                hitColliderBox.bounds.max.z - transform.GetComponent<BoxCollider>().size.z / 4);
             transform.rotation = Quaternion.Euler(0, 90, 0);
         }
         else
         {
             transform.position = new Vector3(draggableObjectsController.GetLastDroppedObject(gameObject.tag).transform.position.x + 0.25f, 
-                hitColliderBox.bounds.min.y + 0.1f, hitColliderBox.bounds.max.z - transform.GetComponent<BoxCollider>().size.z / 8);
+                hitColliderBox.bounds.min.y + transform.GetComponent<BoxCollider>().size.y / 6, 
+                hitColliderBox.bounds.max.z - transform.GetComponent<BoxCollider>().size.z / 4);
             transform.rotation = Quaternion.Euler(0, 90, 0);
         }
     }
@@ -389,14 +392,14 @@ public class DragAndDrop : MonoBehaviour
     {
         if (draggableObjectsController.IsDroppedListEmpty(gameObject.tag))
         {
-            transform.position = new Vector3(hitColliderBox.bounds.min.x + 0.13f, hitColliderBox.bounds.min.y + transform.localScale.y / 2,
-                hitColliderBox.size.z);
+            transform.position = new Vector3(hitColliderBox.bounds.min.x + 0.13f, hitColliderBox.bounds.min.y + transform.GetComponent<BoxCollider>().size.x + 0.01f,
+                hitColliderBox.size.z + transform.GetComponent<BoxCollider>().size.z / 3);
             transform.rotation = Quaternion.Euler(0, 0, 90);
         }
         else
         {
-            transform.position = new Vector3(draggableObjectsController.GetLastDroppedObject(gameObject.tag).transform.position.x + 0.1f,
-                hitColliderBox.bounds.min.y + transform.localScale.y / 2, hitColliderBox.size.z);
+            transform.position = new Vector3(draggableObjectsController.GetLastDroppedObject(gameObject.tag).transform.position.x + transform.GetComponent<BoxCollider>().size.y/2,
+                hitColliderBox.bounds.min.y + transform.GetComponent<BoxCollider>().size.x + 0.01f, hitColliderBox.size.z + transform.GetComponent<BoxCollider>().size.z / 3);
             transform.rotation = Quaternion.Euler(0, 0, 90);
         }
     }
