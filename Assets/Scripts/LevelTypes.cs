@@ -8,7 +8,8 @@ public enum levelTypes
     Torus,
     Pencil,
     Book,
-    Fruit,
+    Field,
+    Tree,
     Train,
     Car
 };

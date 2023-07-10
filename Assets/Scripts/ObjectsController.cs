@@ -110,6 +110,9 @@ public class ObjectsController : MonoBehaviour
                 float minX = collider.bounds.min.x;
                 float maxX = collider.bounds.max.x;
 
+                float minY = collider.bounds.min.y;
+                float maxY = collider.bounds.max.y;
+
                 float minZ = collider.bounds.min.z;
                 float maxZ = collider.bounds.max.z;
                 
@@ -139,12 +142,20 @@ public class ObjectsController : MonoBehaviour
                     radius = obj.objectPrefabs[0].GetComponent<BoxCollider>().size.y;
                     Debug.Log("minx " + minX + "maxx " + maxX + "minz " + minZ + "maxz " + maxZ);
                 }
-                else if (selectedType == levelTypes.Fruit)
+                else if (selectedType == levelTypes.Field)
                 {
                     yOffset = collider.transform.position.y + objectToInstantiate.transform.GetComponent<BoxCollider>().size.y/2 - 0.01f;
                     xOffset = objectToInstantiate.transform.GetComponent<BoxCollider>().size.x;
                     zOffset = objectToInstantiate.transform.GetComponent<BoxCollider>().size.z/2;
                     radius = obj.objectPrefabs[0].GetComponent<BoxCollider>().size.x/2;
+                    Debug.Log("minx " + minX + "maxx " + maxX + "minz " + minZ + "maxz " + maxZ);
+                }
+                else if (selectedType == levelTypes.Tree)
+                {
+                    yOffset = objectToInstantiate.transform.GetComponent<BoxCollider>().size.y;
+                    xOffset = objectToInstantiate.transform.GetComponent<BoxCollider>().size.x;
+                    zOffset = collider.bounds.min.z - objectToInstantiate.transform.GetComponent<BoxCollider>().size.z*2;
+                    radius = obj.objectPrefabs[0].GetComponent<BoxCollider>().size.x / 2;
                     Debug.Log("minx " + minX + "maxx " + maxX + "minz " + minZ + "maxz " + maxZ);
                 }
                 else if (selectedType == levelTypes.Train)
@@ -177,6 +188,10 @@ public class ObjectsController : MonoBehaviour
                     {
                         spawnPoint = new Vector3(obj.referanceObject.transform.GetComponent<BoxCollider>().bounds.min.x+xOffset, yOffset, zOffset);
                         xOffset += objectToInstantiate.transform.GetComponent<BoxCollider>().size.z/2;
+                    }
+                    else if(selectedType == levelTypes.Tree)
+                    {
+                        spawnPoint = new Vector3(Random.Range(minX + xOffset, maxX - xOffset), Random.Range(minY + yOffset, maxY - yOffset), zOffset);
                     }
                     else
                         spawnPoint = new Vector3(Random.Range(minX + xOffset, maxX - xOffset), yOffset, Random.Range(minZ + zOffset, maxZ - zOffset));

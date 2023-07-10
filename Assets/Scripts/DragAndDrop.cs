@@ -6,6 +6,7 @@ using UnityEngine;
 public class DragAndDrop : MonoBehaviour
 {
     private Vector3 startPoint;
+    private float startPointYOffset;
     private Vector3 startPos;
     private Vector3 mousePos;
     private Vector3 mouseOffset;
@@ -39,9 +40,23 @@ public class DragAndDrop : MonoBehaviour
     private GameObject instructionClone;
     private AudioSource correctDropAudio, wrongDropAudio;
 
+    private void Awake()
+    {
+        draggableObjectsController = GameObject.Find("ObjectsController").GetComponent<ObjectsController>();
+        selectedType = GameObject.Find("LevelTypesController").GetComponent<LevelTypes>().GetSelectedLevelType();
+
+        mouseZCoord = Camera.main.ScreenToWorldPoint(transform.position).z;
+        //numOfDropPoints = GameObject.Find("InstructionDropPoints").transform.childCount;
+        correctDropAudio = GameObject.Find("Audio").transform.Find("CorrectDrop").GetComponent<AudioSource>();
+        wrongDropAudio = GameObject.Find("Audio").transform.Find("WrongDrop").GetComponent<AudioSource>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
+        startPoint = transform.position;
+        startPointYOffset = startPoint.y;
+
         if (selectedType == levelTypes.Torus)
         {
             radius = 0.6f;
@@ -54,9 +69,15 @@ public class DragAndDrop : MonoBehaviour
         {
             radius = 5f;
         }
-        else if (selectedType == levelTypes.Fruit)
+        else if (selectedType == levelTypes.Field)
         {
             radius = 2.1f;
+        }
+        else if (selectedType == levelTypes.Tree)
+        {
+            radius = 2.1f;
+            Transform box = GameObject.FindGameObjectWithTag(transform.tag + "Box").transform;
+            startPointYOffset = box.position.y + transform.GetComponent<BoxCollider>().size.y/2;
         }
         else if (selectedType == levelTypes.Train)
         {
@@ -70,16 +91,6 @@ public class DragAndDrop : MonoBehaviour
         {
             radius = 0.6f;
         }
-
-        draggableObjectsController = GameObject.Find("ObjectsController").GetComponent<ObjectsController>();
-        selectedType = GameObject.Find("LevelTypesController").GetComponent<LevelTypes>().GetSelectedLevelType();
-        
-        startPoint = transform.position;
-        mouseZCoord = Camera.main.ScreenToWorldPoint(transform.position).z;
-        //numOfDropPoints = GameObject.Find("InstructionDropPoints").transform.childCount;
-        correctDropAudio = GameObject.Find("Audio").transform.Find("CorrectDrop").GetComponent<AudioSource>();
-        wrongDropAudio = GameObject.Find("Audio").transform.Find("WrongDrop").GetComponent<AudioSource>();
-
     }
 
     private void Update()
@@ -168,9 +179,9 @@ public class DragAndDrop : MonoBehaviour
             //  transform.position = rayPoint;
 
             //rayPoint.y < startPoint.y
-            if (rayPoint.y < startPoint.y)
+            if (rayPoint.y < startPointYOffset)
             {
-                transform.position = new Vector3(rayPoint.x, startPoint.y, rayPoint.z);
+                transform.position = new Vector3(rayPoint.x, startPointYOffset, rayPoint.z);
             }
             else
             {
@@ -240,9 +251,9 @@ public class DragAndDrop : MonoBehaviour
                 {
                     DropBook();
                 }
-                else if (selectedType == levelTypes.Fruit) 
+                else if (selectedType == levelTypes.Field || selectedType == levelTypes.Tree) 
                 {
-                    DropFruit();
+                    DropField();
                 }
                 else if (selectedType == levelTypes.Train)
                 {
@@ -345,7 +356,7 @@ public class DragAndDrop : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 90, 0);
         }
     }
-    private void DropFruit()
+    private void DropField()
     {
         if (draggableObjectsController.IsDroppedListEmpty(gameObject.tag))
         {
