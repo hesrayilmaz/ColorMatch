@@ -49,10 +49,6 @@ public class ObjectsController : MonoBehaviour
     private float xOffset, yOffset, zOffset;
     private float radius;
     private levelTypes selectedType;
-    private GameObject demoCursor;
-    private GameObject demoTarget;
-    private int demoIndex = 0;
-    private bool isDemoActive = false;
     
 
     // Start is called before the first frame update

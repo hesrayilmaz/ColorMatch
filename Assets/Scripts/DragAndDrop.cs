@@ -21,6 +21,7 @@ public class DragAndDrop : MonoBehaviour
     private bool isStartPoint = true;
 
     private static GameObject demoCursor;
+    private static GameObject demoParticle;
     private static GameObject demoTarget;
     private static int demoIndex = 0;
     private bool isDemoActive = false;
@@ -113,7 +114,9 @@ public class DragAndDrop : MonoBehaviour
             }
             Debug.Log("draggableObjects.count: "+ draggableObjects.Count);
             demoCursor = gameObject.transform.Find("Cursor").gameObject;
+            demoParticle = gameObject.transform.Find("Particle").gameObject;
             demoCursor.SetActive(true);
+            demoParticle.SetActive(true);
             targets = draggableObjectsController.GetBoxes();
             
             foreach(DragAndDrop obj in draggableObjects)
@@ -173,7 +176,7 @@ public class DragAndDrop : MonoBehaviour
 
             if (demoCursor)
                 demoCursor.SetActive(false);
-
+                
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             Vector3 rayPoint = ray.GetPoint(distance);
             //  transform.position = rayPoint;
@@ -230,6 +233,7 @@ public class DragAndDrop : MonoBehaviour
                 {
                     isDemoActive = false;
                     demoCursor.SetActive(false);
+                    demoParticle.SetActive(false);
                 }
                 
 
@@ -278,7 +282,9 @@ public class DragAndDrop : MonoBehaviour
                 {
                     Debug.Log("second demoIndex: " + demoIndex);
                     demoCursor = draggableObjects[demoIndex].gameObject.transform.Find("Cursor").gameObject;
+                    demoParticle = draggableObjects[demoIndex].gameObject.transform.Find("Particle").gameObject;
                     demoCursor.SetActive(true);
+                    demoParticle.SetActive(true);
                     draggableObjects[demoIndex].gameObject.GetComponent<BoxCollider>().enabled = true;
 
                     foreach (GameObject box in targets)
