@@ -199,22 +199,7 @@ public class DragAndDrop : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            /*if (gameObject.tag == "Light")
-                instructionClone = gameObject;
-            else
-                instructionClone = Instantiate(gameObject, transform.parent);
-            */
-
-            //mousePos = Input.mousePosition;
-            //mousePos = Camera.main.ScreenToWorldPoint(mousePos);
-            //mouseOffset = transform.position - GetMouseWorldPos();
-
-
             distance = Vector3.Distance(transform.position, Camera.main.transform.position);
-
-
-            //startPos = mousePos - transform.position;
-
             isDragging = true;
         }
     }
@@ -236,11 +221,8 @@ public class DragAndDrop : MonoBehaviour
                     demoParticle.SetActive(false);
                 }
                 
-
                 hitColliderObj = hitCollider.gameObject.transform;
                 hitColliderBox = hitColliderObj.GetComponent<BoxCollider>();
-                //hitCollider.gameObject.transform.parent = null;
-                //instructionClone.transform.localScale = new Vector2(0.35f, 0.35f);
 
 
                 if (selectedType == levelTypes.Torus)
@@ -297,14 +279,7 @@ public class DragAndDrop : MonoBehaviour
                     draggableObjects[demoIndex].isDemoActive = true;
                     demoIndex++;
                 }
-                
-
-                //numOfDropPoints--;
-
-                //if (numOfDropPoints == 0)
-                //  carController.StartMove();
-
-                //isPlacedRight = false;
+ 
                 return;
             }
         }
@@ -366,13 +341,18 @@ public class DragAndDrop : MonoBehaviour
     {
         if (draggableObjectsController.IsDroppedListEmpty(gameObject.tag))
         {
-            transform.position = new Vector3(hitColliderBox.bounds.min.x + transform.GetComponent<BoxCollider>().size.x,
-                hitColliderBox.bounds.min.y + 0.1f, hitColliderBox.bounds.max.z - transform.GetComponent<BoxCollider>().size.z);
+            transform.position = new Vector3(hitColliderBox.bounds.min.x + 0.15f,
+                //hitColliderBox.bounds.min.y + transform.GetComponent<BoxCollider>().size.y + 0.05f, 
+                hitColliderBox.bounds.min.y + 0.45f,
+                hitColliderBox.bounds.max.z - 0.5f);
         }
         else
         {
             transform.position = new Vector3(draggableObjectsController.GetLastDroppedObject(gameObject.tag).transform.position.x +
-                transform.GetComponent<BoxCollider>().size.x, hitColliderBox.bounds.min.y + 0.1f, hitColliderBox.bounds.max.z - transform.GetComponent<BoxCollider>().size.z);
+                0.15f,
+                //hitColliderBox.bounds.min.y + transform.GetComponent<BoxCollider>().size.y + 0.05f, 
+                hitColliderBox.bounds.min.y + 0.45f,
+                hitColliderBox.bounds.max.z - 0.5f);
         }
     }
     private void DropTrain()

@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject levelEndPanel;
     [SerializeField] private GameObject levelEndParticle;
-    [SerializeField] private AudioSource levelEndAudio;
+    [SerializeField] private AudioSource levelEndAudio, welldoneAudio, levelOpeningAudio;
     [SerializeField] private Animator transitionAnim;
 
     // Start is called before the first frame update
@@ -15,6 +15,9 @@ public class GameManager : MonoBehaviour
     {
         if(gameObject.tag!="MainMenu")
             transitionAnim.SetTrigger("StartLevel");
+
+        if (levelOpeningAudio != null)
+            StartCoroutine(PlayLevelOpening());
     }
 
     public void RestartLevel()
@@ -47,6 +50,12 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
+
+    IEnumerator PlayLevelOpening()
+    {
+        yield return new WaitForSeconds(0.5f);
+        levelOpeningAudio.Play();
+    }
     IEnumerator NextLevelCoroutine()
     {
         transitionAnim.SetTrigger("EndLevel");
@@ -65,6 +74,7 @@ public class GameManager : MonoBehaviour
     IEnumerator LevelEndCoroutine()
     {
         yield return new WaitForSeconds(0.2f);
+        welldoneAudio.Play();
         levelEndAudio.Play();
         levelEndParticle.SetActive(true);
         yield return new WaitForSeconds(2.5f);

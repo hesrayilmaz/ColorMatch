@@ -148,8 +148,8 @@ public class ObjectsController : MonoBehaviour
                 }
                 else if (selectedType == levelTypes.Tree)
                 {
-                    yOffset = objectToInstantiate.transform.GetComponent<BoxCollider>().size.y;
-                    xOffset = objectToInstantiate.transform.GetComponent<BoxCollider>().size.x;
+                    yOffset = objectToInstantiate.transform.GetComponent<BoxCollider>().size.y * (3 / 2);
+                    xOffset = objectToInstantiate.transform.GetComponent<BoxCollider>().size.x * (3 / 2);
                     zOffset = collider.bounds.min.z - objectToInstantiate.transform.GetComponent<BoxCollider>().size.z*2;
                     radius = obj.objectPrefabs[0].GetComponent<BoxCollider>().size.x / 2;
                     Debug.Log("minx " + minX + "maxx " + maxX + "minz " + minZ + "maxz " + maxZ);
@@ -187,7 +187,7 @@ public class ObjectsController : MonoBehaviour
                     }
                     else if(selectedType == levelTypes.Tree)
                     {
-                        spawnPoint = new Vector3(Random.Range(minX + xOffset, maxX - xOffset), Random.Range(minY + yOffset, maxY - yOffset), zOffset);
+                        spawnPoint = new Vector3(Random.Range(minX + xOffset, maxX - (xOffset+0.15f)), Random.Range(minY + (yOffset-0.1f), maxY - (yOffset+0.15f)), zOffset);
                     }
                     else
                         spawnPoint = new Vector3(Random.Range(minX + xOffset, maxX - xOffset), yOffset, Random.Range(minZ + zOffset, maxZ - zOffset));
