@@ -16,6 +16,11 @@ public class GameManager : MonoBehaviour
     {
         if(gameObject.tag!="MainMenu")
             transitionAnim.SetTrigger("StartLevel");
+        else
+        {
+            if(PlayerPrefs.GetString("MainMenuTransition","Close") == "Open")
+                transitionAnim.SetTrigger("StartLevel");
+        }
 
         if (levelOpeningAudio != null)
             StartCoroutine(PlayLevelOpening());
@@ -97,6 +102,15 @@ public class GameManager : MonoBehaviour
     {
         transitionAnim.SetTrigger("EndLevel");
         yield return new WaitForSeconds(1f);
+        
+        if(levelName=="MainMenu")
+            PlayerPrefs.SetString("MainMenuTransition", "Open");
+
         SceneManager.LoadScene(levelName);
+    }
+
+    private void OnApplicationQuit()
+    {
+        PlayerPrefs.SetString("MainMenuTransition", "Close");
     }
 }
