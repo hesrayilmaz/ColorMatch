@@ -1,0 +1,5 @@
+This is an animation source for Spriter, use BrashMonkey Spriter to open the .scml file
+
+Search: BrashMonkey Spriter
+or
+Download Here: https://brashmonkey.com/download-spriter-pro/
