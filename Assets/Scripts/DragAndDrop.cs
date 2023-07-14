@@ -7,15 +7,10 @@ public class DragAndDrop : MonoBehaviour
 {
     private Vector3 startPoint;
     private float startPointYOffset;
-    private Vector3 startPos;
     private Vector3 mousePos;
-    private Vector3 mouseOffset;
     private float mouseZCoord;
     private bool isPlacedRight = false;
     private bool isDragging;
-    private float xOffset, yOffset, zOffset;
-
-    private bool isGround = false;
     private static bool isStarted = false;
 
     private bool isStartPoint = true;
@@ -35,21 +30,19 @@ public class DragAndDrop : MonoBehaviour
 
     private float distance;
     private float radius;
-    //public static float numOfDropPoints;
 
     private ObjectsController draggableObjectsController;
-    private GameObject instructionClone;
     private AudioSource correctDropAudio, wrongDropAudio;
+    private Animator mascotAnimator;
 
     private void Awake()
     {
         draggableObjectsController = GameObject.Find("ObjectsController").GetComponent<ObjectsController>();
         selectedType = GameObject.Find("LevelTypesController").GetComponent<LevelTypes>().GetSelectedLevelType();
-
         mouseZCoord = Camera.main.ScreenToWorldPoint(transform.position).z;
-        //numOfDropPoints = GameObject.Find("InstructionDropPoints").transform.childCount;
         correctDropAudio = GameObject.Find("Audio").transform.Find("CorrectDrop").GetComponent<AudioSource>();
         wrongDropAudio = GameObject.Find("Audio").transform.Find("WrongDrop").GetComponent<AudioSource>();
+        mascotAnimator = GameObject.FindGameObjectWithTag("Mascot").transform.GetChild(0).GetComponent<Animator>();
     }
 
     // Start is called before the first frame update
@@ -258,6 +251,7 @@ public class DragAndDrop : MonoBehaviour
                 transform.GetComponent<BoxCollider>().enabled = false;
                 draggableObjectsController.AddDroppedObject(gameObject, gameObject.tag);
                 correctDropAudio.Play();
+                mascotAnimator.SetTrigger("Jump");
                 isPlacedRight = true;
 
                 if (selectedType == levelTypes.Demo && demoIndex<draggableObjects.Count)
@@ -284,6 +278,7 @@ public class DragAndDrop : MonoBehaviour
             }
         }
         wrongDropAudio.Play();
+        mascotAnimator.SetTrigger("Hurt");
         transform.position = startPoint;
 
         if (demoCursor)

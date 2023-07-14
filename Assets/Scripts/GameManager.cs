@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator PlayLevelOpening()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.1f);
         levelOpeningAudio.Play();
     }
     IEnumerator NextLevelCoroutine()
