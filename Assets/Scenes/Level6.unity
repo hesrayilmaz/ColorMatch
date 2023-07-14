@@ -468,6 +468,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 17cd5103435c2af44916bbc7c8b9013f, type: 3}
+--- !u!95 &55388125 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7733708920005434063, guid: 17cd5103435c2af44916bbc7c8b9013f, type: 3}
+  m_PrefabInstance: {fileID: 55388124}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &106210402
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -681,6 +686,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Border
       objectReference: {fileID: 0}
+    - target: {fileID: 9155134145951947044, guid: e5a248eef53d92e4aaee3649eb958e52, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9155134145951947066, guid: e5a248eef53d92e4aaee3649eb958e52, type: 3}
       propertyPath: m_RootOrder
       value: 17
@@ -727,6 +736,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e5a248eef53d92e4aaee3649eb958e52, type: 3}
+--- !u!1 &218915592 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9155134145951947044, guid: e5a248eef53d92e4aaee3649eb958e52, type: 3}
+  m_PrefabInstance: {fileID: 218915591}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &244503873
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2156,10 +2170,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelEndPanel: {fileID: 897526627}
   levelEndParticle: {fileID: 27494227}
+  levelBeginningBorder: {fileID: 218915592}
   levelEndAudio: {fileID: 1603460642}
   welldoneAudio: {fileID: 1133989120}
   levelOpeningAudio: {fileID: 1103763019}
   transitionAnim: {fileID: 2058599234}
+  mascotAnim: {fileID: 55388125}
 --- !u!4 &843597032
 Transform:
   m_ObjectHideFlags: 0

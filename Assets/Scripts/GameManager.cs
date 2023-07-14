@@ -7,8 +7,9 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject levelEndPanel;
     [SerializeField] private GameObject levelEndParticle;
+    [SerializeField] private GameObject levelBeginningBorder;
     [SerializeField] private AudioSource levelEndAudio, welldoneAudio, levelOpeningAudio;
-    [SerializeField] private Animator transitionAnim;
+    [SerializeField] private Animator transitionAnim, mascotAnim;
 
     // Start is called before the first frame update
     void Start()
@@ -55,6 +56,9 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
         levelOpeningAudio.Play();
+        float audioLength = levelEndAudio.clip.length;
+        yield return new WaitUntil(() => levelOpeningAudio.isPlaying == false);
+        levelBeginningBorder.SetActive(false);
     }
     IEnumerator NextLevelCoroutine()
     {
@@ -75,6 +79,7 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(0.2f);
         welldoneAudio.Play();
+        mascotAnim.SetTrigger("Roll");
         levelEndAudio.Play();
         levelEndParticle.SetActive(true);
         yield return new WaitForSeconds(2.5f);

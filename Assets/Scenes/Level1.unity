@@ -1130,6 +1130,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e3a90d6a0e17034faaf240d5d30ebdf, type: 3}
+--- !u!95 &353446176 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7481638020399550810, guid: 4c509db0a839e844ab3c1cb26347dd9a, type: 3}
+  m_PrefabInstance: {fileID: 2439846331248483680}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &395999548
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3720,10 +3725,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelEndPanel: {fileID: 1058452260}
   levelEndParticle: {fileID: 1496986457}
+  levelBeginningBorder: {fileID: 9155134145521538572}
   levelEndAudio: {fileID: 851958426}
   welldoneAudio: {fileID: 952634047}
   levelOpeningAudio: {fileID: 1681703851}
   transitionAnim: {fileID: 1070701082}
+  mascotAnim: {fileID: 353446176}
 --- !u!4 &1525932910
 Transform:
   m_ObjectHideFlags: 0
@@ -4938,6 +4945,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Border
       objectReference: {fileID: 0}
+    - target: {fileID: 9155134145951947044, guid: e5a248eef53d92e4aaee3649eb958e52, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9155134145951947066, guid: e5a248eef53d92e4aaee3649eb958e52, type: 3}
       propertyPath: m_RootOrder
       value: 13
@@ -4984,3 +4995,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e5a248eef53d92e4aaee3649eb958e52, type: 3}
+--- !u!1 &9155134145521538572 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9155134145951947044, guid: e5a248eef53d92e4aaee3649eb958e52, type: 3}
+  m_PrefabInstance: {fileID: 9155134145521538571}
+  m_PrefabAsset: {fileID: 0}
