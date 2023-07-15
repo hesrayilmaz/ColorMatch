@@ -159,22 +159,12 @@ public class DragAndDrop : MonoBehaviour
     {
         if (isDragging && !isPlacedRight)
         {
-            /*mousePos = Input.mousePosition;
-            mousePos.z = Camera.main.nearClipPlane;
-            mousePos = Camera.main.ScreenToWorldPoint(mousePos);
-
-            transform.position = new Vector3(mousePos.x - startPos.x, mousePos.y - startPos.y, mousePos.z - startPos.z);
-        */
-            //transform.position = GetMouseWorldPos() + mouseOffset;
-
             if (demoCursor)
                 demoCursor.SetActive(false);
                 
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             Vector3 rayPoint = ray.GetPoint(distance);
-            //  transform.position = rayPoint;
 
-            //rayPoint.y < startPoint.y
             if (rayPoint.y < startPointYOffset)
             {
                 transform.position = new Vector3(rayPoint.x, startPointYOffset, rayPoint.z);
@@ -336,7 +326,7 @@ public class DragAndDrop : MonoBehaviour
     {
         if (draggableObjectsController.IsDroppedListEmpty(gameObject.tag))
         {
-            transform.position = new Vector3(hitColliderBox.bounds.min.x + 0.15f,
+            transform.position = new Vector3(hitColliderBox.bounds.min.x + 0.16f,
                 //hitColliderBox.bounds.min.y + transform.GetComponent<BoxCollider>().size.y + 0.05f, 
                 hitColliderBox.bounds.min.y + 0.45f,
                 hitColliderBox.bounds.max.z - 0.5f);
@@ -344,7 +334,7 @@ public class DragAndDrop : MonoBehaviour
         else
         {
             transform.position = new Vector3(draggableObjectsController.GetLastDroppedObject(gameObject.tag).transform.position.x +
-                0.15f,
+                0.16f,
                 //hitColliderBox.bounds.min.y + transform.GetComponent<BoxCollider>().size.y + 0.05f, 
                 hitColliderBox.bounds.min.y + 0.45f,
                 hitColliderBox.bounds.max.z - 0.5f);
