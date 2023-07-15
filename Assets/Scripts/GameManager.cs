@@ -9,7 +9,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject levelEndParticle;
     [SerializeField] private GameObject levelBeginningBorder;
     [SerializeField] private GameObject menuButton;
-    [SerializeField] private AudioSource levelEndAudio, welldoneAudio, levelOpeningAudio;
+    [SerializeField] private GameObject musicOnButton, musicOffButton;
+    [SerializeField] private AudioSource levelEndAudio, welldoneAudio, levelOpeningAudio, backgroundMusic;
     [SerializeField] private Animator transitionAnim, mascotAnim;
 
     // Start is called before the first frame update
@@ -21,6 +22,18 @@ public class GameManager : MonoBehaviour
         {
             if(PlayerPrefs.GetString("MainMenuTransition","Close") == "Open")
                 transitionAnim.SetTrigger("StartLevel");
+
+            backgroundMusic = GameObject.Find("BackgroundMusic").GetComponent<AudioSource>();
+
+            if(PlayerPrefs.GetString("BackgroundMusic", "On") == "On")
+            {
+                musicOffButton.SetActive(false);
+                musicOnButton.SetActive(true);
+            }
+            else if(PlayerPrefs.GetString("BackgroundMusic", "On") == "Off")
+            {
+                TurnOffBackgroundMusic();
+            }
         }
 
         if (levelOpeningAudio != null)
@@ -47,6 +60,22 @@ public class GameManager : MonoBehaviour
     {
         StartCoroutine(LevelEndCoroutine());
     }
+
+    public void TurnOnBackgroundMusic()
+    {
+        backgroundMusic.Play();
+        musicOffButton.SetActive(false);
+        musicOnButton.SetActive(true);
+        PlayerPrefs.SetString("BackgroundMusic", "On");
+    }
+    public void TurnOffBackgroundMusic()
+    {
+        backgroundMusic.Stop();
+        musicOnButton.SetActive(false);
+        musicOffButton.SetActive(true);
+        PlayerPrefs.SetString("BackgroundMusic", "Off");
+    }
+
     public void QuitGame()
     {
         Application.Quit();
