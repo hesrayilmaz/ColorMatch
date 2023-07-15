@@ -77,7 +77,8 @@ public class GameManager : MonoBehaviour
         }
         catch
         {
-            Debug.Log("Last Level");
+            Debug.Log("last levellll");
+            SceneManager.LoadScene("LevelsMenu");
         }
     }
     IEnumerator LevelEndCoroutine()

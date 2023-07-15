@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 3540409364659196800}
   - component: {fileID: 3540409364656296864}
   - component: {fileID: 3540409364657426784}
-  - component: {fileID: 5527218464732209475}
   - component: {fileID: -6957141164105001445}
+  - component: {fileID: 414990162575739325}
   m_Layer: 6
   m_Name: pumpkin
   m_TagString: Orange
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 3540409364659425184}
   m_LocalRotation: {x: 1.7112914e-15, y: 1, z: -0.000000021855694, w: 0.0000000754979}
   m_LocalPosition: {x: 0.00000002294874, y: 1.1999999, z: -1.0031213e-15}
-  m_LocalScale: {x: 0.45, y: 0.45, z: 0.45}
+  m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -85,19 +85,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &5527218464732209475
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3540409364659425184}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.4277524, y: 0.4177824, z: 0.44976535}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &-6957141164105001445
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,3 +97,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21346a2d1d14a7245bf017d1a3d765e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &414990162575739325
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3540409364659425184}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.21387622, y: 0.20889121, z: 0.22488269}
+  m_Center: {x: 0, y: 0, z: 0}

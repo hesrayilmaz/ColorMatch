@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6913178508988414480}
   - component: {fileID: 6913178508987414736}
   - component: {fileID: 6446165269806147594}
-  - component: {fileID: 1865893265534713957}
+  - component: {fileID: -8723802452585523687}
   m_Layer: 6
   m_Name: Broccoli
   m_TagString: Green
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 6913178508989408784}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21346a2d1d14a7245bf017d1a3d765e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!65 &1865893265534713957
+--- !u!65 &-8723802452585523687
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -108,5 +108,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.12791899, y: 0.12173017, z: 0.1277729}
-  m_Center: {x: 0.0039258823, y: 0.06163534, z: -0.000325609}
+  m_Size: {x: 0.0127919, y: 0.0121730175, z: 0.012777289}
+  m_Center: {x: 0.0003925881, y: 0.0061635347, z: -0.000032561133}

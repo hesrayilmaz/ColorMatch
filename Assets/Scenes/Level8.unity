@@ -181,10 +181,11 @@ MonoBehaviour:
     - {fileID: 5516568003133920299, guid: 23755260f8bcab142b6d168295458673, type: 3}
     - {fileID: 4396332369114877373, guid: dd91dc69359e5fd4588244841d24be27, type: 3}
     - {fileID: 5185242490847375336, guid: 6897c49b566bee246837ae62c135b6f2, type: 3}
-    - {fileID: 1769485320995657192, guid: beaf067b502de0343a96fe366999d6bb, type: 3}
-    - {fileID: 8681985533712130154, guid: 58edb1e40e20d7e41808f5b3dde917cf, type: 3}
     - {fileID: 3540409364659425184, guid: 3c8de1499a704aa42905e0962c63c2f0, type: 3}
-    - {fileID: 6913178508989408784, guid: 3ff0e87019aa18c4d8cd6136b3383721, type: 3}
+    - {fileID: 6665653379129617836, guid: 6c636894701c5994c88adc7c675e6187, type: 3}
+    - {fileID: 5866751932110336476, guid: 9c445fcc4451b854d8def28b6c0101a7, type: 3}
+    - {fileID: 8365996718951424845, guid: 6e487b823c411e74291eac3ba0537dae, type: 3}
+    - {fileID: 8587498608642311377, guid: dc44f9b2ec8093c4895868413622268d, type: 3}
     numberOfColors: 5
     numberOfEachColor: 3
   selectedColors: []
@@ -2509,7 +2510,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8209775890510335994, guid: c4fa87cd4eff4ae4ba4c8d1ad48df5f7, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.85
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 8209775890510335994, guid: c4fa87cd4eff4ae4ba4c8d1ad48df5f7, type: 3}
       propertyPath: m_LocalScale.y

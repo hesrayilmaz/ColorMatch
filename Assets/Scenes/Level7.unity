@@ -182,7 +182,7 @@ MonoBehaviour:
     - {fileID: 5836749568208799990, guid: e2f7691b4c8b14f44b1d9e4db6b78aff, type: 3}
     - {fileID: 3196950207616365836, guid: f36d2058f73b0e84295fca2838f0761c, type: 3}
     - {fileID: 7059861271809135793, guid: 117626e07b35a814d9bfeabd3a036190, type: 3}
-    - {fileID: 1058709229073071668, guid: 103adb91f07774a478c71dc774896a43, type: 3}
+    - {fileID: 8181241268224078553, guid: afc6ecce1b0aba34c8ab20b85b50a3d1, type: 3}
     numberOfColors: 4
     numberOfEachColor: 2
   selectedColors: []
