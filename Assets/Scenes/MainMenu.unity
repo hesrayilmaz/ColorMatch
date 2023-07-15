@@ -756,10 +756,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelEndPanel: {fileID: 0}
   levelEndParticle: {fileID: 0}
+  levelBeginningBorder: {fileID: 0}
   levelEndAudio: {fileID: 0}
   welldoneAudio: {fileID: 0}
   levelOpeningAudio: {fileID: 0}
   transitionAnim: {fileID: 943919750}
+  mascotAnim: {fileID: 0}
 --- !u!4 &555718400
 Transform:
   m_ObjectHideFlags: 0
