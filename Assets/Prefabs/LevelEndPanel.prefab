@@ -962,7 +962,7 @@ GameObject:
   - component: {fileID: 5480093669874031068}
   - component: {fileID: 5480093669874031069}
   m_Layer: 5
-  m_Name: MainMenuButton
+  m_Name: LevelsMenuButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

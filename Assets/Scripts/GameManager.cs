@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject levelEndPanel;
     [SerializeField] private GameObject levelEndParticle;
     [SerializeField] private GameObject levelBeginningBorder;
+    [SerializeField] private GameObject menuButton;
     [SerializeField] private AudioSource levelEndAudio, welldoneAudio, levelOpeningAudio;
     [SerializeField] private Animator transitionAnim, mascotAnim;
 
@@ -30,11 +31,6 @@ public class GameManager : MonoBehaviour
     {
         levelEndPanel.SetActive(false);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-
-    public void LoadLevelsMenu()
-    {
-        StartCoroutine(LevelsMenuCoroutine());
     }
    
     public void LoadNextLevel()
@@ -84,19 +80,13 @@ public class GameManager : MonoBehaviour
     IEnumerator LevelEndCoroutine()
     {
         yield return new WaitForSeconds(0.2f);
+        menuButton.SetActive(false);
         welldoneAudio.Play();
         mascotAnim.SetTrigger("Roll");
         levelEndAudio.Play();
         levelEndParticle.SetActive(true);
         yield return new WaitForSeconds(2.5f);
         levelEndPanel.SetActive(true);
-    }
-
-    IEnumerator LevelsMenuCoroutine()
-    {
-        transitionAnim.SetTrigger("EndLevel");
-        yield return new WaitForSeconds(1f);
-        SceneManager.LoadScene("LevelsMenu");
     }
 
     IEnumerator SelectedLevelCoroutine(string levelName)
