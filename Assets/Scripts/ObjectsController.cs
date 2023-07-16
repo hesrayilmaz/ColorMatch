@@ -9,6 +9,7 @@ public class ObjectsController : MonoBehaviour
     {
         public string objectColor;
         public List<GameObject> droppedObjectsList;
+        public bool isSoundPlayed = false;
     }
 
     [System.Serializable]
@@ -23,6 +24,8 @@ public class ObjectsController : MonoBehaviour
     {
         public GameObject referanceObject;
         public List<GameObject> objectPrefabs;
+        public Transform soundsParent;
+        public List<AudioSource> objectSounds;
         public int numberOfColors;
         public int numberOfEachColor;
     }
@@ -40,6 +43,7 @@ public class ObjectsController : MonoBehaviour
     private int numberOfDroppedObjects = 0;
 
     [SerializeField] private List<string> selectedColors;
+    [SerializeField] private List<AudioSource> soundsToBePlayed;
     private List<GameObject> objectsInScene;
     private GameObject draggableObject;
     private GameObject objectToInstantiate;
@@ -65,6 +69,11 @@ public class ObjectsController : MonoBehaviour
         {
             totalNumberOfColors += obj.numberOfColors;
             totalNumberOfObjects += (obj.numberOfColors * obj.numberOfEachColor);
+
+            for(int i = 0; i < obj.soundsParent.childCount; i++)
+            {
+                obj.objectSounds.Add(obj.soundsParent.GetChild(i).GetComponent<AudioSource>());
+            }
         }
 
         droppedObjectsArray = new DroppedObject[totalNumberOfColors];
@@ -97,6 +106,7 @@ public class ObjectsController : MonoBehaviour
                         {
                             Debug.Log("same color");
                             obj.objectPrefabs.RemoveAt(randomIndex);
+                            obj.objectSounds.RemoveAt(randomIndex);
                             randomIndex = Random.Range(0, obj.objectPrefabs.Count);
                             sameColorFound = true; // Set flag to continue checking
                             break;
@@ -204,7 +214,8 @@ public class ObjectsController : MonoBehaviour
                 }
 
                 obj.objectPrefabs.RemoveAt(randomIndex);
-
+                soundsToBePlayed.Add(obj.objectSounds[randomIndex]);
+                obj.objectSounds.RemoveAt(randomIndex);
             }
         }
 
@@ -243,8 +254,22 @@ public class ObjectsController : MonoBehaviour
             if (obj.objectColor == objectTag)
             {
                 obj.droppedObjectsList.Add(droppedObject);
-                numberOfDroppedObjects++;
+                
+                if (!obj.isSoundPlayed)
+                {
+                    foreach(AudioSource sound in soundsToBePlayed)
+                    {
+                        if (sound.tag == objectTag)
+                        {
+                            sound.Play();
+                            soundsToBePlayed.Remove(sound);
+                            obj.isSoundPlayed = true;
+                            break;
+                        }
+                    }
+                }
 
+                numberOfDroppedObjects++;
                 if (numberOfDroppedObjects == totalNumberOfObjects)
                 {
                     gameManager.ShowLevelEndPanel();
