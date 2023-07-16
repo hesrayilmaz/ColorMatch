@@ -10,13 +10,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject levelBeginningBorder;
     [SerializeField] private GameObject menuButton;
     [SerializeField] private GameObject musicOnButton, musicOffButton;
-    [SerializeField] private AudioSource levelEndAudio, welldoneAudio, levelOpeningAudio, backgroundMusic;
+    [SerializeField] private AudioSource levelEndAudio, welldoneAudio, levelOpeningAudio, 
+                                         backgroundMusic, clickAudio;
     [SerializeField] private Animator transitionAnim, mascotAnim;
 
     // Start is called before the first frame update
     void Start()
     {
-        if(gameObject.tag!="MainMenu")
+        if (gameObject.tag!="MainMenu")
             transitionAnim.SetTrigger("StartLevel");
         else
         {
@@ -24,8 +25,7 @@ public class GameManager : MonoBehaviour
                 transitionAnim.SetTrigger("StartLevel");
 
             backgroundMusic = GameObject.Find("BackgroundMusic").GetComponent<AudioSource>();
-
-            if(PlayerPrefs.GetString("BackgroundMusic", "On") == "On")
+            if (PlayerPrefs.GetString("BackgroundMusic", "On") == "On")
             {
                 musicOffButton.SetActive(false);
                 musicOnButton.SetActive(true);
@@ -42,17 +42,19 @@ public class GameManager : MonoBehaviour
 
     public void RestartLevel()
     {
-        levelEndPanel.SetActive(false);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        ClickButton();
+        StartCoroutine(RestartLevelCoroutine());
     }
    
     public void LoadNextLevel()
     {
+        ClickButton();
         StartCoroutine(NextLevelCoroutine());
     }
 
     public void LoadSelectedLevel(string levelName)
     {
+        ClickButton();
         StartCoroutine(SelectedLevelCoroutine(levelName));
     }
 
@@ -63,6 +65,7 @@ public class GameManager : MonoBehaviour
 
     public void TurnOnBackgroundMusic()
     {
+        ClickButton();
         backgroundMusic.Play();
         musicOffButton.SetActive(false);
         musicOnButton.SetActive(true);
@@ -70,14 +73,21 @@ public class GameManager : MonoBehaviour
     }
     public void TurnOffBackgroundMusic()
     {
+        ClickButton();
         backgroundMusic.Stop();
         musicOnButton.SetActive(false);
         musicOffButton.SetActive(true);
         PlayerPrefs.SetString("BackgroundMusic", "Off");
     }
 
+    private void ClickButton()
+    {
+        clickAudio.Play();
+    }
+
     public void QuitGame()
     {
+        ClickButton();
         Application.Quit();
     }
 
@@ -89,6 +99,15 @@ public class GameManager : MonoBehaviour
         float audioLength = levelEndAudio.clip.length;
         yield return new WaitUntil(() => levelOpeningAudio.isPlaying == false);
         levelBeginningBorder.SetActive(false);
+    }
+
+    IEnumerator RestartLevelCoroutine()
+    {
+        transitionAnim.SetTrigger("EndLevel");
+        yield return new WaitForSeconds(1f);
+        levelEndPanel.SetActive(false);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
     }
     IEnumerator NextLevelCoroutine()
     {
