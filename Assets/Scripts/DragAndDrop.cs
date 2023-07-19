@@ -314,7 +314,7 @@ public class DragAndDrop : MonoBehaviour
     {
         if (draggableObjectsController.IsDroppedListEmpty(gameObject.tag))
         {
-            transform.position = new Vector3(hitColliderBox.bounds.min.x + 0.2f,
+            transform.position = new Vector3(hitColliderBox.bounds.min.x + 0.25f,
                 //hitColliderBox.bounds.min.y + objectBox.size.y + 0.05f, 
                 hitColliderBox.bounds.min.y + 0.45f,
                 hitColliderBox.bounds.max.z - 0.5f);

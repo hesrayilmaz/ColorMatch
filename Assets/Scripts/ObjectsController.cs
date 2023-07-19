@@ -160,11 +160,11 @@ public class ObjectsController : MonoBehaviour
                 }
                 else if (selectedType == levelTypes.Tree)
                 {
-                    yOffset = currentObjCollider.size.y * (3 / 2);
-                    xOffset = currentObjCollider.size.x * (3 / 2);
-                    zOffset = refCollider.bounds.min.z - currentObjCollider.size.z * 2;
+                    yOffset = currentObjCollider.size.y;
+                    xOffset = currentObjCollider.size.x;
+                    zOffset = refCollider.bounds.min.z - currentObjCollider.size.z * 3;
                     radius = currentObjCollider.size.x / 2;
-                }
+                } 
                 else if (selectedType == levelTypes.Train)
                 {
                     yOffset = refCollider.transform.position.y + currentObjCollider.size.y / 2;
@@ -197,7 +197,7 @@ public class ObjectsController : MonoBehaviour
                     }
                     else if(selectedType == levelTypes.Tree)
                     {
-                        spawnPoint = new Vector3(Random.Range(minX + xOffset, maxX - (xOffset+0.15f)), Random.Range(minY + (yOffset-0.1f), maxY - (yOffset+0.15f)), zOffset);
+                        spawnPoint = new Vector3(Random.Range(minX + xOffset, maxX - xOffset), Random.Range(minY + yOffset, maxY - yOffset), zOffset);
                     }
                     else
                         spawnPoint = new Vector3(Random.Range(minX + xOffset, maxX - xOffset), yOffset, Random.Range(minZ + zOffset, maxZ - zOffset));

@@ -94,8 +94,8 @@ GameObject:
   - component: {fileID: 5323769013426448328}
   - component: {fileID: 5397577657308673786}
   - component: {fileID: 3249545601304481650}
-  - component: {fileID: 3249545601304481648}
   - component: {fileID: 3249545601304481651}
+  - component: {fileID: 2149136045693430661}
   m_Layer: 6
   m_Name: GreenApple 1
   m_TagString: Green
@@ -112,7 +112,7 @@ Transform:
   m_GameObject: {fileID: 8181241268224078553}
   m_LocalRotation: {x: -0.7660445, y: 0, z: 0, w: 0.64278764}
   m_LocalPosition: {x: 0.85770196, y: 0.9090154, z: 2.16}
-  m_LocalScale: {x: 8, y: 8, z: 8}
+  m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7405421796926529741}
@@ -169,19 +169,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &3249545601304481648
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8181241268224078553}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.019512245, y: 0.018354084, z: 0.016474366}
-  m_Center: {x: 0.00007724295, y: 0.00007557682, z: -0.00020897666}
 --- !u!114 &3249545601304481651
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,3 +181,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21346a2d1d14a7245bf017d1a3d765e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hasSearched: 0
+--- !u!65 &2149136045693430661
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8181241268224078553}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.15609795, y: 0.1468327, z: 0.13179494}
+  m_Center: {x: 0.0006179437, y: 0.00060461846, z: -0.0016718138}
