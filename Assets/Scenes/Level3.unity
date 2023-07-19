@@ -4337,7 +4337,7 @@ MonoBehaviour:
   objectCreatorArray:
   - referanceObject: {fileID: 1629054424}
     objectPrefabs:
-    - {fileID: 1629054424}
+    - {fileID: 7300955765789030053, guid: 61474127fee85854abc0786d32ea97c0, type: 3}
     - {fileID: 7300955765789030053, guid: d309b745053352844a6305e693f9bcdf, type: 3}
     - {fileID: 7300955765789030053, guid: ee0a7a35ea2348c48abedcd7c80a89eb, type: 3}
     - {fileID: 7300955765789030053, guid: c92c059da69a7b04e968137c6fda0e2e, type: 3}

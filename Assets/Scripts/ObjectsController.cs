@@ -179,7 +179,7 @@ public class ObjectsController : MonoBehaviour
                     zOffset = objectToInstantiate.transform.localScale.z * 2;
                     radius = obj.objectPrefabs[0].transform.localScale.x * 2.5f;
                 }
-                else if (selectedType == levelTypes.Demo)
+                else if (selectedType == levelTypes.Tutorial)
                 {
                     yOffset = refCollider.transform.position.y;
                     xOffset = currentObjCollider.size.x;
@@ -222,7 +222,6 @@ public class ObjectsController : MonoBehaviour
 
         for (int i = 0; i < selectedColors.Count; i++)
         {
-            Debug.Log("selectedColor " + selectedColors[i]);
             droppedObjectsArray[i] = new DroppedObject();
             droppedObjectsArray[i].droppedObjectsList = new List<GameObject>();
             droppedObjectsArray[i].objectColor = selectedColors[i];
@@ -271,9 +270,7 @@ public class ObjectsController : MonoBehaviour
 
                 numberOfDroppedObjects++;
                 if (numberOfDroppedObjects == totalNumberOfObjects)
-                {
                     gameManager.ShowLevelEndPanel();
-                }
             }
         }
     }

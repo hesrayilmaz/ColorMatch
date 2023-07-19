@@ -38,6 +38,10 @@ public class GameManager : MonoBehaviour
 
         if (levelOpeningAudio != null)
             StartCoroutine(PlayLevelOpening());
+
+        //To reset tutorial level static variables in each level to be able to play tutorial properly whenever start it
+        DragAndDrop.currentObjectIndex = 0;
+        DragAndDrop.isStarted = false;
     }
 
     public void RestartLevel()
