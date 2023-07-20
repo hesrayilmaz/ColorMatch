@@ -2696,7 +2696,7 @@ GameObject:
   - component: {fileID: 851958425}
   - component: {fileID: 851958426}
   m_Layer: 0
-  m_Name: Firework
+  m_Name: LevelEnd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2727,11 +2727,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 9a4e971340aed264fad559b697ec1be1, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 205b23a63e51cc74eaea8d8991499d7b, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

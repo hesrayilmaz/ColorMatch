@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 3196950207616133420}
   - component: {fileID: 3196950207617460492}
   - component: {fileID: 3196950207618558924}
-  - component: {fileID: -6763002638528349340}
   - component: {fileID: -3051927279475954985}
+  - component: {fileID: -1204794538698510326}
   m_Layer: 6
   m_Name: cherry
   m_TagString: Red
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 3196950207616365836}
   m_LocalRotation: {x: 3.621977e-15, y: 1, z: -0.000000021855694, w: 0.00000016292068}
   m_LocalPosition: {x: -2.3999999, y: 4.2000003, z: 4.9694094e-23}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -85,19 +85,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &-6763002638528349340
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3196950207616365836}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.38852087, y: 0.42421037, z: 0.18838379}
-  m_Center: {x: 0, y: -0.000000029802322, z: -0.0000000037252903}
 --- !u!114 &-3051927279475954985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,3 +98,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hasSearched: 0
+--- !u!65 &-1204794538698510326
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3196950207616365836}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.22, y: 0.35, z: 0.15070704}
+  m_Center: {x: 0, y: -0.000000022351742, z: -0.0000000037252903}

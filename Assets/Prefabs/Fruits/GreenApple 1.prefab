@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 5397577657308673786}
   - component: {fileID: 3249545601304481650}
   - component: {fileID: 3249545601304481651}
-  - component: {fileID: 2149136045693430661}
+  - component: {fileID: -6097494491277741758}
   m_Layer: 6
   m_Name: GreenApple 1
   m_TagString: Green
@@ -112,7 +112,7 @@ Transform:
   m_GameObject: {fileID: 8181241268224078553}
   m_LocalRotation: {x: -0.7660445, y: 0, z: 0, w: 0.64278764}
   m_LocalPosition: {x: 0.85770196, y: 0.9090154, z: 2.16}
-  m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7405421796926529741}
@@ -182,7 +182,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hasSearched: 0
---- !u!65 &2149136045693430661
+--- !u!65 &-6097494491277741758
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -193,5 +193,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.15609795, y: 0.1468327, z: 0.13179494}
-  m_Center: {x: 0.0006179437, y: 0.00060461846, z: -0.0016718138}
+  m_Size: {x: 0.17561018, y: 0.16518682, z: 0.14826933}
+  m_Center: {x: 0.0006951876, y: 0.00068019354, z: -0.0018807917}

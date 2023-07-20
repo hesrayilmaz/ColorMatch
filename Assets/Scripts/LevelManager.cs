@@ -13,6 +13,8 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         //ResetSettings();
+        //UnlockAllLevels();
+
         for (int i = 0; i < levelsParent.childCount; i++)
         {
             Transform level = levelsParent.GetChild(i);
@@ -39,4 +41,9 @@ public class LevelManager : MonoBehaviour
             PlayerPrefs.SetString(("Level" + (i + 1)), "Locked");
     }
 
+    void UnlockAllLevels()
+    {
+        for (int i = 0; i < levelsParent.childCount; i++)
+            PlayerPrefs.SetString(("Level" + (i + 1)), "Unlocked");
+    }
 }

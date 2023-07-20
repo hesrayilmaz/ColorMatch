@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5836749568212194550}
   - component: {fileID: 5836749568211064374}
   - component: {fileID: -3109503296884227242}
-  - component: {fileID: -20659742358513529}
+  - component: {fileID: 7777148229028875397}
   m_Layer: 6
   m_Name: orange
   m_TagString: Orange
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 5836749568208799990}
   m_LocalRotation: {x: 1.7112914e-15, y: 1, z: -0.000000021855694, w: 0.0000000754979}
   m_LocalPosition: {x: -4.7999997, y: 1.7999994, z: -0.106578164}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hasSearched: 0
---- !u!65 &-20659742358513529
+--- !u!65 &7777148229028875397
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -109,5 +109,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.1692431, y: 0.16953638, z: 0.1692431}
-  m_Center: {x: 0, y: 0, z: 0.000000014901161}
+  m_Size: {x: 0.1353945, y: 0.13562912, z: 0.1353945}
+  m_Center: {x: 0, y: 0, z: 0}

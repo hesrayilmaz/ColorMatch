@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1058709229073867316}
   - component: {fileID: 1058709229074997492}
   - component: {fileID: 1128908733343893452}
-  - component: {fileID: 3358475691707152275}
+  - component: {fileID: -7893860245727299135}
   m_Layer: 6
   m_Name: apple
   m_TagString: Red
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 1058709229073071668}
   m_LocalRotation: {x: 1.7112914e-15, y: 1, z: -0.000000021855694, w: 0.0000000754979}
   m_LocalPosition: {x: -1.7999998, y: 4.7999997, z: 0}
-  m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hasSearched: 0
---- !u!65 &3358475691707152275
+--- !u!65 &-7893860245727299135
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -109,5 +109,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.17023781, y: 0.18539962, z: 0.18218887}
-  m_Center: {x: 0.000000070780516, y: -0.0000000037252903, z: 0.000000007450581}
+  m_Size: {x: 0.13619027, y: 0.14831972, z: 0.1457511}
+  m_Center: {x: 0.000000055879354, y: -0.0000000037252903, z: 0.000000007450581}
