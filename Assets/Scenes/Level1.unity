@@ -4508,9 +4508,11 @@ MonoBehaviour:
   musicOffButton: {fileID: 0}
   levelEndAudio: {fileID: 851958426}
   welldoneAudio: {fileID: 952634047}
+  gameCompletedAudio: {fileID: 0}
   levelOpeningAudio: {fileID: 1681703851}
   backgroundMusic: {fileID: 0}
   clickAudio: {fileID: 178158761}
+  infoAudio: {fileID: 0}
   transitionAnim: {fileID: 1070701082}
   mascotAnim: {fileID: 1934464966}
 --- !u!4 &1525932910
@@ -5966,7 +5968,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9155134145951947044, guid: e5a248eef53d92e4aaee3649eb958e52, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9155134145951947066, guid: e5a248eef53d92e4aaee3649eb958e52, type: 3}
       propertyPath: m_RootOrder
@@ -6011,6 +6013,10 @@ PrefabInstance:
     - target: {fileID: 9155134145951947066, guid: e5a248eef53d92e4aaee3649eb958e52, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9155134145951947067, guid: e5a248eef53d92e4aaee3649eb958e52, type: 3}
+      propertyPath: m_Color.a
+      value: 0.19607843
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e5a248eef53d92e4aaee3649eb958e52, type: 3}

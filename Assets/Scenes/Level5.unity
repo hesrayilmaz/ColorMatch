@@ -1623,7 +1623,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.9
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -4253,7 +4253,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.9
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -4904,7 +4904,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9155134145951947044, guid: e5a248eef53d92e4aaee3649eb958e52, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9155134145951947066, guid: e5a248eef53d92e4aaee3649eb958e52, type: 3}
       propertyPath: m_RootOrder
@@ -5514,9 +5514,11 @@ MonoBehaviour:
   musicOffButton: {fileID: 0}
   levelEndAudio: {fileID: 907220889}
   welldoneAudio: {fileID: 865769148}
+  gameCompletedAudio: {fileID: 0}
   levelOpeningAudio: {fileID: 1826537361}
   backgroundMusic: {fileID: 0}
   clickAudio: {fileID: 744598684}
+  infoAudio: {fileID: 0}
   transitionAnim: {fileID: 1682471287}
   mascotAnim: {fileID: 1231089359}
 --- !u!4 &2029600418

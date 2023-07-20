@@ -42,10 +42,6 @@ public class GameManager : MonoBehaviour
             StartCoroutine(PlayLevelOpening());
 
         activeLevelIndex = PlayerPrefs.GetInt("ActiveLevelIndex", 1);
-
-        //To reset tutorial level static variables in each level to be able to play tutorial properly whenever start it
-        DragAndDrop.currentObjectIndex = 0;
-        DragAndDrop.isStarted = false;
     }
 
     public void RestartLevel()
@@ -121,6 +117,12 @@ public class GameManager : MonoBehaviour
         levelOpeningAudio.Play();
         float audioLength = levelEndAudio.clip.length;
         yield return new WaitUntil(() => levelOpeningAudio.isPlaying == false);
+
+        //Set isMyTurn and currentObjectIndex to be able to play tutorial properly whenever start it
+        //Set isStarted to be able to drag the objects after the opening voice ended
+        DragAndDrop.isStarted = true;
+        DragAndDrop.isMyTurn = true;
+        DragAndDrop.currentObjectIndex = 0;
         levelBeginningBorder.SetActive(false);
     }
 
@@ -171,6 +173,7 @@ public class GameManager : MonoBehaviour
         levelEndAudio.Play();
         levelEndParticle.SetActive(true);
         yield return new WaitForSeconds(2.5f);
+        DragAndDrop.isStarted = false;
         levelEndPanel.SetActive(true);
     }
 

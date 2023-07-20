@@ -8,8 +8,6 @@ public class DragAndDrop : MonoBehaviour
     private Camera cam;
     private Vector3 startPoint;
     private float startPointYOffset;
-    private Vector3 mousePos;
-    private float mouseZCoord;
     private bool isPlacedRight = false;
     private bool isDragging;
     
@@ -28,6 +26,7 @@ public class DragAndDrop : MonoBehaviour
     public static bool isStarted = false;
     public bool hasSearched = false;
     public static int currentObjectIndex = 0;
+    public static bool isMyTurn = false;
     private bool isDraggingActive = false;
 
     private float distance;
@@ -42,7 +41,6 @@ public class DragAndDrop : MonoBehaviour
         cam = Camera.main;
         draggableObjectsController = GameObject.Find("ObjectsController").GetComponent<ObjectsController>();
         selectedType = GameObject.Find("LevelTypesController").GetComponent<LevelTypes>().GetSelectedLevelType();
-        mouseZCoord = cam.ScreenToWorldPoint(transform.position).z;
         correctDropAudio = GameObject.Find("Audio").transform.Find("CorrectDrop").GetComponent<AudioSource>();
         wrongDropAudio = GameObject.Find("Audio").transform.Find("WrongDrop").GetComponent<AudioSource>();
         mascotAnimator = GameObject.FindGameObjectWithTag("Mascot").transform.GetChild(0).GetComponent<Animator>();
@@ -93,10 +91,11 @@ public class DragAndDrop : MonoBehaviour
 
     private void Update()
     {
-        if(selectedType == levelTypes.Tutorial && !isStarted && !hasSearched)
+
+        if(selectedType == levelTypes.Tutorial && isStarted && !hasSearched && isMyTurn)
         {
             hasSearched = true;
-            isStarted = true;
+            isMyTurn = false;
 
             draggableObjects = new List<DragAndDrop>();
             targets = new List<GameObject>();
@@ -115,10 +114,10 @@ public class DragAndDrop : MonoBehaviour
             tutorialCursor.SetActive(true);
             tutorialParticle.SetActive(true);
             targets = draggableObjectsController.GetBoxes();
-            
+
             foreach(DragAndDrop obj in draggableObjects)
                 obj.gameObject.GetComponent<BoxCollider>().enabled = false;
-
+           
             foreach(GameObject box in targets)
             {
                 if (box.tag == tutorialCursor.tag + "Box")
@@ -171,7 +170,7 @@ public class DragAndDrop : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && isStarted)
         {
             distance = Vector3.Distance(transform.position, cam.transform.position);
             isDragging = true;
@@ -180,87 +179,90 @@ public class DragAndDrop : MonoBehaviour
 
     private void OnMouseUp()
     {
-        isDragging = false;
-   
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, radius);
-        foreach (var hitCollider in hitColliders)
+        if (isStarted)
         {
-            //Debug.Log("hitCollider TAG "+ hitCollider.gameObject.tag);
-            if (hitCollider.gameObject.tag == gameObject.tag + "Box")
+            isDragging = false;
+
+            Collider[] hitColliders = Physics.OverlapSphere(transform.position, radius);
+            foreach (var hitCollider in hitColliders)
             {
-                if (selectedType == levelTypes.Tutorial && isDraggingActive)
+                //Debug.Log("hitCollider TAG "+ hitCollider.gameObject.tag);
+                if (hitCollider.gameObject.tag == gameObject.tag + "Box")
                 {
-                    isDraggingActive = false;
-                    tutorialCursor.SetActive(false);
-                    tutorialParticle.SetActive(false);
-                }
-                
-                hitColliderObj = hitCollider.gameObject.transform;
-                hitColliderBox = hitColliderObj.GetComponent<BoxCollider>();
-
-                if (selectedType == levelTypes.Torus)
-                {
-                    DropTorus();
-                }
-                else if (selectedType == levelTypes.Pencil)
-                {
-                    DropPencil();
-                }
-                else if(selectedType == levelTypes.Book)
-                {
-                    DropBook();
-                }
-                else if (selectedType == levelTypes.Field || selectedType == levelTypes.Tree) 
-                {
-                    DropField();
-                }
-                else if (selectedType == levelTypes.Train)
-                {
-                    DropTrain();
-                }
-                else if (selectedType == levelTypes.Car)
-                {
-                    DropCar();
-                }
-                else if (selectedType == levelTypes.Tutorial)
-                {
-                    DropDemoObject();
-                }
-
-                objectBox.enabled = false;
-                draggableObjectsController.AddDroppedObject(gameObject, gameObject.tag);
-                correctDropAudio.Play();
-                mascotAnimator.SetTrigger("Jump");
-                isPlacedRight = true;
-
-                if (selectedType == levelTypes.Tutorial && currentObjectIndex < draggableObjects.Count)
-                {
-                    DragAndDrop currentDraggableObj = draggableObjects[currentObjectIndex];
-                    currentDraggableObj.tutorialCursor = currentDraggableObj.transform.Find("Cursor").gameObject;
-                    currentDraggableObj.tutorialParticle = currentDraggableObj.transform.Find("Particle").gameObject;
-                    currentDraggableObj.tutorialCursor.SetActive(true);
-                    currentDraggableObj.tutorialParticle.SetActive(true);
-                    currentDraggableObj.gameObject.GetComponent<BoxCollider>().enabled = true;
-
-                    foreach (GameObject box in targets)
+                    if (selectedType == levelTypes.Tutorial && isDraggingActive)
                     {
-                        if (box.tag == currentDraggableObj.tutorialCursor.tag + "Box")
-                        {
-                            currentDraggableObj.tutorialTargetBox = box;
-                        }
+                        isDraggingActive = false;
+                        tutorialCursor.SetActive(false);
+                        tutorialParticle.SetActive(false);
                     }
-                    currentDraggableObj.isDraggingActive = true;
-                    currentObjectIndex++;
-                }
-                return;
-            }
-        }
-        wrongDropAudio.Play();
-        mascotAnimator.SetTrigger("Hurt");
-        transform.position = startPoint;
 
-        if (tutorialCursor)
-            tutorialCursor.SetActive(true);
+                    hitColliderObj = hitCollider.gameObject.transform;
+                    hitColliderBox = hitColliderObj.GetComponent<BoxCollider>();
+
+                    if (selectedType == levelTypes.Torus)
+                    {
+                        DropTorus();
+                    }
+                    else if (selectedType == levelTypes.Pencil)
+                    {
+                        DropPencil();
+                    }
+                    else if (selectedType == levelTypes.Book)
+                    {
+                        DropBook();
+                    }
+                    else if (selectedType == levelTypes.Field || selectedType == levelTypes.Tree)
+                    {
+                        DropField();
+                    }
+                    else if (selectedType == levelTypes.Train)
+                    {
+                        DropTrain();
+                    }
+                    else if (selectedType == levelTypes.Car)
+                    {
+                        DropCar();
+                    }
+                    else if (selectedType == levelTypes.Tutorial)
+                    {
+                        DropDemoObject();
+                    }
+
+                    objectBox.enabled = false;
+                    draggableObjectsController.AddDroppedObject(gameObject, gameObject.tag);
+                    correctDropAudio.Play();
+                    mascotAnimator.SetTrigger("Jump");
+                    isPlacedRight = true;
+
+                    if (selectedType == levelTypes.Tutorial && currentObjectIndex < draggableObjects.Count)
+                    {
+                        DragAndDrop currentDraggableObj = draggableObjects[currentObjectIndex];
+                        currentDraggableObj.tutorialCursor = currentDraggableObj.transform.Find("Cursor").gameObject;
+                        currentDraggableObj.tutorialParticle = currentDraggableObj.transform.Find("Particle").gameObject;
+                        currentDraggableObj.tutorialCursor.SetActive(true);
+                        currentDraggableObj.tutorialParticle.SetActive(true);
+                        currentDraggableObj.gameObject.GetComponent<BoxCollider>().enabled = true;
+
+                        foreach (GameObject box in targets)
+                        {
+                            if (box.tag == currentDraggableObj.tutorialCursor.tag + "Box")
+                            {
+                                currentDraggableObj.tutorialTargetBox = box;
+                            }
+                        }
+                        currentDraggableObj.isDraggingActive = true;
+                        currentObjectIndex++;
+                    }
+                    return;
+                }
+            }
+            wrongDropAudio.Play();
+            mascotAnimator.SetTrigger("Hurt");
+            transform.position = startPoint;
+
+            if (tutorialCursor)
+                tutorialCursor.SetActive(true);
+        }
     }
 
     private void DropTorus()

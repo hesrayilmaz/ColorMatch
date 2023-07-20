@@ -750,7 +750,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9155134145951947044, guid: e5a248eef53d92e4aaee3649eb958e52, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9155134145951947066, guid: e5a248eef53d92e4aaee3649eb958e52, type: 3}
       propertyPath: m_RootOrder
@@ -2662,9 +2662,11 @@ MonoBehaviour:
   musicOffButton: {fileID: 0}
   levelEndAudio: {fileID: 831677409}
   welldoneAudio: {fileID: 1133989120}
+  gameCompletedAudio: {fileID: 0}
   levelOpeningAudio: {fileID: 1103763019}
   backgroundMusic: {fileID: 0}
   clickAudio: {fileID: 1673949014}
+  infoAudio: {fileID: 0}
   transitionAnim: {fileID: 2058599234}
   mascotAnim: {fileID: 55388125}
 --- !u!4 &843597032
