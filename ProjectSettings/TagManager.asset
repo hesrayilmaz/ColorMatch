@@ -27,6 +27,7 @@ TagManager:
   - Mascot
   - LevelsMenu
   - LevelButton
+  - LastLevel
   layers:
   - Default
   - TransparentFX

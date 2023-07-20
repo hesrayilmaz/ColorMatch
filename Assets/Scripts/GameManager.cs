@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject levelBeginningBorder;
     [SerializeField] private GameObject menuButton;
     [SerializeField] private GameObject musicOnButton, musicOffButton;
-    [SerializeField] private AudioSource levelEndAudio, welldoneAudio, levelOpeningAudio, 
+    [SerializeField] private AudioSource levelEndAudio, welldoneAudio, gameCompletedAudio, levelOpeningAudio, 
                                          backgroundMusic, clickAudio, infoAudio;
     [SerializeField] private Animator transitionAnim, mascotAnim;
 
@@ -154,7 +154,19 @@ public class GameManager : MonoBehaviour
         SaveActiveLevel();
         yield return new WaitForSeconds(0.2f);
         menuButton.SetActive(false);
-        welldoneAudio.Play();
+
+        if (gameObject.tag != "LastLevel")
+            welldoneAudio.Play();
+        else {
+            if (PlayerPrefs.GetString("LastLevelCompleted", "false") == "false")
+            {
+                gameCompletedAudio.Play();
+                PlayerPrefs.SetString("LastLevelCompleted", "true");
+            }
+            else
+                welldoneAudio.Play();
+        }
+                
         mascotAnim.SetTrigger("Roll");
         levelEndAudio.Play();
         levelEndParticle.SetActive(true);
