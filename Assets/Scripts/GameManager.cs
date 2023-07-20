@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject menuButton;
     [SerializeField] private GameObject musicOnButton, musicOffButton;
     [SerializeField] private AudioSource levelEndAudio, welldoneAudio, levelOpeningAudio, 
-                                         backgroundMusic, clickAudio;
+                                         backgroundMusic, clickAudio, infoAudio;
     [SerializeField] private Animator transitionAnim, mascotAnim;
 
     private static int activeLevelIndex, currentLevelIndex;
@@ -93,6 +93,12 @@ public class GameManager : MonoBehaviour
         clickAudio.Play();
     }
 
+    public void PlayInfoAudio()
+    {
+        ClickButton();
+        infoAudio.Play();
+    }
+
     public void QuitGame()
     {
         ClickButton();
@@ -161,10 +167,11 @@ public class GameManager : MonoBehaviour
         transitionAnim.SetTrigger("EndLevel");
         yield return new WaitForSeconds(1f);
         
-        if(levelName=="MainMenu")
+        if(levelName == "MainMenu")
             PlayerPrefs.SetString("MainMenuTransition", "Open");
 
-        if (gameObject.tag == "LevelsMenu")
+        if (gameObject.tag == "LevelsMenu" &&
+            UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.tag == "LevelButton")
         {
             currentLevelIndex = int.Parse(levelName.Substring(5));
         }
