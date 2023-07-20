@@ -271,7 +271,7 @@ GameObject:
   - component: {fileID: 62230984}
   - component: {fileID: 62230983}
   m_Layer: 5
-  m_Name: 'Level2Button '
+  m_Name: Level2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -337,7 +337,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 62230984}
   m_OnClick:
     m_PersistentCalls:
@@ -374,7 +374,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2c8f070065ecf324ca15904a6ab259a6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f7f70b038364ce94daf886cd6b611b24, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -405,7 +405,7 @@ GameObject:
   - component: {fileID: 114864402}
   - component: {fileID: 114864401}
   m_Layer: 5
-  m_Name: Level7Button
+  m_Name: Level7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -471,7 +471,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 114864402}
   m_OnClick:
     m_PersistentCalls:
@@ -508,7 +508,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2c8f070065ecf324ca15904a6ab259a6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f7f70b038364ce94daf886cd6b611b24, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -539,7 +539,7 @@ GameObject:
   - component: {fileID: 251041720}
   - component: {fileID: 251041719}
   m_Layer: 5
-  m_Name: Level1Button
+  m_Name: Level1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1048,7 +1048,7 @@ GameObject:
   - component: {fileID: 568758686}
   - component: {fileID: 568758687}
   m_Layer: 5
-  m_Name: Levels
+  m_Name: LevelButtons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1471,7 +1471,7 @@ GameObject:
   - component: {fileID: 862168645}
   - component: {fileID: 862168644}
   m_Layer: 5
-  m_Name: 'Level3Button '
+  m_Name: Level3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1537,7 +1537,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 862168645}
   m_OnClick:
     m_PersistentCalls:
@@ -1574,7 +1574,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2c8f070065ecf324ca15904a6ab259a6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f7f70b038364ce94daf886cd6b611b24, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2183,7 +2183,7 @@ GameObject:
   - component: {fileID: 1334944626}
   - component: {fileID: 1334944625}
   m_Layer: 5
-  m_Name: Level4Button
+  m_Name: Level4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2249,7 +2249,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1334944626}
   m_OnClick:
     m_PersistentCalls:
@@ -2286,7 +2286,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2c8f070065ecf324ca15904a6ab259a6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f7f70b038364ce94daf886cd6b611b24, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2317,7 +2317,7 @@ GameObject:
   - component: {fileID: 1478271486}
   - component: {fileID: 1478271485}
   m_Layer: 5
-  m_Name: Level5Button
+  m_Name: Level5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2383,7 +2383,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1478271486}
   m_OnClick:
     m_PersistentCalls:
@@ -2420,7 +2420,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2c8f070065ecf324ca15904a6ab259a6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f7f70b038364ce94daf886cd6b611b24, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2533,7 +2533,7 @@ RectTransform:
   - {fileID: 1153976573}
   - {fileID: 384273802}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2553,7 +2553,7 @@ GameObject:
   - component: {fileID: 1688935142}
   - component: {fileID: 1688935141}
   m_Layer: 5
-  m_Name: Level8Button
+  m_Name: Level8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2619,7 +2619,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1688935142}
   m_OnClick:
     m_PersistentCalls:
@@ -2656,7 +2656,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2c8f070065ecf324ca15904a6ab259a6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f7f70b038364ce94daf886cd6b611b24, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2739,7 +2739,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1738645521
 GameObject:
@@ -2869,6 +2869,53 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &1891978916
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1891978918}
+  - component: {fileID: 1891978917}
+  m_Layer: 0
+  m_Name: LevelManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1891978917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1891978916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1492eb7bbb9329a4db1d753db433ce30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelsParent: {fileID: 568758686}
+  unlockedButton: {fileID: 21300000, guid: 2c8f070065ecf324ca15904a6ab259a6, type: 3}
+  lockedButton: {fileID: 21300000, guid: f7f70b038364ce94daf886cd6b611b24, type: 3}
+--- !u!4 &1891978918
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1891978916}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1897743002
 GameObject:
   m_ObjectHideFlags: 0
@@ -2882,7 +2929,7 @@ GameObject:
   - component: {fileID: 1897743005}
   - component: {fileID: 1897743004}
   m_Layer: 5
-  m_Name: Level6Button
+  m_Name: Level6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2948,7 +2995,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1897743005}
   m_OnClick:
     m_PersistentCalls:
@@ -2985,7 +3032,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2c8f070065ecf324ca15904a6ab259a6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f7f70b038364ce94daf886cd6b611b24, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3033,7 +3080,7 @@ Transform:
   m_Children:
   - {fileID: 1738645522}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2055938697
 GameObject:
@@ -3354,7 +3401,7 @@ GameObject:
   - component: {fileID: 2138804889}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: LevelsMenu
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

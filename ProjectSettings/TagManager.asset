@@ -25,6 +25,7 @@ TagManager:
   - Ground
   - MainMenu
   - Mascot
+  - LevelsMenu
   layers:
   - Default
   - TransparentFX

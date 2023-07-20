@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
                                          backgroundMusic, clickAudio;
     [SerializeField] private Animator transitionAnim, mascotAnim;
 
+    private static int activeLevelIndex, currentLevelIndex;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +40,8 @@ public class GameManager : MonoBehaviour
 
         if (levelOpeningAudio != null)
             StartCoroutine(PlayLevelOpening());
+
+        activeLevelIndex = PlayerPrefs.GetInt("ActiveLevelIndex", 1);
 
         //To reset tutorial level static variables in each level to be able to play tutorial properly whenever start it
         DragAndDrop.currentObjectIndex = 0;
@@ -95,6 +99,15 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
+    public void SaveActiveLevel()
+    {
+        if (PlayerPrefs.GetString(("Level" + (currentLevelIndex + 1))) != "Unlocked")
+        {
+            activeLevelIndex++;
+            PlayerPrefs.SetInt("ActiveLevelIndex", activeLevelIndex);
+            PlayerPrefs.SetString(("Level" + activeLevelIndex), "Unlocked");
+        }
+    }
 
     IEnumerator PlayLevelOpening()
     {
@@ -121,6 +134,7 @@ public class GameManager : MonoBehaviour
 
         try
         {
+            currentLevelIndex++;
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
         catch
@@ -131,6 +145,7 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator LevelEndCoroutine()
     {
+        SaveActiveLevel();
         yield return new WaitForSeconds(0.2f);
         menuButton.SetActive(false);
         welldoneAudio.Play();
@@ -148,6 +163,11 @@ public class GameManager : MonoBehaviour
         
         if(levelName=="MainMenu")
             PlayerPrefs.SetString("MainMenuTransition", "Open");
+
+        if (gameObject.tag == "LevelsMenu")
+        {
+            currentLevelIndex = int.Parse(levelName.Substring(5));
+        }
 
         SceneManager.LoadScene(levelName);
     }
