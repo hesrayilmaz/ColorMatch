@@ -225,7 +225,7 @@ public class DragAndDrop : MonoBehaviour
                     }
                     else if (selectedType == levelTypes.Tutorial)
                     {
-                        DropDemoObject();
+                        DropTutorialObject();
                     }
 
                     objectBox.enabled = false;
@@ -283,15 +283,15 @@ public class DragAndDrop : MonoBehaviour
     {
         if (draggableObjectsController.IsDroppedListEmpty(gameObject.tag))
         {
-            transform.position = new Vector3(hitColliderBox.bounds.min.x + objectBox.size.x * 3,
-                hitColliderBox.bounds.min.y + 0.1f,
+            transform.position = new Vector3(hitColliderBox.bounds.min.x + objectBox.size.x * 5,
+                hitColliderBox.bounds.min.y,
                 hitColliderBox.bounds.max.z - objectBox.size.z * 4);
             transform.rotation = Quaternion.identity;
         }
         else
         {
             transform.position = new Vector3(draggableObjectsController.GetLastDroppedObject(gameObject.tag).transform.position.x +
-                objectBox.size.x * 1.5f, hitColliderBox.bounds.min.y + 0.1f,
+                objectBox.size.x * 2f, hitColliderBox.bounds.min.y,
                 hitColliderBox.bounds.max.z - objectBox.size.z * 4);
             transform.rotation = Quaternion.identity;
         }
@@ -360,18 +360,19 @@ public class DragAndDrop : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 90, 0);
         }
     }
-    private void DropDemoObject()
+    private void DropTutorialObject()
     {
         if (draggableObjectsController.IsDroppedListEmpty(gameObject.tag))
         {
             transform.position = new Vector3(hitColliderBox.bounds.min.x + 0.13f, hitColliderBox.bounds.min.y + objectBox.size.x + 0.01f,
-                hitColliderBox.size.z + objectBox.size.z / 3);
+                hitColliderBox.bounds.max.z - objectBox.size.z / (1.5f));
             transform.rotation = Quaternion.Euler(0, 0, 90);
         }
         else
         {
             transform.position = new Vector3(draggableObjectsController.GetLastDroppedObject(gameObject.tag).transform.position.x + objectBox.size.y/2,
-                hitColliderBox.bounds.min.y + objectBox.size.x + 0.01f, hitColliderBox.size.z + objectBox.size.z / 3);
+                hitColliderBox.bounds.min.y + objectBox.size.x + 0.01f, 
+                hitColliderBox.bounds.max.z - objectBox.size.z / (1.5f));
             transform.rotation = Quaternion.Euler(0, 0, 90);
         }
     }

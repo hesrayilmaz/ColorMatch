@@ -896,9 +896,11 @@ MonoBehaviour:
   musicOffButton: {fileID: 488701773}
   levelEndAudio: {fileID: 0}
   welldoneAudio: {fileID: 0}
+  gameCompletedAudio: {fileID: 0}
   levelOpeningAudio: {fileID: 0}
   backgroundMusic: {fileID: 0}
   clickAudio: {fileID: 686337968}
+  infoAudio: {fileID: 0}
   transitionAnim: {fileID: 943919750}
   mascotAnim: {fileID: 0}
 --- !u!4 &555718400
@@ -1297,7 +1299,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 100, y: -100}
+  m_AnchoredPosition: {x: 120, y: -120}
   m_SizeDelta: {x: 130, y: 135}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &769030200
@@ -2361,7 +2363,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: f7e13bff11f42604697cdd527d306c7a, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.1
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 1
   Mute: 0
