@@ -43,7 +43,7 @@ public class DragAndDrop : MonoBehaviour
         selectedType = GameObject.Find("LevelTypesController").GetComponent<LevelTypes>().GetSelectedLevelType();
         correctDropAudio = GameObject.Find("Audio").transform.Find("CorrectDrop").GetComponent<AudioSource>();
         wrongDropAudio = GameObject.Find("Audio").transform.Find("WrongDrop").GetComponent<AudioSource>();
-        mascotAnimator = GameObject.FindGameObjectWithTag("Mascot").transform.GetChild(0).GetComponent<Animator>();
+        mascotAnimator = GameObject.FindGameObjectWithTag("Mascot").GetComponent<Animator>();
         objectBox = GetComponent<BoxCollider>();
     }
 
