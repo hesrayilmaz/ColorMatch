@@ -104,7 +104,6 @@ public class ObjectsController : MonoBehaviour
                     {
                         if (color == obj.objectPrefabs[randomIndex].tag)
                         {
-                            Debug.Log("same color");
                             obj.objectPrefabs.RemoveAt(randomIndex);
                             obj.objectSounds.RemoveAt(randomIndex);
                             randomIndex = Random.Range(0, obj.objectPrefabs.Count);

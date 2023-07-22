@@ -21,21 +21,21 @@ AnimationClip:
   - curve:
     - time: 0
       value: {fileID: 21300000, guid: ae43bfeb31ebd6e45a050fa6f662d539, type: 3}
-    - time: 0.11111111
+    - time: 0.1
       value: {fileID: 21300000, guid: 82176257ad1c8b240a0d2b6ad4e87e1e, type: 3}
-    - time: 0.22222222
+    - time: 0.21666667
       value: {fileID: 21300000, guid: 36dfc15a7a34c5a458dd76a7000c0950, type: 3}
     - time: 0.33333334
       value: {fileID: 21300000, guid: 0edd1397fac84fc42914b0eba4ffa4bf, type: 3}
-    - time: 0.44444445
+    - time: 0.45
       value: {fileID: 21300000, guid: d05f660a61d576d40bf64a3e01ef7370, type: 3}
-    - time: 0.5555556
+    - time: 0.56666666
       value: {fileID: 21300000, guid: 23976087863590f4b94a5728169f6e7a, type: 3}
-    - time: 0.6666667
+    - time: 0.68333334
       value: {fileID: 21300000, guid: bfa82909e4d962a4e81a1735ce4892c7, type: 3}
-    - time: 0.7777778
+    - time: 0.78333336
       value: {fileID: 21300000, guid: a2f6370b2256acd48904affe29ebfcaa, type: 3}
-    - time: 0.8888889
+    - time: 0.9
       value: {fileID: 21300000, guid: eeb0de988ea2e85458a1a215c6bef786, type: 3}
     - time: 1
       value: {fileID: 21300000, guid: 8919ca38aafa6174b890f8a4130ebef2, type: 3}
@@ -43,7 +43,7 @@ AnimationClip:
     path: 
     classID: 114
     script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_SampleRate: 9
+  m_SampleRate: 60
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -73,7 +73,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1.1111112
+    m_StopTime: 1.0166667
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

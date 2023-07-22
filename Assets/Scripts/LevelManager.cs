@@ -13,7 +13,7 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         //ResetSettings();
-        UnlockAllLevels();
+        //UnlockAllLevels();
 
         for (int i = 0; i < levelsParent.childCount; i++)
         {
