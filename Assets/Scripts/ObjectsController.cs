@@ -140,8 +140,7 @@ public class ObjectsController : MonoBehaviour
                     yOffset = refCollider.transform.position.y + currentObjCollider.size.z / 2;
                     xOffset = currentObjCollider.size.y;
                     zOffset = currentObjCollider.size.x;
-                    //radius = obj.objectPrefabs[0].GetComponent<BoxCollider>().size.y/2;
-                    radius = 0.16f;
+                    radius = currentObjCollider.size.y;
                 }
                 else if (selectedType == levelTypes.Book)
                 {
@@ -181,9 +180,9 @@ public class ObjectsController : MonoBehaviour
                 else if (selectedType == levelTypes.Tutorial)
                 {
                     yOffset = refCollider.transform.position.y;
-                    xOffset = currentObjCollider.size.x;
+                    xOffset = currentObjCollider.size.x - 0.2f;
                     zOffset = currentObjCollider.size.z - 0.2f;
-                    radius = objectToInstantiate.transform.localScale.x/2;
+                    radius = currentObjCollider.size.x / 2;
                 }
 
 

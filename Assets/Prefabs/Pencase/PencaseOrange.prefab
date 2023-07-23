@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2078932575702855119}
   - component: {fileID: 7358343384803195797}
   - component: {fileID: 3728287550415660490}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PencaseOrange
   m_TagString: OrangeBox
   m_Icon: {fileID: 0}

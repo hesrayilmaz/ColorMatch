@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4151725995835907688}
   - component: {fileID: 4151725995836873896}
   - component: {fileID: 5705516651356515619}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BoxYellow
   m_TagString: YellowBox
   m_Icon: {fileID: 0}

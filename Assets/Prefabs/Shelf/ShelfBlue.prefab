@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7237755595103522899}
   - component: {fileID: 3700115239975355112}
   - component: {fileID: 1255371035501877846}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EAThe80_Prop_Schelf_01b_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 1451083915716759186}
   - component: {fileID: 5942876339573504483}
   - component: {fileID: 6376889448987532085}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ShelfBlue
   m_TagString: BlueBox
   m_Icon: {fileID: 0}
@@ -170,7 +170,7 @@ GameObject:
   - component: {fileID: 2290009433989998811}
   - component: {fileID: 2093705792252159440}
   - component: {fileID: 5639548151640719517}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EAThe80_Prop_Schelf_01b_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -253,7 +253,7 @@ GameObject:
   - component: {fileID: 8245383800616043457}
   - component: {fileID: 4536568517345036555}
   - component: {fileID: 156407901378516448}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EAThe80_Prop_Schelf_01b_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

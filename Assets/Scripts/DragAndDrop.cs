@@ -364,15 +364,15 @@ public class DragAndDrop : MonoBehaviour
     {
         if (draggableObjectsController.IsDroppedListEmpty(gameObject.tag))
         {
-            transform.position = new Vector3(hitColliderBox.bounds.min.x + 0.13f, hitColliderBox.bounds.min.y + objectBox.size.x + 0.01f,
-                hitColliderBox.bounds.max.z - objectBox.size.z / (1.5f));
+            transform.position = new Vector3(hitColliderBox.bounds.min.x + 0.13f, hitColliderBox.bounds.min.y + objectBox.size.x - 0.15f,
+                hitColliderBox.bounds.max.z - objectBox.size.z);
             transform.rotation = Quaternion.Euler(0, 0, 90);
         }
         else
         {
             transform.position = new Vector3(draggableObjectsController.GetLastDroppedObject(gameObject.tag).transform.position.x + objectBox.size.y/2,
-                hitColliderBox.bounds.min.y + objectBox.size.x + 0.01f, 
-                hitColliderBox.bounds.max.z - objectBox.size.z / (1.5f));
+                hitColliderBox.bounds.min.y + objectBox.size.x - 0.15f, 
+                hitColliderBox.bounds.max.z - objectBox.size.z);
             transform.rotation = Quaternion.Euler(0, 0, 90);
         }
     }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5519248028766226935}
   - component: {fileID: 6566219289820371480}
   - component: {fileID: 8202894247412032670}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PinkPlane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
