@@ -15,7 +15,7 @@ public class LevelManager : MonoBehaviour
         //ResetSettings();
         //UnlockAllLevels();
 
-        for (int i = 0; i < levelsParent.childCount; i++)
+        for (int i = 1; i < levelsParent.childCount; i++)
         {
             Transform level = levelsParent.GetChild(i);
 
@@ -35,7 +35,6 @@ public class LevelManager : MonoBehaviour
     void ResetSettings()
     {
         PlayerPrefs.SetInt("ActiveLevelIndex", 1);
-        PlayerPrefs.SetString("Level1", "Unlocked");
 
         for (int i = 1; i < levelsParent.childCount; i++)
             PlayerPrefs.SetString(("Level" + (i + 1)), "Locked");
@@ -43,7 +42,7 @@ public class LevelManager : MonoBehaviour
 
     void UnlockAllLevels()
     {
-        for (int i = 0; i < levelsParent.childCount; i++)
+        for (int i = 1; i < levelsParent.childCount; i++)
             PlayerPrefs.SetString(("Level" + (i + 1)), "Unlocked");
     }
 }

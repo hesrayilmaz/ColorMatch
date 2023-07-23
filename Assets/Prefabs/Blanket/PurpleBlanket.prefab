@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8021418074054869670}
   - component: {fileID: 6340589006106441715}
   - component: {fileID: 8009198891908258470}
-  - component: {fileID: -609062458073179045}
+  - component: {fileID: 6229855951472037844}
   m_Layer: 7
   m_Name: PurpleBlanket
   m_TagString: PurpleBox
@@ -84,7 +84,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &-609062458073179045
+--- !u!65 &6229855951472037844
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -95,5 +95,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2, y: 0.36685407, z: 1.246274}
-  m_Center: {x: 0, y: -0.0895572, z: -0.002377063}
+  m_Size: {x: 1.6463323, y: 0.36685407, z: 1.5}
+  m_Center: {x: -0.21545985, y: 0, z: -0.002377063}

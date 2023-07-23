@@ -138,16 +138,16 @@ public class ObjectsController : MonoBehaviour
                 else if (selectedType == levelTypes.Pencil)
                 {
                     yOffset = refCollider.transform.position.y + currentObjCollider.size.z / 2;
-                    xOffset = currentObjCollider.size.y;
-                    zOffset = currentObjCollider.size.x;
-                    radius = currentObjCollider.size.y;
+                    xOffset = currentObjCollider.size.y * (1.3f);
+                    zOffset = currentObjCollider.size.z;
+                    radius = currentObjCollider.size.y / (1.5f); 
                 }
                 else if (selectedType == levelTypes.Book)
                 {
                     yOffset = refCollider.transform.position.y + currentObjCollider.size.z / 2;
                     xOffset = currentObjCollider.size.y;
                     zOffset = currentObjCollider.size.x;
-                    radius = currentObjCollider.size.y;
+                    radius = currentObjCollider.size.x + 0.05f;
                 }
                 else if (selectedType == levelTypes.Field)
                 {
@@ -180,9 +180,9 @@ public class ObjectsController : MonoBehaviour
                 else if (selectedType == levelTypes.Tutorial)
                 {
                     yOffset = refCollider.transform.position.y;
-                    xOffset = currentObjCollider.size.x - 0.2f;
-                    zOffset = currentObjCollider.size.z - 0.2f;
-                    radius = currentObjCollider.size.x / 2;
+                    xOffset = currentObjCollider.size.y;
+                    zOffset = currentObjCollider.size.y;
+                    radius = currentObjCollider.size.x;
                 }
 
 
