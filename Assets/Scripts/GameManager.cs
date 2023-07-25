@@ -138,19 +138,10 @@ public class GameManager : MonoBehaviour
     IEnumerator NextLevelCoroutine()
     {
         transitionAnim.SetTrigger("EndLevel");
-
         yield return new WaitForSeconds(1f);
 
-        try
-        {
-            currentLevelIndex++;
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        }
-        catch
-        {
-            Debug.Log("last levellll");
-            SceneManager.LoadScene("LevelsMenu");
-        }
+        currentLevelIndex++;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
     IEnumerator LevelEndCoroutine()
     {

@@ -186,7 +186,6 @@ public class DragAndDrop : MonoBehaviour
             Collider[] hitColliders = Physics.OverlapSphere(transform.position, radius);
             foreach (var hitCollider in hitColliders)
             {
-                //Debug.Log("hitCollider TAG "+ hitCollider.gameObject.tag);
                 if (hitCollider.gameObject.tag == gameObject.tag + "Box")
                 {
                     if (selectedType == levelTypes.Tutorial && isDraggingActive)
@@ -317,7 +316,6 @@ public class DragAndDrop : MonoBehaviour
         if (draggableObjectsController.IsDroppedListEmpty(gameObject.tag))
         {
             transform.position = new Vector3(hitColliderBox.bounds.min.x + 0.2f,
-                //hitColliderBox.bounds.min.y + objectBox.size.y + 0.05f, 
                 hitColliderBox.bounds.min.y + 0.5f,
                 hitColliderBox.bounds.max.z - 0.5f);
         }
@@ -325,7 +323,6 @@ public class DragAndDrop : MonoBehaviour
         {
             transform.position = new Vector3(draggableObjectsController.GetLastDroppedObject(gameObject.tag).transform.position.x +
                 objectBox.size.x * (3/2),
-                //hitColliderBox.bounds.min.y + objectBox.size.y + 0.05f, 
                 hitColliderBox.bounds.min.y + 0.5f,
                 hitColliderBox.bounds.max.z - 0.5f);
         }
