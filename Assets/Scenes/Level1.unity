@@ -1918,7 +1918,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7635247134689143596, guid: 27c58c58081e33441a804731556b93eb, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.6
+      value: 0.55
       objectReference: {fileID: 0}
     - target: {fileID: 7635247134689143596, guid: 27c58c58081e33441a804731556b93eb, type: 3}
       propertyPath: m_LocalPosition.x

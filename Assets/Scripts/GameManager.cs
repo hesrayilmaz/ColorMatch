@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //PlayerPrefs.SetString("LastLevelCompleted", "false");
         if (gameObject.tag!="MainMenu")
             transitionAnim.SetTrigger("StartLevel");
         else

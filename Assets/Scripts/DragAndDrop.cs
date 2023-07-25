@@ -63,7 +63,7 @@ public class DragAndDrop : MonoBehaviour
         }
         else if (selectedType == levelTypes.Book)
         {
-            radius = 0.6f;
+            radius = 0.7f;
         }
         else if (selectedType == levelTypes.Field)
         {
@@ -85,7 +85,7 @@ public class DragAndDrop : MonoBehaviour
         }
         else if (selectedType == levelTypes.Tutorial)
         {
-            radius = 0.5f;
+            radius = 0.6f;
         }
     }
 
@@ -139,8 +139,8 @@ public class DragAndDrop : MonoBehaviour
             }
             else
             {
-                tutorialCursor.transform.position = Vector3.MoveTowards(tutorialCursor.transform.position, transform.position + new Vector3(-0.2f, 0.1f, -0.2f), 0.6f * Time.deltaTime);
-                if (tutorialCursor.transform.position == transform.position + new Vector3(-0.2f, 0.1f, -0.2f))
+                tutorialCursor.transform.position = Vector3.MoveTowards(tutorialCursor.transform.position, transform.position + new Vector3(-0.1f, 0.2f, -0.1f), 0.6f * Time.deltaTime);
+                if (tutorialCursor.transform.position == transform.position + new Vector3(-0.1f, 0.2f, -0.1f))
                 {
                     isStartPoint = true;
                 }
@@ -291,7 +291,7 @@ public class DragAndDrop : MonoBehaviour
         else
         {
             transform.position = new Vector3(draggableObjectsController.GetLastDroppedObject(gameObject.tag).transform.position.x +
-                objectBox.size.x * 2f, hitColliderBox.bounds.min.y + objectBox.size.y / 4,
+                objectBox.size.x * 5f, hitColliderBox.bounds.min.y + objectBox.size.y / 4,
                 hitColliderBox.bounds.max.z - objectBox.size.z * 4);
             transform.rotation = Quaternion.identity;
         }
