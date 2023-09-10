@@ -166,6 +166,9 @@ public class GameManager : MonoBehaviour
         levelEndParticle.SetActive(true);
         yield return new WaitForSeconds(2.5f);
         DragAndDrop.isStarted = false;
+        
+        AdManager.instance.ShowInterstitialAd();
+
         levelEndPanel.SetActive(true);
     }
 
