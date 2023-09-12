@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         //PlayerPrefs.SetString("LastLevelCompleted", "false");
+        //PlayerPrefs.SetString("IsTutorial", "true");
+
         if (gameObject.tag!="MainMenu")
             transitionAnim.SetTrigger("StartLevel");
         else
@@ -119,11 +121,11 @@ public class GameManager : MonoBehaviour
         float audioLength = levelEndAudio.clip.length;
         yield return new WaitUntil(() => levelOpeningAudio.isPlaying == false);
 
-        //Set isMyTurn and currentObjectIndex to be able to play tutorial properly whenever start it
+        //Set isMyTurn to be able to play tutorial properly
         //Set isStarted to be able to drag the objects after the opening voice ended
         DragAndDrop.isStarted = true;
         DragAndDrop.isMyTurn = true;
-        DragAndDrop.currentObjectIndex = 0;
+
         levelBeginningBorder.SetActive(false);
     }
 
@@ -165,8 +167,10 @@ public class GameManager : MonoBehaviour
         levelEndAudio.Play();
         levelEndParticle.SetActive(true);
         yield return new WaitForSeconds(2.5f);
-        DragAndDrop.isStarted = false;
         
+        DragAndDrop.isStarted = false;
+        PlayerPrefs.SetString("IsTutorial", "false");
+
         AdManager.instance.ShowInterstitialAd();
 
         levelEndPanel.SetActive(true);

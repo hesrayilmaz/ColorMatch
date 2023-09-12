@@ -10,11 +10,6 @@ public class AdManager : MonoBehaviour
     public static AdManager instance;
     public InterstitialAd interstitialAd;
 
-    internal static List<string> TestDeviceIds = new List<string>()
-        {
-            AdRequest.TestDeviceSimulator,
-            "EAB96D507B91E54D0680D6549A37256B"
-        };
 
     private void Awake()
     {
@@ -31,9 +26,6 @@ public class AdManager : MonoBehaviour
 
     private void Start()
     {
-        //MobileAds.SetRequestConfiguration(new RequestConfiguration());
-
-
         MobileAds.Initialize(initstatus =>
         {
             MobileAdsEventExecutor.ExecuteInUpdate(() =>

@@ -179,9 +179,9 @@ public class ObjectsController : MonoBehaviour
                 }
                 else if (selectedType == levelTypes.Tutorial)
                 {
-                    yOffset = refCollider.transform.position.y;
+                    yOffset = refCollider.transform.position.y + currentObjCollider.size.y / 3;
                     xOffset = currentObjCollider.size.y;
-                    zOffset = currentObjCollider.size.y;
+                    zOffset = currentObjCollider.size.y - 0.01f;
                     radius = currentObjCollider.size.x;
                 }
 

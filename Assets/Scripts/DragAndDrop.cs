@@ -13,9 +13,11 @@ public class DragAndDrop : MonoBehaviour
     
     private bool isStartPoint = true;
 
+    private string isTutorialActive;
     private GameObject tutorialCursor;
     private GameObject tutorialParticle;
     private GameObject tutorialTargetBox;
+    private Outline tutorialOutline;
 
     private levelTypes selectedType;
     private Transform hitColliderObj;
@@ -86,13 +88,14 @@ public class DragAndDrop : MonoBehaviour
         else if (selectedType == levelTypes.Tutorial)
         {
             radius = 0.6f;
+            isTutorialActive = PlayerPrefs.GetString("IsTutorial", "true");
         }
     }
 
     private void Update()
     {
-
-        if(selectedType == levelTypes.Tutorial && isStarted && !hasSearched && isMyTurn)
+        //if(selectedType == levelTypes.Tutorial && isStarted && !hasSearched && isMyTurn)
+        if(selectedType == levelTypes.Tutorial && isTutorialActive == "true" && !hasSearched && isMyTurn)
         {
             hasSearched = true;
             isMyTurn = false;
@@ -111,8 +114,11 @@ public class DragAndDrop : MonoBehaviour
 
             tutorialCursor = transform.Find("Cursor").gameObject;
             tutorialParticle = transform.Find("Particle").gameObject;
+            tutorialOutline = transform.GetComponent<Outline>();
+
             tutorialCursor.SetActive(true);
             tutorialParticle.SetActive(true);
+            tutorialOutline.enabled = true;
             targets = draggableObjectsController.GetBoxes();
 
             foreach(DragAndDrop obj in draggableObjects)
@@ -193,6 +199,7 @@ public class DragAndDrop : MonoBehaviour
                         isDraggingActive = false;
                         tutorialCursor.SetActive(false);
                         tutorialParticle.SetActive(false);
+                        tutorialOutline.enabled = false;
                     }
 
                     hitColliderObj = hitCollider.gameObject.transform;
@@ -233,13 +240,15 @@ public class DragAndDrop : MonoBehaviour
                     mascotAnimator.SetTrigger("Jump");
                     isPlacedRight = true;
 
-                    if (selectedType == levelTypes.Tutorial && currentObjectIndex < draggableObjects.Count)
+                    if (selectedType == levelTypes.Tutorial && isTutorialActive == "true" && currentObjectIndex < draggableObjects.Count)
                     {
                         DragAndDrop currentDraggableObj = draggableObjects[currentObjectIndex];
                         currentDraggableObj.tutorialCursor = currentDraggableObj.transform.Find("Cursor").gameObject;
                         currentDraggableObj.tutorialParticle = currentDraggableObj.transform.Find("Particle").gameObject;
+                        currentDraggableObj.tutorialOutline = currentDraggableObj.transform.GetComponent<Outline>();
                         currentDraggableObj.tutorialCursor.SetActive(true);
                         currentDraggableObj.tutorialParticle.SetActive(true);
+                        currentDraggableObj.tutorialOutline.enabled = true;
                         currentDraggableObj.gameObject.GetComponent<BoxCollider>().enabled = true;
 
                         foreach (GameObject box in targets)

@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 1113651674147470227}
   - component: {fileID: -7020811548028127587}
   - component: {fileID: 213197004459080421}
+  - component: {fileID: 5961519453341744928}
   m_Layer: 6
   m_Name: PillowYellow
   m_TagString: Yellow
@@ -197,6 +198,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.17385633, y: 0.069248065, z: 0.46092755}
   m_Center: {x: -0.00049433496, y: 0.020063952, z: -0.0008642154}
+--- !u!114 &5961519453341744928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4579098765305693861}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0, g: 0, b: 0, a: 1}
+  outlineWidth: 10
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1001 &8307798757986463580
 PrefabInstance:
   m_ObjectHideFlags: 0

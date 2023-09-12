@@ -10,21 +10,10 @@ public class GDPRManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        var debugSettings = new ConsentDebugSettings
-        {
-            // Geography appears as in EEA for debug devices.
-            DebugGeography = DebugGeography.EEA,
-            TestDeviceHashedIds = new List<string>
-            {
-                "EAB96D507B91E54D0680D6549A37256B"
-            }
-        };
-
         // Here false means users are not under age.
         ConsentRequestParameters request = new ConsentRequestParameters
         {
             TagForUnderAgeOfConsent = false,
-            ConsentDebugSettings = debugSettings,
         };
 
         // Check the current consent information status.
